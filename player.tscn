@@ -6,24 +6,24 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vefc7"]
 height = 40.0
 
+[sub_resource type="Animation" id="Animation_phanl"]
+resource_name = "Swim down"
+
 [sub_resource type="Animation" id="Animation_17670"]
 resource_name = "Swim left"
-
-[sub_resource type="Animation" id="Animation_jusob"]
-resource_name = "Swim up"
 
 [sub_resource type="Animation" id="Animation_iv6rj"]
 resource_name = "Swim right"
 
-[sub_resource type="Animation" id="Animation_phanl"]
-resource_name = "Swim down"
+[sub_resource type="Animation" id="Animation_jusob"]
+resource_name = "Swim up"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3q2m7"]
 _data = {
-"Swim down": SubResource("Animation_phanl"),
-"Swim left": SubResource("Animation_17670"),
-"Swim right": SubResource("Animation_iv6rj"),
-"Swim up": SubResource("Animation_jusob")
+"Down swim": SubResource("Animation_phanl"),
+"Left swim": SubResource("Animation_17670"),
+"Right swim": SubResource("Animation_iv6rj"),
+"Up swim": SubResource("Animation_jusob")
 }
 
 [node name="Player" type="Area2D"]
