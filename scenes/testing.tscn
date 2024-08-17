@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://0678vr22o4iw"]
 
-[ext_resource type="Script" path="res://testing.gd" id="1_1r6c3"]
-[ext_resource type="PackedScene" uid="uid://7ba5xuy72rle" path="res://player.tscn" id="1_bvkqp"]
-[ext_resource type="PackedScene" uid="uid://db0706gjw42bh" path="res://in_game_ui.tscn" id="3_h3uny"]
-[ext_resource type="PackedScene" uid="uid://c7rpyaywt0lkv" path="res://mob_spwaner.tscn" id="3_sx372"]
+[ext_resource type="Script" path="res://scripts/testing.gd" id="1_1r6c3"]
+[ext_resource type="PackedScene" uid="uid://7ba5xuy72rle" path="res://scenes/player.tscn" id="1_bvkqp"]
+[ext_resource type="PackedScene" uid="uid://db0706gjw42bh" path="res://scenes/in_game_ui.tscn" id="3_h3uny"]
+[ext_resource type="PackedScene" uid="uid://c7rpyaywt0lkv" path="res://scenes/mob_spwaner.tscn" id="3_sx372"]
 
 [node name="Testing" type="Node2D"]
 script = ExtResource("1_1r6c3")

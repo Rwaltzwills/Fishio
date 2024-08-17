@@ -66,7 +66,7 @@ func _on_body_entered(body: Node2D) -> void:
 			emit_signal("collided", body)
 			# DEBUG: play eating animation
 		else:
-			emit_signal("take_hit") # TO-DO: Decide on instakill or a health system related to size
+			emit_signal("take_hit") # TODO: Decide on instakill or a health system related to size
 
 # Actions needed
 # - Handle swimming - Debug 
