@@ -10,7 +10,7 @@ script = ExtResource("1_1r6c3")
 
 [node name="Player" parent="." instance=ExtResource("1_bvkqp")]
 position = Vector2(110, 76)
-y_scale_when_eating = 1.01
+y_scale_when_eating = 1.15
 x_scale_when_eating = 1.15
 
 [node name="In-game UI" parent="." instance=ExtResource("3_h3uny")]
