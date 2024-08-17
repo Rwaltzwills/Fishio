@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4gxafrqy1hcw"]
+
+[ext_resource type="Texture2D" uid="uid://clgtbokdko40y" path="res://Graphics/Placeholders/mob.png" id="1_c1ps6"]
+[ext_resource type="Script" path="res://Kal-Prototype/mob.gd" id="1_wokol"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3at1g"]
+radius = 24.0
+height = 64.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kt7wo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i7v1g"]
+radius = 256.0
+
+[node name="mob" type="CharacterBody2D" groups=["is_mob"]]
+motion_mode = 1
+script = ExtResource("1_wokol")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3at1g")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+rotation = 4.71239
+texture = ExtResource("1_c1ps6")
+
+[node name="hitbox" type="Area2D" parent="CollisionShape2D"]
+position = Vector2(-0.0001448, -40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/hitbox"]
+shape = SubResource("RectangleShape2D_kt7wo")
+
+[node name="detect" type="Area2D" parent="CollisionShape2D"]
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/detect"]
+shape = SubResource("CircleShape2D_i7v1g")

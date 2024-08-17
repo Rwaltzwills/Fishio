@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2jldxjyte152"]
+
+[ext_resource type="Script" path="res://Kal-Prototype/player.gd" id="1_d7jdn"]
+[ext_resource type="Texture2D" uid="uid://ewuav0n4cbld" path="res://Kal-Prototype/player_fish.png" id="2_i1xka"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3at1g"]
+radius = 24.0
+height = 80.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kt7wo"]
+
+[node name="player" type="CharacterBody2D" groups=["is_player"]]
+motion_mode = 1
+script = ExtResource("1_d7jdn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3at1g")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+rotation = 4.71239
+texture = ExtResource("2_i1xka")
+
+[node name="hitbox" type="Area2D" parent="CollisionShape2D"]
+position = Vector2(-2.09815e-06, -48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/hitbox"]
+shape = SubResource("RectangleShape2D_kt7wo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionShape2D"]

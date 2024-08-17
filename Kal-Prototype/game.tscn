@@ -1,0 +1,128 @@
+[gd_scene load_steps=5 format=3 uid="uid://votl4sp6d68s"]
+
+[ext_resource type="Script" path="res://Kal-Prototype/camera.gd" id="1_b1uwe"]
+[ext_resource type="Script" path="res://Kal-Prototype/game.gd" id="1_smoqv"]
+[ext_resource type="PackedScene" uid="uid://d2jldxjyte152" path="res://Kal-Prototype/player.tscn" id="2_lk0qf"]
+[ext_resource type="PackedScene" uid="uid://b4gxafrqy1hcw" path="res://Kal-Prototype/mob.tscn" id="3_ho0ta"]
+
+[node name="game" type="Node2D"]
+script = ExtResource("1_smoqv")
+
+[node name="camera" type="Camera2D" parent="."]
+script = ExtResource("1_b1uwe")
+
+[node name="player" parent="." instance=ExtResource("2_lk0qf")]
+position = Vector2(64, 64)
+
+[node name="mobs" type="Node2D" parent="."]
+
+[node name="mob" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(192, 192)
+
+[node name="mob2" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(192, 384)
+
+[node name="mob3" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(384, 256)
+
+[node name="mob4" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(576, 384)
+
+[node name="mob5" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(704, 128)
+
+[node name="mob6" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(640, 576)
+
+[node name="mob7" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(832, 384)
+
+[node name="mob8" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(1024, 256)
+
+[node name="mob9" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(520, 584)
+
+[node name="mob10" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(520, 776)
+
+[node name="mob11" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(712, 648)
+
+[node name="mob12" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(904, 776)
+
+[node name="mob13" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(1032, 520)
+
+[node name="mob14" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(968, 968)
+
+[node name="mob15" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(1160, 776)
+
+[node name="mob16" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(1352, 648)
+
+[node name="mob17" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(64, 512)
+
+[node name="mob18" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(64, 704)
+
+[node name="mob19" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(256, 576)
+
+[node name="mob20" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(448, 704)
+
+[node name="mob21" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(576, 448)
+
+[node name="mob22" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(512, 896)
+
+[node name="mob23" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(704, 704)
+
+[node name="mob24" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(896, 576)
+
+[node name="mob25" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(392, 904)
+
+[node name="mob26" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(392, 1096)
+
+[node name="mob27" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(584, 968)
+
+[node name="mob28" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(776, 1096)
+
+[node name="mob29" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(904, 840)
+
+[node name="mob30" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(840, 1288)
+
+[node name="mob31" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(1032, 1096)
+
+[node name="mob32" parent="mobs" instance=ExtResource("3_ho0ta")]
+position = Vector2(1224, 968)
+
+[node name="ui" type="CanvasLayer" parent="."]
+
+[node name="timer" type="Label" parent="ui"]
+offset_left = 448.0
+offset_right = 488.0
+offset_bottom = 23.0
+text = "TIMER: 00:00:00"
+
+[node name="score" type="Label" parent="ui"]
+offset_left = 448.0
+offset_top = 24.0
+offset_right = 569.0
+offset_bottom = 47.0
+text = "SCORE: 0"
