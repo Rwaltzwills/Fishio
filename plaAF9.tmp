@@ -1,0 +1,155 @@
+[gd_scene load_steps=28 format=3 uid="uid://7ba5xuy72rle"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_uyvn1"]
+[ext_resource type="Script" path="res://mob_spwaner.gd" id="3_2h4yo"]
+[ext_resource type="Texture2D" uid="uid://bw8g3yxrowhbk" path="res://Graphics/Placeholders/player_fish.png" id="3_ob25x"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vefc7"]
+height = 40.0
+
+[sub_resource type="Animation" id="Animation_phanl"]
+resource_name = "Swim down"
+
+[sub_resource type="Animation" id="Animation_17670"]
+resource_name = "Swim left"
+
+[sub_resource type="Animation" id="Animation_iv6rj"]
+resource_name = "Swim right"
+
+[sub_resource type="Animation" id="Animation_jusob"]
+resource_name = "Swim up"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3q2m7"]
+_data = {
+"Down swim": SubResource("Animation_phanl"),
+"Left swim": SubResource("Animation_17670"),
+"Right swim": SubResource("Animation_iv6rj"),
+"Up swim": SubResource("Animation_jusob")
+}
+
+[sub_resource type="Curve" id="Curve_iid7r"]
+min_value = 0.99
+
+[sub_resource type="Curve" id="Curve_hvn8b"]
+min_value = 0.99
+
+[sub_resource type="Curve" id="Curve_2vrjk"]
+min_value = 0.99
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_vb76l"]
+width = 32
+curve_x = SubResource("Curve_iid7r")
+curve_y = SubResource("Curve_hvn8b")
+curve_z = SubResource("Curve_2vrjk")
+
+[sub_resource type="Curve" id="Curve_prtv5"]
+
+[sub_resource type="Curve" id="Curve_8ksgs"]
+
+[sub_resource type="Curve" id="Curve_et1j6"]
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_tok86"]
+width = 32
+curve_x = SubResource("Curve_prtv5")
+curve_y = SubResource("Curve_8ksgs")
+curve_z = SubResource("Curve_et1j6")
+
+[sub_resource type="Curve" id="Curve_2842q"]
+
+[sub_resource type="CurveTexture" id="CurveTexture_lgi7f"]
+width = 32
+curve = SubResource("Curve_2842q")
+
+[sub_resource type="Curve" id="Curve_8nbbv"]
+
+[sub_resource type="CurveTexture" id="CurveTexture_qkrnh"]
+width = 32
+curve = SubResource("Curve_8nbbv")
+
+[sub_resource type="Curve" id="Curve_fl4jq"]
+
+[sub_resource type="CurveTexture" id="CurveTexture_k7ecy"]
+width = 32
+curve = SubResource("Curve_fl4jq")
+
+[sub_resource type="Curve" id="Curve_qof8x"]
+
+[sub_resource type="Curve" id="Curve_b4uw1"]
+
+[sub_resource type="Curve" id="Curve_tsde0"]
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_75vpk"]
+width = 32
+curve_x = SubResource("Curve_qof8x")
+curve_y = SubResource("Curve_b4uw1")
+curve_z = SubResource("Curve_tsde0")
+
+[node name="Player" type="Area2D"]
+position = Vector2(300, 75)
+script = ExtResource("1_uyvn1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_vefc7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+scale = Vector2(0.435484, 0.435484)
+texture = ExtResource("3_ob25x")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3q2m7")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+limit_smoothed = true
+
+[node name="Mob Spwaner" type="Node" parent="."]
+script = ExtResource("3_2h4yo")
+
+[node name="Marker2D" type="Marker2D" parent="Mob Spwaner"]
+position = Vector2(-76, -49)
+
+[node name="Debug Texture" type="Sprite2D" parent="Mob Spwaner/Marker2D"]
+visible = false
+texture = SubResource("CurveXYZTexture_vb76l")
+
+[node name="Marker2D2" type="Marker2D" parent="Mob Spwaner"]
+position = Vector2(618, 68)
+
+[node name="Debug Texture" type="Sprite2D" parent="Mob Spwaner/Marker2D2"]
+visible = false
+texture = SubResource("CurveXYZTexture_tok86")
+
+[node name="Marker2D3" type="Marker2D" parent="Mob Spwaner"]
+position = Vector2(670, 143)
+
+[node name="Debug Texture" type="Sprite2D" parent="Mob Spwaner/Marker2D3"]
+visible = false
+texture = SubResource("CurveTexture_lgi7f")
+
+[node name="Marker2D4" type="Marker2D" parent="Mob Spwaner"]
+position = Vector2(640, 4)
+
+[node name="Debug Texture" type="Sprite2D" parent="Mob Spwaner/Marker2D4"]
+visible = false
+texture = SubResource("CurveTexture_qkrnh")
+
+[node name="Marker2D5" type="Marker2D" parent="Mob Spwaner"]
+position = Vector2(-62, 188)
+
+[node name="Debug Texture" type="Sprite2D" parent="Mob Spwaner/Marker2D5"]
+visible = false
+texture = SubResource("CurveTexture_k7ecy")
+
+[node name="Marker2D6" type="Marker2D" parent="Mob Spwaner"]
+position = Vector2(-32, 62)
+
+[node name="Debug Texture" type="Sprite2D" parent="Mob Spwaner/Marker2D6"]
+visible = false
+texture = SubResource("CurveXYZTexture_75vpk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

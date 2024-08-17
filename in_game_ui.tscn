@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://db0706gjw42bh"]
+
+[ext_resource type="Script" path="res://in_game_ui.gd" id="1_82nck"]
+
+[node name="In-game UI" type="CanvasLayer"]
+script = ExtResource("1_82nck")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Points" type="Label" parent="."]
+offset_left = 1112.0
+offset_top = 23.0
+offset_right = 1152.0
+offset_bottom = 46.0
+text = "00"
+
+[node name="Timer Label" type="Label" parent="."]
+offset_left = 1112.0
+offset_right = 1152.0
+offset_bottom = 23.0
+text = "00"

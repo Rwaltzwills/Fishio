@@ -1,12 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://0678vr22o4iw"]
+[gd_scene load_steps=5 format=3 uid="uid://0678vr22o4iw"]
 
+[ext_resource type="Script" path="res://testing.gd" id="1_1r6c3"]
 [ext_resource type="PackedScene" uid="uid://7ba5xuy72rle" path="res://player.tscn" id="1_bvkqp"]
-[ext_resource type="PackedScene" uid="uid://cnl6h4mlpa1ph" path="res://mob.tscn" id="2_qi3v3"]
+[ext_resource type="PackedScene" uid="uid://db0706gjw42bh" path="res://in_game_ui.tscn" id="3_h3uny"]
+[ext_resource type="PackedScene" uid="uid://c7rpyaywt0lkv" path="res://mob_spwaner.tscn" id="3_sx372"]
 
 [node name="Testing" type="Node2D"]
+script = ExtResource("1_1r6c3")
 
 [node name="Player" parent="." instance=ExtResource("1_bvkqp")]
-position = Vector2(31, 62)
+position = Vector2(110, 76)
+y_scale_when_eating = 1.01
+x_scale_when_eating = 1.15
 
-[node name="Mob" parent="." instance=ExtResource("2_qi3v3")]
-position = Vector2(138, 62)
+[node name="In-game UI" parent="." instance=ExtResource("3_h3uny")]
+
+[node name="Mob Spwaner" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_sx372")]
+target = NodePath("../Player")
+
+[connection signal="collided" from="Player" to="." method="_on_player_collided"]
+[connection signal="gained_size" from="Player" to="In-game UI" method="_on_player_gained_size"]
