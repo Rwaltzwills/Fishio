@@ -14,7 +14,7 @@ config/name="Fishio"
 config/name_localized={
 "th_TH": "เกมปลา"
 }
-run/main_scene="res://testing.tscn"
+run/main_scene="res://scenes/testing.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
