@@ -1,5 +1,7 @@
-"keys","en","th"
-"GAME_NAME","Fishio","เกมปลา"
-"PLAY","Play","เล่น"
-"SETTINGS","Settings","ตั้งค่า"
-"QUIT","Quit","ออก"
+keys,en,th
+GAME_NAME,Fishio,เกมปลา
+PLAY,Play,เล่น
+SETTINGS,Settings,ตั้งค่า
+QUIT,Quit,ออก
+CONTROLS,Controls,
+BACK,Back,

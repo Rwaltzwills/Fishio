@@ -1,11 +1,14 @@
-extends CenterContainer
+extends Control
 
 var game_scene = preload("res://scenes/testing.tscn")
+var actions = {"Down swim":"SWIM DOWN", "Up swim":"SWIM UP", 
+				"Left swim":"SWIM LEFT", "Right swim":"SWIM RIGHT"}
+
+signal new_map
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
