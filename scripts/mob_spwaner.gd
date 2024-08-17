@@ -1,14 +1,15 @@
 extends Node
 
+@export var mob_scenes: Array[PackedScene] = []
+@export var target: Node2D
+var spawner_pos = []
+var children
 
 # Called when the node enters the scene tree for the first time.
-var spawner_pos = []
-@export var mob_scenes: Array[PackedScene] = []
-var children
-@export var target: Node2D
 func _ready() -> void:
 	children = get_children()
 	var initial_mobs = mob_scenes
+	
 	for c in children:
 		spawner_pos.append(c.position-target.position)
 		
