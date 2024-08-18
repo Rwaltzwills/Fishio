@@ -7,6 +7,7 @@ var children
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	randomize()
 	children = get_children()
 	var initial_mobs = mob_scenes
 	
@@ -17,10 +18,10 @@ func _ready() -> void:
 		if initial_mobs.size() > 0:
 			var new_mob = randi() % initial_mobs.size()
 			var m = initial_mobs[new_mob].instantiate()
+			m.eating_size = randi_range(0,2)
 			m.position = c.position
 			get_parent().add_child.call_deferred(m)
 			initial_mobs.remove_at(new_mob)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

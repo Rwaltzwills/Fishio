@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://c7rpyaywt0lkv"]
 
-[ext_resource type="Script" path="res://scripts/mob_spwaner.gd" id="1_l83va"]
+[ext_resource type="Script" path="res://scripts/mob_spawner.gd" id="1_l83va"]
 [ext_resource type="PackedScene" uid="uid://cnl6h4mlpa1ph" path="res://scenes/mob.tscn" id="2_m7uep"]
 
 [sub_resource type="Curve" id="Curve_5fn68"]

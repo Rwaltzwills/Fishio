@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://7ba5xuy72rle"]
+[gd_scene load_steps=11 format=3 uid="uid://7ba5xuy72rle"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_uyvn1"]
+[ext_resource type="Script" path="res://scenes/camera.gd" id="3_bnc5o"]
 [ext_resource type="Texture2D" uid="uid://bw8g3yxrowhbk" path="res://Graphics/Placeholders/player_fish.png" id="3_ob25x"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vefc7"]
 height = 40.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrpy1"]
+size = Vector2(16, 16)
 
 [sub_resource type="Animation" id="Animation_phanl"]
 resource_name = "Swim down"
@@ -26,27 +30,31 @@ _data = {
 "Up swim": SubResource("Animation_jusob")
 }
 
-[node name="Player" type="Area2D"]
-position = Vector2(300, 75)
+[node name="Player" type="Area2D" groups=["can_pause", "is_player"]]
 script = ExtResource("1_uyvn1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_vefc7")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -3)
-scale = Vector2(0.435484, 0.435484)
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+rotation = -1.5708
 texture = ExtResource("3_ob25x")
+
+[node name="hitbox" type="Area2D" parent="CollisionShape2D"]
+position = Vector2(-0.000174046, -48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/hitbox"]
+shape = SubResource("RectangleShape2D_xrpy1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_3q2m7")
 }
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." groups=["can_pause"]]
 zoom = Vector2(2, 2)
 limit_smoothed = true
+script = ExtResource("3_bnc5o")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="CollisionShape2D/hitbox" to="." method="_on_hitbox_body_entered"]
