@@ -56,10 +56,10 @@ layer = 2
 z_index = -5
 texture_repeat = 2
 material = SubResource("ShaderMaterial_7foh6")
-position = Vector2(-496.974, 0)
-scale = Vector2(2.81153, 1)
+position = Vector2(177.975, 195.701)
+scale = Vector2(0.679691, 0.286928)
 texture = SubResource("NoiseTexture2D_xrx4k")
-polygon = PackedVector2Array(-116.672, -460, 656.218, -456, 655.151, 472, -114.182, 482)
+polygon = PackedVector2Array(-595.822, -1316.36, 648.862, -1469.71, 655.151, 472, -651.73, 475.03)
 uv = PackedVector2Array(-115.605, -406, 640.568, -399, 635.944, 469, -114.182, 482)
 
 [node name="Layer functionality" type="Node" parent="."]

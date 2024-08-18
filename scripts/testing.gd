@@ -4,6 +4,7 @@ var timer
 var timer_label
 var timer_label_format = "%02d"
 var main_menu_path = "res://scenes/main_menu.tscn"
+var shader_speed_default_a # Not working
 
 @export var small_fish :PackedScene
 @export var same_fish :PackedScene
@@ -28,12 +29,26 @@ func _ready() -> void:
 	$"Mob Spwaner".mob_group = $Mobs
 	$"Mob Spwaner".mob_scenes = enemy_list
 	$"Mob Spwaner".spawnEnemies()
-
+	
+	shader_speed_default_a = $Background/ColorRect.material.get_shader_parameter("scroll_speed")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
+func _physics_process(delta: float) -> void:
+	var ocean_background_a = $Background/ColorRect.material
+	
+	move_background($Player.velocity,delta)
+	
+	# DEBUG: Not working :(
+	# var current_shader_speed_a = ocean_background_a.get_shader_parameter("scroll_speed")
+	# if $Player.velocity != Vector2(0,0):
+	# 	ocean_background_a.set_shader_parameter("scroll_speed", current_shader_speed_a*$Player.velocity)
+	# 	# position += move_velocity * delta
+	# else:
+	# 	ocean_background_a.set_shader_parameter("scroll_speed", shader_speed_default_a)
+	# print(ocean_background_a.get_shader_parameter("scroll_speed"))
 
 func _on_player_collided(body) -> void:
 	$"Mob Spwaner".repositionMob(body) # Replace with function body.
@@ -72,3 +87,6 @@ func generate_new_enemies():
 		new_enemy_list.append([biggest_fish,Settings.biggest_fish_size])
 	
 	return new_enemy_list
+	
+func move_background(move_velocity: Vector2, delta: float):
+	$Background.position += move_velocity * delta
