@@ -4,10 +4,10 @@ extends AnimationPlayer
 
 func _ready() -> void:
 	var parent = get_parent()
+	parent.connect('visibility_changed',startTimer)
 	if parent.visible:
 		startTimer()
-	else:
-		parent.connect('visibility_changed',startTimer)
+		
 
 func startTimer():
 	var parent = get_parent()

@@ -3,7 +3,7 @@ extends Node2D
 var timer
 var timer_label
 var timer_label_format = "%02d"
-var main_menu = preload("res://scenes/main_menu.tscn")
+var main_menu_path = "res://scenes/main_menu.tscn"
 
 
 # Called when the node enters the scene tree for the first time.
@@ -32,4 +32,4 @@ func _on_ui_update_timer_timeout() -> void:
 	
 func game_over():
 	# TO-DO: Leaderboard, game over screen, buttons to play again or go to main menu
-	get_tree().change_scene_to_packed(main_menu) # DEBUG: Why is this giving an error and not swapping?
+	get_tree().change_scene_to_file(main_menu_path) # DEBUG: Why is this giving an error and not swapping?

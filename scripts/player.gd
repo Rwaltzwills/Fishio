@@ -2,7 +2,6 @@ extends Area2D
 
 signal gained_size
 signal take_hit
-signal collided
 
 @onready var _animation_player = $AnimationPlayer
 
@@ -12,7 +11,6 @@ signal collided
 @export var y_scale_when_eating = 1.5
 @export var x_scale_when_eating = 1.5
 var velocity
-var screen_size = get_viewport_rect().size # DEBUG: May need to reassign this as camera size
 
 func _ready() -> void:
 	velocity = Vector2(0,0)
@@ -49,7 +47,7 @@ func _physics_process(delta: float) -> void:
 func move(move_velocity: Vector2, delta: float):
 	position += move_velocity * delta
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func changeSize() -> void:
