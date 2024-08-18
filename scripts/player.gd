@@ -3,20 +3,27 @@ extends Area2D
 signal gained_size
 signal take_hit
 signal collided
+signal request_transition
 
 @onready var _animation_player = $AnimationPlayer
 
 @export var SPEED = 300.0
 @export var SPEED_FALLOFF = 30
-@export var eating_size = 1
-@export var y_scale_when_eating = 1.5
-@export var x_scale_when_eating = 1.5
+@export var eating_size = 2
+var y_scale_when_eating = Settings.scale_size.x
+var x_scale_when_eating = Settings.scale_size.y
 var velocity
+var base_scale
 
 func _ready() -> void:
 	velocity = Vector2(0,0)
+	base_scale = $Sprite2D.scale
 
 func _physics_process(delta: float) -> void:
+	# Check for transition request
+	if Input.get_action_strength("Transition") > .5:
+		emit_signal("request_transition")
+		return
 	# Handle swimming
 	# Get the input direction
 	var direction_lr := Input.get_axis("Left swim", "Right swim") # Left/Right 
@@ -57,11 +64,18 @@ func _input(event: InputEvent) -> void: # DEBUG: Delete this. For testing purpos
 			print(event.as_text_key_label())
 			$Camera2D.zoom = Vector2(1,1)
 
-func changeSize() -> void:
-	self.eating_size += 1
+func changeSize(new_size = 0) -> void:
+	if new_size == 0:
+		self.eating_size += 1
+	else:
+		self.eating_size = new_size
 	# DEBUG: play size change animation
-	$Sprite2D.scale = Vector2($Sprite2D.scale.x * x_scale_when_eating, $Sprite2D.scale.y * y_scale_when_eating)
-	$CollisionShape2D.scale = Vector2($CollisionShape2D.scale.x * x_scale_when_eating, $CollisionShape2D.scale.y * y_scale_when_eating)
+	if self.eating_size > 2:
+		$Sprite2D.scale = Vector2(self.eating_size * x_scale_when_eating, self.eating_size * y_scale_when_eating)
+		$CollisionShape2D.scale = Vector2(self.eating_size * x_scale_when_eating, self.eating_size * y_scale_when_eating)
+	else:
+		$Sprite2D.scale = base_scale
+		$CollisionShape2D.scale = base_scale
 	emit_signal("gained_size")
 
 func _on_body_entered(body: Node2D) -> void:
@@ -72,6 +86,7 @@ func _on_body_entered(body: Node2D) -> void:
 			# DEBUG: play eating animation
 		else:
 			emit_signal("take_hit") # TODO: Decide on instakill or a health system related to size
+			print("took hit")
 
 # Actions needed
 # - Handle swimming - Debug 

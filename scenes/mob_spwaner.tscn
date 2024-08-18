@@ -1,11 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7rpyaywt0lkv"]
+[gd_scene load_steps=2 format=3 uid="uid://c7rpyaywt0lkv"]
 
 [ext_resource type="Script" path="res://scripts/mob_spwaner.gd" id="1_l83va"]
-[ext_resource type="PackedScene" uid="uid://cnl6h4mlpa1ph" path="res://scenes/mob.tscn" id="2_m7uep"]
 
 [node name="Mob Spwaner" type="Node"]
 script = ExtResource("1_l83va")
-mob_scenes = Array[PackedScene]([ExtResource("2_m7uep"), ExtResource("2_m7uep"), ExtResource("2_m7uep")])
 
 [node name="Spawn Circle" type="Node2D" parent="."]
 top_level = true

@@ -3,6 +3,12 @@ extends Node
 @export var POINTS_GOAL = 1000
 @export var TIMER_MINUTES = 0
 @export var TIMER_SECONDS = 5
+@export var POINTS_MULTIPLIER = 1.5
+@export var small_fish_size = 1
+@export var same_fish_size = 2
+@export var big_fish_size = 5
+@export var biggest_fish_size = 9
+@export var scale_size = Vector2(1.1,1.1)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
