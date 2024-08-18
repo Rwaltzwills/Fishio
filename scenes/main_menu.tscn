@@ -79,9 +79,9 @@ text = "QUIT"
 [node name="Settings Menu" type="Control" parent="."]
 visible = false
 anchors_preset = 0
-offset_left = 326.0
+offset_left = 526.0
 offset_top = 260.0
-offset_right = 426.0
+offset_right = 626.0
 offset_bottom = 388.0
 
 [node name="Label" type="Label" parent="Settings Menu"]
