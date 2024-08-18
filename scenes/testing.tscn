@@ -18,5 +18,11 @@ x_scale_when_eating = 1.15
 [node name="Mob Spwaner" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_sx372")]
 target = NodePath("../Player")
 
+[node name="Game Timer" type="Timer" parent="."]
+
+[node name="UI Update Timer" type="Timer" parent="."]
+
 [connection signal="collided" from="Player" to="." method="_on_player_collided"]
 [connection signal="gained_size" from="Player" to="In-game UI" method="_on_player_gained_size"]
+[connection signal="timeout" from="Game Timer" to="." method="game_over"]
+[connection signal="timeout" from="UI Update Timer" to="." method="_on_ui_update_timer_timeout"]

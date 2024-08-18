@@ -5,8 +5,6 @@
 [node name="In-game UI" type="CanvasLayer"]
 script = ExtResource("1_82nck")
 
-[node name="Timer" type="Timer" parent="."]
-
 [node name="Points" type="Label" parent="."]
 offset_left = 1112.0
 offset_top = 23.0

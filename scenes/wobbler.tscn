@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://ghogwurd6r5g"]
+
+[ext_resource type="AnimationLibrary" uid="uid://ccgidis16haln" path="res://Animation Libraries/Wobbles.tres" id="1_2fsue"]
+[ext_resource type="AnimationLibrary" uid="uid://bgso4mvjgwcqv" path="res://Animation Libraries/Menu.res" id="1_gxjgh"]
+[ext_resource type="Script" path="res://scripts/wobbler.gd" id="2_df7bw"]
+
+[sub_resource type="Animation" id="Animation_fc71b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.1, 1.1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x55ra"]
+_data = {
+"RESET": SubResource("Animation_fc71b")
+}
+
+[node name="Wobbler" type="AnimationPlayer"]
+libraries = {
+"": SubResource("AnimationLibrary_x55ra"),
+"Menu": ExtResource("1_gxjgh"),
+"Wobbles": ExtResource("1_2fsue")
+}
+script = ExtResource("2_df7bw")
+
+[node name="DelayTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="DelayTimer" to="." method="_on_delay_timer_timeout"]
