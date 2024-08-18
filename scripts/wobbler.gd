@@ -12,7 +12,9 @@ func _ready() -> void:
 func startTimer():
 	var parent = get_parent()
 	$DelayTimer.start(randf_range(.1,.75))
-	parent.disconnect('visibility_changed',startTimer)
+	
+	if parent.is_connected("visibility_changed", startTimer):
+		parent.disconnect('visibility_changed',startTimer)
 	parent.connect('visibility_changed',stopAnim)
 
 func stopAnim():
