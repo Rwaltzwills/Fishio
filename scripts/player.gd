@@ -50,6 +50,12 @@ func move(move_velocity: Vector2, delta: float):
 
 func _process(_delta: float) -> void:
 	pass
+	
+func _input(event: InputEvent) -> void: # DEBUG: Delete this. For testing purposes only.
+	if event is InputEventKey:
+		if event.as_text_key_label() == "Z":
+			print(event.as_text_key_label())
+			$Camera2D.zoom = Vector2(1,1)
 
 func changeSize() -> void:
 	self.eating_size += 1
