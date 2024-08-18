@@ -2,6 +2,7 @@ extends Area2D
 
 signal gained_size
 signal take_hit
+signal collided
 
 @onready var _animation_player = $AnimationPlayer
 
