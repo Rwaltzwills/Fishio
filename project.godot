@@ -48,6 +48,10 @@ Transition={
 "deadzone": 0.5,
 "events": []
 }
+Transition_Up={
+"deadzone": 0.5,
+"events": []
+}
 
 [internationalization]
 
