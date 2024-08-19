@@ -25,10 +25,13 @@ func _ready() -> void:
 	$"UI Update Timer".start(1)
 	timer_label.text = timer_label_format % floor(timer.time_left)
 	
+	$"Mob Spwaner".target=$Player
 	var enemy_list = generate_new_enemies()
 	$"Mob Spwaner".mob_group = $Mobs
 	$"Mob Spwaner".mob_scenes = enemy_list
 	$"Mob Spwaner".spawnEnemies()
+	
+
 	
 	shader_speed_default_a = $Background/ColorRect.material.get_shader_parameter("scroll_speed")
 
@@ -66,7 +69,7 @@ func game_over():
 
 func _on_player_request_transition() -> void:
 	var new_enemy_list = generate_new_enemies()
-	$"Layer functionality".changeLayer($Mobs.get_children(),$Player,$"Mob Spwaner",new_enemy_list)
+	$"Layer functionality".changeLayer($Mobs.get_children(),$Player,$"Mob Spawner",new_enemy_list)
 
 func generate_new_enemies():
 	var new_enemy_list = []

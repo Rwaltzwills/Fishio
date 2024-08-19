@@ -63,6 +63,12 @@ func _physics_process(delta: float) -> void:
 	
 	move(velocity, delta)
 
+func _input(event: InputEvent) -> void: # DEBUG: Delete this. For testing purposes only.
+	if event is InputEventKey:
+		if event.as_text_key_label() == "Z":
+			print(event.as_text_key_label())
+			$Camera2D.zoom = Vector2(1,1)
+
 func move(move_velocity: Vector2, delta: float):
 	
 	#apply movement

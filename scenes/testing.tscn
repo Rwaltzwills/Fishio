@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://7ba5xuy72rle" path="res://scenes/player.tscn" id="1_bvkqp"]
 [ext_resource type="PackedScene" uid="uid://cnl6h4mlpa1ph" path="res://scenes/mob.tscn" id="2_tk547"]
 [ext_resource type="PackedScene" uid="uid://db0706gjw42bh" path="res://scenes/in_game_ui.tscn" id="3_h3uny"]
-[ext_resource type="PackedScene" uid="uid://c7rpyaywt0lkv" path="res://scenes/mob_spwaner.tscn" id="3_sx372"]
+[ext_resource type="PackedScene" uid="uid://c7rpyaywt0lkv" path="res://scenes/mob_spawner.tscn" id="3_sx372"]
 [ext_resource type="Shader" path="res://shaders/testing.gdshader" id="5_2mjie"]
 [ext_resource type="Script" path="res://scripts/layer_functionality.gd" id="6_3tf7t"]
 
@@ -37,11 +37,9 @@ biggest_fish = ExtResource("2_tk547")
 [node name="Player" parent="." instance=ExtResource("1_bvkqp")]
 position = Vector2(207, 92)
 
-[node name="In-game UI" parent="." instance=ExtResource("3_h3uny")]
+[node name="Mob Spwaner" parent="." instance=ExtResource("3_sx372")]
 
-[node name="Mob Spwaner" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_sx372")]
-target = NodePath("../Player")
-spawn_area_radius = 400.0
+[node name="In-game UI" parent="." instance=ExtResource("3_h3uny")]
 
 [node name="Game Timer" type="Timer" parent="."]
 
@@ -76,6 +74,5 @@ text = "PAUSED"
 
 [connection signal="collided" from="Player" to="." method="_on_player_collided"]
 [connection signal="gained_size" from="Player" to="In-game UI" method="_on_player_gained_size"]
-[connection signal="request_transition" from="Player" to="." method="_on_player_request_transition"]
 [connection signal="timeout" from="Game Timer" to="." method="game_over"]
 [connection signal="timeout" from="UI Update Timer" to="." method="_on_ui_update_timer_timeout"]
