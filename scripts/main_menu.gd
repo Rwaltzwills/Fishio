@@ -13,8 +13,8 @@ extends Control
 
 var game_scene = preload("res://scenes//testing.tscn")
 var wobbler = preload("res://scenes//wobbler.tscn")
-var actions = {"Up swim":tr("SWIM UP"), 
-				"Left swim":tr("SWIM LEFT"), "Right swim":tr("SWIM RIGHT"),
+var actions = {"Up swim":tr("SWIM_UP"), 
+				"Left swim":tr("SWIM_LEFT"), "Right swim":tr("SWIM_RIGHT"),
 				"Transition":tr("TRANSITION")}
 				# Removed "Transition_Up":tr("SWIM BACK UP")
 var is_remapping = false

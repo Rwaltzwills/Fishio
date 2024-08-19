@@ -5,10 +5,10 @@ SETTINGS,Settings,ตั้งค่า
 QUIT,Quit,ออก
 CONTROLS,Controls,การควบคุม
 BACK,Back,กลับ
-SWIM DOWN,Swim Down,ว่ายลง
-SWIM LEFT,Turn Left,
-SWIM UP,Swim,
-SWIM RIGHT,Turn Right,
+SWIM_DOWN,Swim Down,ว่ายลง
+SWIM_LEFT,Turn Left,เลี้ยวซ้าย
+SWIM_UP,Swim,ว่าย
+SWIM_RIGHT,Turn Right,เลี้ยวขวา
 EASY,Easy: 10 Points in 1 Minute!,ง่าย: 10 แต้มภายใน 1 นาที
 MEDIUM,Medium: 15 Points in 45 Seconds!,ปานกลาง: 15 แต้มภายใน 45 วินาที
 HARD,Hard: 20 Points in 45 Seconds!,ยาก: 20 แต้มภายใน 45 วินาที
@@ -16,7 +16,12 @@ DIFFICULTY,Difficulty,ความยาก
 TRANSITION,Swim Deeper,ดำลึกลงไป
 SWIM BACK UP,Swim Back Up,ว่ายกลับขึ้นมา
 LEADERBOARD,Leaderboard,กระดานผู้นำ
-SELECT LANGUAGE,Select Language,
-ENGLISH,English,
-THAI,Thai,
-OUT OF,Out of,
+SELECT LANGUAGE,Select Language,เลือกภาษา
+ENGLISH,English,อังกฤษ
+THAI,Thai,ไทย
+OUT_OF,Out of,จาก
+RANK,Rank,ลำดับ
+NAME,Name,ชื่อ
+SCORE,Score,คะแนน
+TIME,Time,เวลา
+DATE,Date,วันที่
