@@ -27,6 +27,7 @@ signal select_mode
 func _ready():
 	var controls_menu = $"Controls Menu"
 	
+	# Make the control buttons as per actions variable
 	for b in actions:
 		var rebind_control_button = rebind_control_buttons_scene.instantiate()
 		var action_label = rebind_control_button.find_child("Action Label")
@@ -40,33 +41,37 @@ func _ready():
 		else:
 			input_label.text = "N/A"
 		
-		
 		controls_menu.add_child(rebind_control_button)
 		rebind_control_button.custom_minimum_size = rebind_control_button.find_child("MarginContainer").size
 		rebind_control_button.pivot_offset = Vector2(rebind_control_button.custom_minimum_size.x/2,rebind_control_button.custom_minimum_size.y/2)
 		rebind_control_button.add_child(wobbler.instantiate())
 		rebind_control_button.hidden_value = b
 		rebind_control_button.pressed.connect(assign_controls.bind(rebind_control_button))
-		# DEBUG: Move new button up in scene controls
-	
+
+	$"Controls Menu".move_child($"Controls Menu/BackButton",-1)
 	assign_control.connect(Settings.new_mapping)
 	select_mode.connect(Settings.new_game_parameters)
 
+# For remapping controls
 func assign_controls(button):
+	# Check for remap state
 	if !is_remapping:
 		is_remapping = true
 		button.find_child("Input Label").text = "...?"
 		action_to_remap = button.hidden_value
 		button_to_remap = button
 
+# Used to capture the input on remapping state
 func _input(event: InputEvent) -> void:
 	var controls_children = $"Controls Menu".get_children()
-	var do_remap = false
+	var do_remap = false # Set as true once remap conditions fulfilled
+	# Check for remap state
 	if is_remapping:
-		if event is InputEventKey: # DEBUG: Add controller support?
+		if event is InputEventKey: 
 			var new_mapping = event.as_text_key_label()
 			do_remap = true
 			
+			# Check for any other actions that use this control
 			for c in controls_children:
 				var input_label = c.find_child("Input Label")
 				if input_label != null and input_label.text == new_mapping:
@@ -74,7 +79,8 @@ func _input(event: InputEvent) -> void:
 			
 			if do_remap:
 				emit_signal("assign_control", action_to_remap, event)
-				
+			
+			# Assign button's text to new control
 			button_to_remap.find_child("Input Label").text = InputMap.action_get_events(action_to_remap)[0].as_text()
 			# TO-DO: Handle swim up
 			is_remapping = false

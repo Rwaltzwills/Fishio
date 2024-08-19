@@ -56,12 +56,8 @@ func _physics_process(_delta: float) -> void:
 func on_death() -> void:
 	cur_action = "Idle"
 	$Debug_State.text = "idle"
-	# Reset AI
-	# Pause for a short time
-	# Restart AI
 
 func _on_detect_area_entered(area: Area2D) -> void:
-	
 	if area.is_in_group("is_player"):
 		if eating_size > area.eating_size:
 			cur_action = "chase"
@@ -71,7 +67,6 @@ func _on_detect_area_entered(area: Area2D) -> void:
 			$Debug_State.text = "run"
 
 func _on_detect_area_exited(area: Area2D) -> void:
-	
 	if area.is_in_group("is_player"):
 		cur_action = "idle"
 		$Debug_State.text = "idle"

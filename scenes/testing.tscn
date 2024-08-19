@@ -70,6 +70,6 @@ script = ExtResource("6_3tf7t")
 [connection signal="gained_size" from="Player" to="In-game UI" method="_on_player_gained_size"]
 [connection signal="request_transition" from="Player" to="." method="_on_player_request_transition"]
 [connection signal="take_hit" from="Player" to="." method="game_over"]
-[connection signal="won_game" from="In-game UI" to="." method="_on_ingame_ui_won_game"]
+[connection signal="won_game" from="In-game UI" to="." method="game_win"]
 [connection signal="timeout" from="Game Timer" to="." method="game_over"]
 [connection signal="timeout" from="UI Update Timer" to="." method="_on_ui_update_timer_timeout"]

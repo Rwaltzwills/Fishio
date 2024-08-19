@@ -19,13 +19,14 @@ var Points_format = "%02d"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Set timer
 	timer = $"Game Timer"
 	timer_label = $"In-game UI".find_child("Timer Label")
-	
 	timer.start(Settings.TIMER_MINUTES*60+Settings.TIMER_SECONDS)
 	$"UI Update Timer".start(1)
 	timer_label.text = timer_label_format % floor(timer.time_left)
 	
+	# Spawn initial mobs
 	$"Mob Spawner".target=$Player
 	var enemy_list = generate_new_enemies()
 	$"Mob Spawner".mob_group = $Mobs
@@ -35,13 +36,13 @@ func _ready() -> void:
 	
 	shader_speed_default_a = $Background/ColorRect.material.get_shader_parameter("scroll_speed")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
 	var ocean_background_a = $Background/ColorRect.material
 	
+	# Keep the background attached to the player
 	move_background($Player.velocity,delta)
 	
 	# DEBUG: Not working :(
@@ -58,6 +59,7 @@ func _on_player_collided(body) -> void:
 
 
 func _on_ui_update_timer_timeout() -> void:
+	# Every second, update the timer UI label to countdown
 	var time_left = floor(timer.time_left)
 	timer_label.text = timer_label_format % time_left # DEBUG: Worried a little this may lead to inaccurate times?
 	$"UI Update Timer".start(1)
@@ -67,14 +69,18 @@ func game_over():
 	get_tree().change_scene_to_file.call_deferred(main_menu_path)
 	print("game over")
 
+func game_win() -> void:
+	game_over()
 
 func _on_player_request_transition() -> void:
+	# On layer change, add new enemies
 	var new_enemy_list = generate_new_enemies()
 	$"Layer functionality".change_layer($Mobs.get_children(),$Player,$"Mob Spawner",new_enemy_list)
 
 func generate_new_enemies():
+	# Generate new enemies depending on what layer you're on, with smaller fish
+	# becoming rarer the farther you go down
 	var new_enemy_list = []
-	
 	var layer = $"Layer functionality".current_layer
 	var small = 10 - layer if 10 - layer > minimum_small else 10 - layer
 	var same = 7 - layer if 7 - layer > minimum_same else 7 - layer
@@ -106,6 +112,7 @@ func set_pause(toggle):
 
 
 func _on_player_camera_resize_request() -> void:
+	# When the player needs to scale down in size, scale down all mobs too
 	var children = $Mobs.get_children()
 	for c in children:
 		c.zooming_out = true
@@ -116,7 +123,3 @@ func _on_player_camera_resize_request() -> void:
 		if c.eating_size < -2:
 			c.queue_free() # After a certain size, despawn fish to force player deeper
 			
-
-
-func _on_ingame_ui_won_game() -> void:
-	game_over()

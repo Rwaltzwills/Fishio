@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_vx1pp"]
 [ext_resource type="AnimationLibrary" uid="uid://bgso4mvjgwcqv" path="res://animation_libraries/Menu.res" id="2_ln7d0"]
 [ext_resource type="PackedScene" uid="uid://ghogwurd6r5g" path="res://scenes/wobbler.tscn" id="3_v4qlq"]
-[ext_resource type="Script" path="res://scenes/center_node.gd" id="4_dxwjq"]
+[ext_resource type="Script" path="res://scripts/center_node.gd" id="4_dxwjq"]
 [ext_resource type="Script" path="res://scenes/language_selection.gd" id="5_h8wgm"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jcjpw"]

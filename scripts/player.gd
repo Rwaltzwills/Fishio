@@ -31,7 +31,6 @@ var zooming_out = false
 
 
 func _ready() -> void:
-	
 	velocity = Vector2(0,0)
 	base_scale = $CollisionShape2D.scale
 	angular_velocity = 0
@@ -80,46 +79,42 @@ func _physics_process(delta: float) -> void:
 	
 	move(velocity, delta)
 
-func _input(event: InputEvent) -> void: # DEBUG: Delete this. For testing purposes only.
-	if event is InputEventKey:
-		if event.as_text_key_label() == "Z":
-			print(event.as_text_key_label())
-			$Camera2D.zoom = Vector2(1,1)
-
 func move(move_velocity: Vector2, delta: float):
-	
 	#apply movement
 	position += move_velocity * delta
 
 func change_size(new_size = 0) -> void:
-	
+	# If no new size provided, go up one
 	if new_size == 0:
 		self.eating_size += 1
 	else:
 		self.eating_size = new_size
 	# DEBUG: play size change animation
-	if self.eating_size > 2:
+	# Might just use a signal or a lerp setting here to smoothly transition
+	if self.eating_size > Settings.same_fish_size:
 		collider.scale = Vector2(self.eating_size * x_scale_when_eating, self.eating_size * y_scale_when_eating)
 		emit_signal("gained_size")
 	else:
 		collider.scale = base_scale
+	
+	# Check if we're getting too big for the screen, scale everything down
 	if $CollisionShape2D.scale >= Vector2(5,5):
 		zooming_out = true
-		eating_size = 2
+		eating_size = Settings.same_fish_size
 		collider.scale = base_scale
 		emit_signal("camera_resize_request")
+	
 	$"Debug Size".text = str(eating_size)
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	
 	if "eating_size" in body:
 		if self.eating_size >= body.eating_size:
 			change_size()
 			emit_signal("collided", body)
 			# DEBUG: play eating animation
 		else:
-			emit_signal("take_hit") # TODO: Decide on instakill or a health system related to size
+			emit_signal("take_hit")
 
 # Actions needed
 # - Handle swimming - Debug 
