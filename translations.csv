@@ -16,3 +16,7 @@ DIFFICULTY,Difficulty,ความยาก
 TRANSITION,Swim Deeper,ดำลึกลงไป
 SWIM BACK UP,Swim Back Up,ว่ายกลับขึ้นมา
 LEADERBOARD,Leaderboard,กระดานผู้นำ
+SELECT LANGUAGE,Select Language,
+ENGLISH,English,
+THAI,Thai,
+OUT OF,Out of,

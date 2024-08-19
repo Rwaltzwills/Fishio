@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfxfn6dsf5olw"]
+[gd_scene load_steps=8 format=3 uid="uid://bfxfn6dsf5olw"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_vx1pp"]
 [ext_resource type="AnimationLibrary" uid="uid://bgso4mvjgwcqv" path="res://animation_libraries/Menu.res" id="2_ln7d0"]
 [ext_resource type="PackedScene" uid="uid://ghogwurd6r5g" path="res://scenes/wobbler.tscn" id="3_v4qlq"]
 [ext_resource type="Script" path="res://scenes/center_node.gd" id="4_dxwjq"]
+[ext_resource type="Script" path="res://scenes/language_selection.gd" id="5_h8wgm"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jcjpw"]
 
@@ -158,6 +159,23 @@ text = "HARD"
 [node name="Button" type="Button" parent="Game Modes"]
 layout_mode = 2
 text = "BACK"
+
+[node name="Language Selection" type="MenuButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 1095.0
+offset_top = 1.0
+offset_right = 1151.0
+offset_bottom = 32.0
+grow_horizontal = 0
+text = "SELECT LANGUAGE"
+item_count = 2
+popup/item_0/text = "ENGLISH"
+popup/item_1/text = "THAI"
+popup/item_1/id = 1
+script = ExtResource("5_h8wgm")
 
 [connection signal="pressed" from="Splash Menu/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Splash Menu/SettingsButton" to="." method="open_settings"]

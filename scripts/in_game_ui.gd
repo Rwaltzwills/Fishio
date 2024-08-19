@@ -10,7 +10,7 @@ signal won_game
 var Points_format = "%02d"
 func _ready() -> void:
 	Points = 0
-	$Points.text = str(Points_format % (Points), " out of ", str(Settings.POINTS_GOAL))
+	$Points.text = str(Points_format % (Points), tr(" OUT OF "), str(Settings.POINTS_GOAL))
 	pause_menu.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,7 +33,7 @@ func _process(_delta: float) -> void:
 
 func _on_player_gained_size() -> void:
 	Points = Points+floor(1*Settings.POINTS_MULTIPLIER)
-	$Points.text = str(Points_format % (Points), " out of ", str(Settings.POINTS_GOAL))
+	$Points.text = str(Points_format % (Points), tr(" OUT OF "), str(Settings.POINTS_GOAL))
 	print(Points)
 	if Points >= Settings.POINTS_GOAL:
 		emit_signal("won_game")
