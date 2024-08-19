@@ -32,6 +32,8 @@ _data = {
 
 [node name="Player" type="Area2D" groups=["can_pause", "is_player"]]
 script = ExtResource("1_uyvn1")
+SPEED = 300.0
+SPEED_ACCEL = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -53,8 +55,11 @@ libraries = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["can_pause"]]
-zoom = Vector2(2, 2)
 limit_smoothed = true
 script = ExtResource("3_bnc5o")
+
+[node name="Debug Size" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [connection signal="body_entered" from="CollisionShape2D/hitbox" to="." method="_on_hitbox_body_entered"]

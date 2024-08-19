@@ -2,11 +2,15 @@ extends CanvasLayer
 
 @onready var pause_menu = get_node("pause_menu")
 @onready var cur_scene = get_tree().current_scene
+var Points
+
+signal won_game
 
 # Called when the node enters the scene tree for the first time.
 var Points_format = "%02d"
 func _ready() -> void:
-	
+	Points = 0
+	$Points.text = str(Points_format % (Points), " out of ", str(Settings.POINTS_GOAL))
 	pause_menu.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,4 +32,8 @@ func _process(_delta: float) -> void:
 				cur_scene.set_pause(false)
 
 func _on_player_gained_size() -> void:
-	$Points.text = Points_format % (int($Points.text) + 1) # TO-DO: Scale by layer
+	Points = Points+floor(1*Settings.POINTS_MULTIPLIER)
+	$Points.text = str(Points_format % (Points), " out of ", str(Settings.POINTS_GOAL))
+	print(Points)
+	if Points >= Settings.POINTS_GOAL:
+		emit_signal("won_game")

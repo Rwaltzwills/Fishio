@@ -6,6 +6,7 @@ var timer_label_format = "%02d"
 var main_menu_path = "res://scenes/main_menu.tscn"
 var shader_speed_default_a # Not working
 var cur_time = float()
+var Points_format = "%02d"
 
 @export var small_fish :PackedScene
 @export var same_fish :PackedScene
@@ -25,11 +26,12 @@ func _ready() -> void:
 	$"UI Update Timer".start(1)
 	timer_label.text = timer_label_format % floor(timer.time_left)
 	
-	$"Mob Spwaner".target=$Player
+	$"Mob Spawner".target=$Player
 	var enemy_list = generate_new_enemies()
-	$"Mob Spwaner".mob_group = $Mobs
-	$"Mob Spwaner".mob_scenes = enemy_list
-	$"Mob Spwaner".spawn_enemies()
+	$"Mob Spawner".mob_group = $Mobs
+	$"Mob Spawner".mob_scenes = enemy_list
+	$"Mob Spawner".player = $Player
+	$"Mob Spawner".spawn_enemies()
 	
 	shader_speed_default_a = $Background/ColorRect.material.get_shader_parameter("scroll_speed")
 
@@ -52,7 +54,7 @@ func _physics_process(delta: float) -> void:
 	# print(ocean_background_a.get_shader_parameter("scroll_speed"))
 
 func _on_player_collided(body) -> void:
-	$"Mob Spwaner".repositionMob(body) # Replace with function body.
+	$"Mob Spawner".reposition_mob(body) # Replace with function body.
 
 
 func _on_ui_update_timer_timeout() -> void:
@@ -62,12 +64,13 @@ func _on_ui_update_timer_timeout() -> void:
 	
 func game_over():
 	# TO-DO: Leaderboard, game over screen, buttons to play again or go to main menu
-	get_tree().change_scene_to_file(main_menu_path) # DEBUG: Why is this giving an error and not swapping?
+	get_tree().change_scene_to_file.call_deferred(main_menu_path)
+	print("game over")
 
 
 func _on_player_request_transition() -> void:
 	var new_enemy_list = generate_new_enemies()
-	$"Layer functionality".changeLayer($Mobs.get_children(),$Player,$"Mob Spawner",new_enemy_list)
+	$"Layer functionality".change_layer($Mobs.get_children(),$Player,$"Mob Spawner",new_enemy_list)
 
 func generate_new_enemies():
 	var new_enemy_list = []
@@ -100,3 +103,20 @@ func set_pause(toggle):
 			timer.stop()
 		else:
 			timer.start(cur_time)
+
+
+func _on_player_camera_resize_request() -> void:
+	var children = $Mobs.get_children()
+	for c in children:
+		c.zooming_out = true
+		c.eating_size = c.eating_size - 3
+		var Debug_Label = c.find_child("Debug_Size")
+		if Debug_Label != null:
+			Debug_Label.text = str(c.eating_size - 3)
+		if c.eating_size < -2:
+			c.queue_free() # After a certain size, despawn fish to force player deeper
+			
+
+
+func _on_ingame_ui_won_game() -> void:
+	game_over()

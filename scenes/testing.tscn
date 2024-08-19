@@ -37,7 +37,7 @@ biggest_fish = ExtResource("2_tk547")
 [node name="Player" parent="." instance=ExtResource("1_bvkqp")]
 position = Vector2(207, 92)
 
-[node name="Mob Spwaner" parent="." instance=ExtResource("3_sx372")]
+[node name="Mob Spawner" parent="." instance=ExtResource("3_sx372")]
 
 [node name="In-game UI" parent="." instance=ExtResource("3_h3uny")]
 
@@ -54,10 +54,10 @@ layer = 2
 z_index = -5
 texture_repeat = 2
 material = SubResource("ShaderMaterial_7foh6")
-position = Vector2(177.975, 195.701)
+position = Vector2(220, 217)
 scale = Vector2(0.679691, 0.286928)
 texture = SubResource("NoiseTexture2D_xrx4k")
-polygon = PackedVector2Array(-595.822, -1316.36, 648.862, -1469.71, 655.151, 472, -651.73, 475.03)
+polygon = PackedVector2Array(-910.708, -1648.5, 870.984, -1620.62, 881.283, 770.228, -929.834, 798.11)
 uv = PackedVector2Array(-115.605, -406, 640.568, -399, 635.944, 469, -114.182, 482)
 
 [node name="Layer functionality" type="Node" parent="."]
@@ -65,14 +65,11 @@ script = ExtResource("6_3tf7t")
 
 [node name="Mobs" type="Node" parent="."]
 
-[node name="Pause Menu" type="CanvasLayer" parent="."]
-
-[node name="Pause Message" type="Label" parent="Pause Menu"]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "PAUSED"
-
+[connection signal="camera_resize_request" from="Player" to="." method="_on_player_camera_resize_request"]
 [connection signal="collided" from="Player" to="." method="_on_player_collided"]
 [connection signal="gained_size" from="Player" to="In-game UI" method="_on_player_gained_size"]
+[connection signal="request_transition" from="Player" to="." method="_on_player_request_transition"]
+[connection signal="take_hit" from="Player" to="." method="game_over"]
+[connection signal="won_game" from="In-game UI" to="." method="_on_ingame_ui_won_game"]
 [connection signal="timeout" from="Game Timer" to="." method="game_over"]
 [connection signal="timeout" from="UI Update Timer" to="." method="_on_ui_update_timer_timeout"]

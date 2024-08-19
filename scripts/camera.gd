@@ -7,7 +7,7 @@ var target_2 = null
 func _ready() -> void:
 	
 	target_1 = get_parent()
-	set_as_top_level(true)
+	# set_as_top_level(true)
 
 func _process(_delta: float) -> void:
 	

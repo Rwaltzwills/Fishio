@@ -5,6 +5,7 @@ signal gained_size
 signal take_hit
 signal collided
 signal request_transition
+signal camera_resize_request
 
 @onready var _animation_player = $AnimationPlayer
 @onready var collider = get_node("CollisionShape2D")
@@ -26,12 +27,15 @@ var velocity
 var angular_velocity
 var base_scale
 
+var zooming_out = false
+
 
 func _ready() -> void:
 	
 	velocity = Vector2(0,0)
-	base_scale = $CollisionShape2D/Sprite2D.scale
+	base_scale = $CollisionShape2D.scale
 	angular_velocity = 0
+	$"Debug Size".text = str(eating_size)
 
 func _physics_process(delta: float) -> void:
 	# Check for transition request
@@ -39,6 +43,10 @@ func _physics_process(delta: float) -> void:
 		emit_signal("request_transition")
 		return
 	
+	if zooming_out:
+		$CollisionShape2D.scale = $CollisionShape2D.scale.lerp(base_scale, Settings.zoom_out_speed)
+		if $CollisionShape2D.scale == base_scale:
+			zooming_out = false
 	# Handle swimming
 	# Get the input direction
 	var direction_lr := Input.get_axis("Left swim", "Right swim") # Left/Right 
@@ -92,9 +100,16 @@ func change_size(new_size = 0) -> void:
 	# DEBUG: play size change animation
 	if self.eating_size > 2:
 		collider.scale = Vector2(self.eating_size * x_scale_when_eating, self.eating_size * y_scale_when_eating)
+		emit_signal("gained_size")
 	else:
 		collider.scale = base_scale
-	emit_signal("gained_size")
+	if $CollisionShape2D.scale >= Vector2(5,5):
+		zooming_out = true
+		eating_size = 2
+		collider.scale = base_scale
+		emit_signal("camera_resize_request")
+	$"Debug Size".text = str(eating_size)
+
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	

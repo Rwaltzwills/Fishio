@@ -26,5 +26,17 @@ shape = SubResource("CircleShape2D_qsx7k")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
+[node name="Debug_Size" type="Label" parent="."]
+offset_left = -3.0
+offset_top = -15.0
+offset_right = 37.0
+offset_bottom = 8.0
+text = "xxx"
+
+[node name="Debug_State" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "xxx"
+
 [connection signal="area_entered" from="CollisionShape2D/detect" to="." method="_on_detect_area_entered"]
 [connection signal="area_exited" from="CollisionShape2D/detect" to="." method="_on_detect_area_exited"]

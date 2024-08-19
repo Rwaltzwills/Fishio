@@ -20,11 +20,11 @@ func change_layer(current_enemies, player, mob_spawner, new_enemy_list) -> void:
 		e.queue_free()
 	
 	# Reset size
-	player.changeSize(Settings.same_fish_size)
+	player.change_size(Settings.same_fish_size)
 	
 	# Respawn enemies
 	mob_spawner.mob_scenes= new_enemy_list
-	mob_spawner.spawnEnemies()
+	mob_spawner.spawn_enemies()
 	
 	# Add to points multiplier
 	Settings.POINTS_MULTIPLIER = round(Settings.POINTS_MULTIPLIER*1.5)
