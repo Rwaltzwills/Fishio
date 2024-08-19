@@ -13,7 +13,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	
 	#toggle pause  menu
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("Pause"):
 		pause_menu.visible = !pause_menu.visible
 		
 		#toggle processes
@@ -28,4 +28,4 @@ func _process(_delta: float) -> void:
 				cur_scene.set_pause(false)
 
 func _on_player_gained_size() -> void:
-	$Points.text = Points_format % (int($Points.text) + 1) # Replace with function body.
+	$Points.text = Points_format % (int($Points.text) + 1) # TO-DO: Scale by layer

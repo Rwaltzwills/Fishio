@@ -4,6 +4,7 @@ extends Area2D
 signal gained_size
 signal take_hit
 signal collided
+signal request_transition
 
 @onready var _animation_player = $AnimationPlayer
 @onready var collider = get_node("CollisionShape2D")
@@ -17,19 +18,27 @@ signal collided
 @export var TURN_ACCEL = float(0.4)
 @export var TURN_DECEL = float(0.1)
 
-@export var eating_size = 1
-@export var y_scale_when_eating = 1.5
-@export var x_scale_when_eating = 1.5
+@export var eating_size = 2
+var y_scale_when_eating = Settings.scale_size.x
+var x_scale_when_eating = Settings.scale_size.y
 
 var velocity
 var angular_velocity
+var base_scale
+
 
 func _ready() -> void:
 	
 	velocity = Vector2(0,0)
+	base_scale = $CollisionShape2D/Sprite2D.scale
 	angular_velocity = 0
 
 func _physics_process(delta: float) -> void:
+	# Check for transition request
+	if Input.get_action_strength("Transition") > .5:
+		emit_signal("request_transition")
+		return
+	
 	# Handle swimming
 	# Get the input direction
 	var direction_lr := Input.get_axis("Left swim", "Right swim") # Left/Right 
@@ -74,11 +83,19 @@ func move(move_velocity: Vector2, delta: float):
 	#apply movement
 	position += move_velocity * delta
 
-func changeSize() -> void:
+func changeSize(new_size = 0) -> void:
 	
-	self.eating_size += 1
+	if new_size == 0:
+		self.eating_size += 1
+	else:
+		self.eating_size = new_size
 	# DEBUG: play size change animation
-	collider.scale = Vector2(collider.scale.x * x_scale_when_eating, collider.scale.y * y_scale_when_eating)
+	if self.eating_size > 2:
+		$CollisionShape2D/Sprite2D.scale = Vector2(self.eating_size * x_scale_when_eating, self.eating_size * y_scale_when_eating)
+		collider.scale = Vector2(self.eating_size * x_scale_when_eating, self.eating_size * y_scale_when_eating)
+	else:
+		$Sprite2D.scale = base_scale
+		collider.scale = base_scale
 	emit_signal("gained_size")
 
 func _on_hitbox_body_entered(body: Node2D) -> void:

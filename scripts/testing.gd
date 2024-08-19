@@ -5,12 +5,12 @@ var timer_label
 var timer_label_format = "%02d"
 var main_menu_path = "res://scenes/main_menu.tscn"
 var shader_speed_default_a # Not working
+var cur_time = float()
 
 @export var small_fish :PackedScene
 @export var same_fish :PackedScene
 @export var big_fish :PackedScene
 @export var biggest_fish :PackedScene
-
 @export var minimum_small = 1
 @export var minimum_same = 5
 @export var minimum_big = 6
@@ -30,8 +30,6 @@ func _ready() -> void:
 	$"Mob Spwaner".mob_group = $Mobs
 	$"Mob Spwaner".mob_scenes = enemy_list
 	$"Mob Spwaner".spawnEnemies()
-	
-
 	
 	shader_speed_default_a = $Background/ColorRect.material.get_shader_parameter("scroll_speed")
 
@@ -93,3 +91,12 @@ func generate_new_enemies():
 	
 func move_background(move_velocity: Vector2, delta: float):
 	$Background.position += move_velocity * delta
+	
+func set_pause(toggle):
+	#toggle pause
+	if toggle == true:
+		if !timer.is_stopped():
+			cur_time = timer.time_left
+			timer.stop()
+		else:
+			timer.start(cur_time)

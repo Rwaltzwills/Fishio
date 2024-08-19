@@ -65,13 +65,6 @@ script = ExtResource("6_3tf7t")
 
 [node name="Mobs" type="Node" parent="."]
 
-[node name="Pause Menu" type="CanvasLayer" parent="."]
-
-[node name="Pause Message" type="Label" parent="Pause Menu"]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "PAUSED"
-
 [connection signal="collided" from="Player" to="." method="_on_player_collided"]
 [connection signal="gained_size" from="Player" to="In-game UI" method="_on_player_gained_size"]
 [connection signal="timeout" from="Game Timer" to="." method="game_over"]
