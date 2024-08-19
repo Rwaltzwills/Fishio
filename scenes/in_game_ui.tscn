@@ -17,3 +17,16 @@ offset_left = 1112.0
 offset_right = 1152.0
 offset_bottom = 23.0
 text = "00"
+
+[node name="pause_menu" type="Polygon2D" parent="."]
+visible = false
+self_modulate = Color(0, 0, 0, 0.247059)
+polygon = PackedVector2Array(384, 192, 640, 192, 640, 384, 384, 384)
+
+[node name="Label" type="Label" parent="pause_menu"]
+offset_left = 448.0
+offset_top = 192.0
+offset_right = 576.0
+offset_bottom = 216.0
+text = "PAUSED"
+horizontal_alignment = 1

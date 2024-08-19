@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7rpyaywt0lkv"]
-
-[ext_resource type="Script" path="res://scripts/mob_spwaner.gd" id="1_l83va"]
-
-[node name="Mob Spwaner" type="Node"]
-script = ExtResource("1_l83va")
-
-[node name="Spawn Circle" type="Node2D" parent="."]
-top_level = true

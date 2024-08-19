@@ -1,0 +1,107 @@
+[gd_scene load_steps=21 format=3 uid="uid://c7rpyaywt0lkv"]
+
+[ext_resource type="Script" path="res://scripts/mob_spawner.gd" id="1_l83va"]
+[ext_resource type="PackedScene" uid="uid://cnl6h4mlpa1ph" path="res://scenes/mob.tscn" id="2_m7uep"]
+
+[sub_resource type="Curve" id="Curve_5fn68"]
+min_value = 0.99
+
+[sub_resource type="Curve" id="Curve_vd1wb"]
+min_value = 0.99
+
+[sub_resource type="Curve" id="Curve_dfrb7"]
+min_value = 0.99
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_s1ruh"]
+width = 32
+curve_x = SubResource("Curve_5fn68")
+curve_y = SubResource("Curve_vd1wb")
+curve_z = SubResource("Curve_dfrb7")
+
+[sub_resource type="Curve" id="Curve_bxhk8"]
+
+[sub_resource type="Curve" id="Curve_oxm5c"]
+
+[sub_resource type="Curve" id="Curve_n34ui"]
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_wdq3h"]
+width = 32
+curve_x = SubResource("Curve_bxhk8")
+curve_y = SubResource("Curve_oxm5c")
+curve_z = SubResource("Curve_n34ui")
+
+[sub_resource type="Curve" id="Curve_0thov"]
+
+[sub_resource type="CurveTexture" id="CurveTexture_m3xtd"]
+width = 32
+curve = SubResource("Curve_0thov")
+
+[sub_resource type="Curve" id="Curve_nkt8m"]
+
+[sub_resource type="CurveTexture" id="CurveTexture_nqyru"]
+width = 32
+curve = SubResource("Curve_nkt8m")
+
+[sub_resource type="Curve" id="Curve_r6l22"]
+
+[sub_resource type="CurveTexture" id="CurveTexture_wu5r4"]
+width = 32
+curve = SubResource("Curve_r6l22")
+
+[sub_resource type="Curve" id="Curve_52wip"]
+
+[sub_resource type="Curve" id="Curve_vee0a"]
+
+[sub_resource type="Curve" id="Curve_sqgs2"]
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_cg044"]
+width = 32
+curve_x = SubResource("Curve_52wip")
+curve_y = SubResource("Curve_vee0a")
+curve_z = SubResource("Curve_sqgs2")
+
+[node name="Mob Spwaner" type="Node"]
+script = ExtResource("1_l83va")
+mob_scenes = Array[PackedScene]([ExtResource("2_m7uep"), ExtResource("2_m7uep"), ExtResource("2_m7uep")])
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-76, -49)
+
+[node name="Debug Texture" type="Sprite2D" parent="Marker2D"]
+visible = false
+texture = SubResource("CurveXYZTexture_s1ruh")
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+position = Vector2(618, 68)
+
+[node name="Debug Texture" type="Sprite2D" parent="Marker2D2"]
+visible = false
+texture = SubResource("CurveXYZTexture_wdq3h")
+
+[node name="Marker2D3" type="Marker2D" parent="."]
+position = Vector2(670, 143)
+
+[node name="Debug Texture" type="Sprite2D" parent="Marker2D3"]
+visible = false
+texture = SubResource("CurveTexture_m3xtd")
+
+[node name="Marker2D4" type="Marker2D" parent="."]
+position = Vector2(640, 4)
+
+[node name="Debug Texture" type="Sprite2D" parent="Marker2D4"]
+visible = false
+texture = SubResource("CurveTexture_nqyru")
+
+[node name="Marker2D5" type="Marker2D" parent="."]
+position = Vector2(-62, 188)
+
+[node name="Debug Texture" type="Sprite2D" parent="Marker2D5"]
+visible = false
+texture = SubResource("CurveTexture_wu5r4")
+
+[node name="Marker2D6" type="Marker2D" parent="."]
+position = Vector2(-32, 62)
+
+[node name="Debug Texture" type="Sprite2D" parent="Marker2D6"]
+visible = false
+texture = SubResource("CurveXYZTexture_cg044")
