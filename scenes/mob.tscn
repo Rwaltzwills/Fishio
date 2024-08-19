@@ -1,10 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnl6h4mlpa1ph"]
+[gd_scene load_steps=6 format=3 uid="uid://cnl6h4mlpa1ph"]
 
-[ext_resource type="Texture2D" uid="uid://clgtbokdko40y" path="res://graphics/Placeholders/mob.png" id="1_auxet"]
 [ext_resource type="Script" path="res://scripts/mob.gd" id="1_o3q5v"]
+[ext_resource type="Texture2D" uid="uid://d0y8y0qrpfp76" path="res://graphics/sprites/mantaray.png" id="2_m25m1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wnd17"]
-radius = 35.0143
+radius = 32.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sh47s"]
+size = Vector2(16, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qsx7k"]
 radius = 240.0
@@ -17,7 +20,17 @@ script = ExtResource("1_o3q5v")
 shape = SubResource("CircleShape2D_wnd17")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-texture = ExtResource("1_auxet")
+rotation = 1.57079
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_m25m1")
+region_enabled = true
+region_rect = Rect2(0, 504, 708, 504)
+
+[node name="hitbox" type="Area2D" parent="CollisionShape2D"]
+position = Vector2(24, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/hitbox"]
+shape = SubResource("RectangleShape2D_sh47s")
 
 [node name="detect" type="Area2D" parent="CollisionShape2D"]
 
@@ -38,5 +51,10 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "xxx"
 
+[node name="action" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="area_entered" from="CollisionShape2D/hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="CollisionShape2D/detect" to="." method="_on_detect_area_entered"]
 [connection signal="area_exited" from="CollisionShape2D/detect" to="." method="_on_detect_area_exited"]
+[connection signal="timeout" from="action" to="." method="_on_action_timeout"]

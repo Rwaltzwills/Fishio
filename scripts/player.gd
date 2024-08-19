@@ -1,6 +1,8 @@
 extends Area2D
 
 #player variables
+var color_index = 0
+
 signal gained_size
 signal take_hit
 signal collided
@@ -29,8 +31,14 @@ var base_scale
 
 var zooming_out = false
 
-
 func _ready() -> void:
+	
+	#randomize color
+	randomize()
+	var color_arr = [Vector2(0,0),Vector2(704,0),Vector2(1416,0),Vector2(1416,0),Vector2(2080,0)]
+	var color_index = randi_range(0,color_arr.size()-1)
+	sprite.region_rect = Rect2(color_arr[color_index].x,color_arr[color_index].y,650,984)
+	
 	velocity = Vector2(0,0)
 	base_scale = $CollisionShape2D.scale
 	angular_velocity = 0
@@ -113,8 +121,8 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 			change_size()
 			emit_signal("collided", body)
 			# DEBUG: play eating animation
-		else:
-			emit_signal("take_hit")
+		#else:
+			#emit_signal("take_hit")
 
 # Actions needed
 # - Handle swimming - Debug 

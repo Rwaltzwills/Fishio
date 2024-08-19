@@ -1,6 +1,9 @@
 extends CharacterBody2D
 
 #mob variables
+var cur_type = "shark"
+var color_index = 0
+
 var cur_action = "idle"
 
 var dire = 0
@@ -13,9 +16,29 @@ var base_scale
 @export var SPEED = 100
 
 @onready var collider = get_node("CollisionShape2D")
+@onready var sprite = get_node("CollisionShape2D/Sprite2D")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
+	#randomize mob type/color
+	randomize()
+	var types = ["shark","manta"]
+	cur_type = types[randi_range(0,types.size()-1)]
+	
+	match cur_type:
+		"shark":
+			var color_arr = [Vector2(0,0),Vector2(554,0),Vector2(1108,0),Vector2(1674,0)]
+			color_index = randi_range(0,color_arr.size()-1)
+			
+			sprite.texture = load("res://graphics/sprites/sharks.png")
+			sprite.region_rect = Rect2(color_arr[color_index].x,color_arr[color_index].y,544,953)
+		"manta":
+			var color_arr = [Vector2(0,0),Vector2(708,0),Vector2(0,504),Vector2(708,504)]
+			color_index = randi_range(0,color_arr.size()-1)
+			
+			sprite.texture = load("res://graphics/sprites/mantaray.png")
+			sprite.region_rect = Rect2(color_arr[color_index].x,color_arr[color_index].y,708,504)
 	
 	if eating_size > Settings.small_fish_size:
 		$CollisionShape2D.scale = eating_size*Settings.scale_size
@@ -38,8 +61,6 @@ func _physics_process(_delta: float) -> void:
 			dire = (player.global_position-global_position).angle()
 		elif cur_action == "run":
 			dire = (player.global_position-global_position).angle()+deg_to_rad(180)
-		else:
-			dire = Vector2(randf(),randf()).angle()
 	
 	#apply turn
 	collider.rotation = lerp_angle(collider.rotation,dire,0.1)
@@ -70,3 +91,14 @@ func _on_detect_area_exited(area: Area2D) -> void:
 	if area.is_in_group("is_player"):
 		cur_action = "idle"
 		$Debug_State.text = "idle"
+
+func _on_action_timeout() -> void:
+	
+	if cur_action == "idle":
+		dire = Vector2(randf(),randf()).angle()
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	
+	if area.is_in_group("is_player"):
+		if eating_size > area.eating_size:
+			area.emit_signal("take_hit")

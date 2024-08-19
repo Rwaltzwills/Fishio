@@ -1,11 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://7ba5xuy72rle"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_uyvn1"]
+[ext_resource type="Texture2D" uid="uid://b5p67ryc3d4x4" path="res://graphics/sprites/guppies.png" id="2_pdjqy"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="3_bnc5o"]
-[ext_resource type="Texture2D" uid="uid://bw8g3yxrowhbk" path="res://graphics/Placeholders/player_fish.png" id="3_ob25x"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vefc7"]
-height = 40.0
+radius = 16.0
+height = 80.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrpy1"]
 size = Vector2(16, 16)
@@ -40,8 +41,10 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_vefc7")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-rotation = -1.5708
-texture = ExtResource("3_ob25x")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_pdjqy")
+region_enabled = true
+region_rect = Rect2(2080.51, 0, 650, 984)
 
 [node name="hitbox" type="Area2D" parent="CollisionShape2D"]
 position = Vector2(-0.000174046, -48)
