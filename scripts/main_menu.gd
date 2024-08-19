@@ -15,7 +15,8 @@ extends Control
 var game_scene = preload("res://scenes//testing.tscn")
 var wobbler = preload("res://scenes//wobbler.tscn")
 var actions = {"Down swim":tr("SWIM DOWN"), "Up swim":tr("SWIM UP"), 
-				"Left swim":tr("SWIM LEFT"), "Right swim":tr("SWIM RIGHT")}
+				"Left swim":tr("SWIM LEFT"), "Right swim":tr("SWIM RIGHT"),
+				"Transition":tr("TRANSITION"), "Transition_Up":tr("SWIM BACK UP")}
 var is_remapping = false
 var action_to_remap = null
 var button_to_remap = null
@@ -31,7 +32,13 @@ func _ready():
 		var input_label = rebind_control_button.find_child("Input Label")
 		
 		action_label.text = actions[b]
-		input_label.text = InputMap.action_get_events(b)[0].as_text() # Since only one action per input, we can just use the first member of the array
+		# Since only one action per input, we can just use the first member of the array
+		var action_event = InputMap.action_get_events(b)
+		if action_event.size() == 1:
+			input_label.text = action_event[0].as_text() 
+		else:
+			input_label.text = "N/A"
+		
 		
 		$"Controls Menu".add_child(rebind_control_button)
 		rebind_control_button.custom_minimum_size = rebind_control_button.find_child("MarginContainer").size
@@ -68,6 +75,7 @@ func _input(event: InputEvent) -> void:
 				emit_signal("assign_control", action_to_remap, event)
 				
 			button_to_remap.find_child("Input Label").text = InputMap.action_get_events(action_to_remap)[0].as_text()
+			# TO-DO: Handle swim up
 			is_remapping = false
 			action_to_remap = null
 			button_to_remap = null

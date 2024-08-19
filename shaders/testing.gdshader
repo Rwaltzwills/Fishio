@@ -6,7 +6,7 @@ uniform float distortion = 0.01;
 uniform vec2 scroll_speed = vec2(0.1,0.1);
 
 void fragment() {
-	COLOR = texture(TEXTURE,UV+sin(scroll_speed*TIME));
+	COLOR = texture(TEXTURE,UV+sin(scroll_speed)*TIME);
 }
 
 //void light() {
