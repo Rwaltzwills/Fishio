@@ -6,9 +6,9 @@ QUIT,Quit,ออก
 CONTROLS,Controls,การควบคุม
 BACK,Back,กลับ
 SWIM DOWN,Swim Down,ว่ายลง
-SWIM LEFT,Swim Left,ว่ายไปทางซ้าย
-SWIM UP,Swim Up,ว่ายขึ้น
-SWIM RIGHT,Swim Right,ว่ายไปทางขวา
+SWIM LEFT,Turn Left,
+SWIM UP,Swim,
+SWIM RIGHT,Turn Right,
 EASY,Easy: 10 Points in 1 Minute!,ง่าย: 10 แต้มภายใน 1 นาที
 MEDIUM,Medium: 15 Points in 45 Seconds!,ปานกลาง: 15 แต้มภายใน 45 วินาที
 HARD,Hard: 20 Points in 45 Seconds!,ยาก: 20 แต้มภายใน 45 วินาที
