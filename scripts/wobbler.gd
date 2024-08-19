@@ -1,7 +1,5 @@
 extends AnimationPlayer
 
-
-
 func _ready() -> void:
 	var parent = get_parent()
 	parent.connect('visibility_changed',start_timer)
