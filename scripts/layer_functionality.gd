@@ -1,16 +1,17 @@
 extends Node
+
 @export var current_layer = 1
 signal changed_layer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-func changeLayer(current_enemies, player, mob_spawner, new_enemy_list) -> void:
+func change_layer(current_enemies, player, mob_spawner, new_enemy_list) -> void:
 	# TO-DO: Pause
 	# TO-DO: Transition anim
 	

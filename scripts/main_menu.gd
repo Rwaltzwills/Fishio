@@ -11,7 +11,6 @@ extends Control
 @export var hard_minutes = 0
 @export var hard_seconds = 45
 
-
 var game_scene = preload("res://scenes//testing.tscn")
 var wobbler = preload("res://scenes//wobbler.tscn")
 var actions = {"Down swim":tr("SWIM DOWN"), "Up swim":tr("SWIM UP"), 
@@ -26,6 +25,8 @@ signal select_mode
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var controls_menu = $"Controls Menu"
+	
 	for b in actions:
 		var rebind_control_button = rebind_control_buttons_scene.instantiate()
 		var action_label = rebind_control_button.find_child("Action Label")
@@ -40,18 +41,18 @@ func _ready():
 			input_label.text = "N/A"
 		
 		
-		$"Controls Menu".add_child(rebind_control_button)
+		controls_menu.add_child(rebind_control_button)
 		rebind_control_button.custom_minimum_size = rebind_control_button.find_child("MarginContainer").size
 		rebind_control_button.pivot_offset = Vector2(rebind_control_button.custom_minimum_size.x/2,rebind_control_button.custom_minimum_size.y/2)
 		rebind_control_button.add_child(wobbler.instantiate())
 		rebind_control_button.hidden_value = b
-		rebind_control_button.pressed.connect(AssignControls.bind(rebind_control_button))
+		rebind_control_button.pressed.connect(assign_controls.bind(rebind_control_button))
 		# DEBUG: Move new button up in scene controls
 	
-	assign_control.connect(Settings.newMapping)
-	select_mode.connect(Settings.newGameParameters)
+	assign_control.connect(Settings.new_mapping)
+	select_mode.connect(Settings.new_game_parameters)
 
-func AssignControls(button):
+func assign_controls(button):
 	if !is_remapping:
 		is_remapping = true
 		button.find_child("Input Label").text = "...?"
@@ -87,16 +88,16 @@ func _on_play_button_pressed():
 func _on_quit_button_pressed():
 	get_tree().quit()
 
-func Open_Settings() -> void:
+func open_settings() -> void:
 	$AnimationPlayer.play("In-Game/Open Settings")
 
-func Close_Settings() -> void:
+func close_settings() -> void:
 	$AnimationPlayer.play("In-Game/Close Settings") 
 
-func Open_Controls() -> void:
+func open_controls() -> void:
 	$AnimationPlayer.play("In-Game/Open Controls")  
 
-func Close_Controls() -> void:
+func close_controls() -> void:
 	$AnimationPlayer.play("In-Game/Close Controls")
 
 func _on_easy_pressed() -> void:

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfxfn6dsf5olw"]
+[gd_scene load_steps=7 format=3 uid="uid://bfxfn6dsf5olw"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_vx1pp"]
-[ext_resource type="AnimationLibrary" uid="uid://bgso4mvjgwcqv" path="res://Animation Libraries/Menu.res" id="2_ln7d0"]
+[ext_resource type="AnimationLibrary" uid="uid://bgso4mvjgwcqv" path="res://animation_libraries/Menu.res" id="2_ln7d0"]
 [ext_resource type="PackedScene" uid="uid://ghogwurd6r5g" path="res://scenes/wobbler.tscn" id="3_v4qlq"]
+[ext_resource type="Script" path="res://scenes/center_node.gd" id="4_dxwjq"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jcjpw"]
 
@@ -13,9 +14,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 27.0
 offset_right = -1152.0
-offset_bottom = -621.0
+offset_bottom = -648.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vx1pp")
@@ -89,8 +89,7 @@ layout_mode = 2
 offset_top = 17.0
 offset_right = 100.0
 offset_bottom = 40.0
-text = "SETTINGS
-"
+text = "SETTINGS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -113,12 +112,13 @@ text = "BACK"
 [node name="Controls Menu" type="VBoxContainer" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 526.0
-offset_top = 260.0
-offset_right = 611.0
-offset_bottom = 300.0
+offset_left = 576.0
+offset_top = 324.0
+offset_right = 661.0
+offset_bottom = 383.0
 theme_override_constants/separation = 5
 alignment = 1
+script = ExtResource("4_dxwjq")
 
 [node name="Label" type="Label" parent="Controls Menu"]
 layout_mode = 2
@@ -133,11 +133,10 @@ text = "BACK"
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_left = 526.0
-offset_top = 260.0
-offset_right = 816.0
-offset_bottom = 388.0
-scale = Vector2(1.1, 1.1)
+offset_left = 431.0
+offset_top = 243.0
+offset_right = 721.0
+offset_bottom = 406.0
 
 [node name="Label" type="Label" parent="Game Modes"]
 layout_mode = 2
@@ -146,26 +145,26 @@ horizontal_alignment = 1
 
 [node name="Easy" type="Button" parent="Game Modes"]
 layout_mode = 2
-text = "EASY:  10 POINTS IN 1 MINUTE"
+text = "EASY"
 
 [node name="Medium" type="Button" parent="Game Modes"]
 layout_mode = 2
-text = "MEDIUM:  15 POINTS IN 45 SECONDS"
+text = "MEDIUM"
 
 [node name="Hard" type="Button" parent="Game Modes"]
 layout_mode = 2
-text = "HARD:  20 POINTS IN 45 SECONDS"
+text = "HARD"
 
 [node name="Button" type="Button" parent="Game Modes"]
 layout_mode = 2
 text = "BACK"
 
 [connection signal="pressed" from="Splash Menu/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="Splash Menu/SettingsButton" to="." method="Open_Settings"]
+[connection signal="pressed" from="Splash Menu/SettingsButton" to="." method="open_settings"]
 [connection signal="pressed" from="Splash Menu/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="Settings Menu/ControlsButton" to="." method="Open_Controls"]
-[connection signal="pressed" from="Settings Menu/BackButton" to="." method="Close_Settings"]
-[connection signal="pressed" from="Controls Menu/BackButton" to="." method="Close_Controls"]
+[connection signal="pressed" from="Settings Menu/ControlsButton" to="." method="open_controls"]
+[connection signal="pressed" from="Settings Menu/BackButton" to="." method="close_settings"]
+[connection signal="pressed" from="Controls Menu/BackButton" to="." method="close_controls"]
 [connection signal="pressed" from="Game Modes/Easy" to="." method="_on_easy_pressed"]
 [connection signal="pressed" from="Game Modes/Medium" to="." method="_on_medium_pressed"]
 [connection signal="pressed" from="Game Modes/Hard" to="." method="_on_hard_pressed"]

@@ -29,12 +29,12 @@ func _ready() -> void:
 	var enemy_list = generate_new_enemies()
 	$"Mob Spwaner".mob_group = $Mobs
 	$"Mob Spwaner".mob_scenes = enemy_list
-	$"Mob Spwaner".spawnEnemies()
+	$"Mob Spwaner".spawn_enemies()
 	
 	shader_speed_default_a = $Background/ColorRect.material.get_shader_parameter("scroll_speed")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:

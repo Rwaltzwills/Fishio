@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cnl6h4mlpa1ph"]
 
-[ext_resource type="Texture2D" uid="uid://clgtbokdko40y" path="res://Graphics/Placeholders/mob.png" id="1_auxet"]
+[ext_resource type="Texture2D" uid="uid://clgtbokdko40y" path="res://graphics/Placeholders/mob.png" id="1_auxet"]
 [ext_resource type="Script" path="res://scripts/mob.gd" id="1_o3q5v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wnd17"]

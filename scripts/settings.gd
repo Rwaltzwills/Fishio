@@ -33,7 +33,7 @@ func _ready() -> void:
 	input.keycode = KEY_ESCAPE
 	InputMap.action_add_event("Pause",input)
 
-func newMapping(action, key) -> void:
+func new_mapping(action, key) -> void:
 	# Allows us to erase upon a new mapping, since we're only expecting one input per
 	# action we can just go ahead and grab the first member of the array returned by
 	# action_get_events()
@@ -42,7 +42,7 @@ func newMapping(action, key) -> void:
 		InputMap.action_add_event(action,key) 
 	# DEBUG: Save to local storage
 
-func newGameParameters(points, minutes, seconds):
+func new_game_parameters(points, minutes, seconds):
 	POINTS_GOAL = points
 	TIMER_MINUTES = minutes
 	TIMER_SECONDS = seconds

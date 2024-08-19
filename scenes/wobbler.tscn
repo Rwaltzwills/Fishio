@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ghogwurd6r5g"]
 
-[ext_resource type="AnimationLibrary" uid="uid://ccgidis16haln" path="res://Animation Libraries/Wobbles.tres" id="1_2fsue"]
-[ext_resource type="AnimationLibrary" uid="uid://bgso4mvjgwcqv" path="res://Animation Libraries/Menu.res" id="1_gxjgh"]
+[ext_resource type="AnimationLibrary" uid="uid://ccgidis16haln" path="res://animation_libraries/Wobbles.tres" id="1_2fsue"]
+[ext_resource type="AnimationLibrary" uid="uid://bgso4mvjgwcqv" path="res://animation_libraries/Menu.res" id="1_gxjgh"]
 [ext_resource type="Script" path="res://scripts/wobbler.gd" id="2_df7bw"]
 
 [sub_resource type="Animation" id="Animation_fc71b"]

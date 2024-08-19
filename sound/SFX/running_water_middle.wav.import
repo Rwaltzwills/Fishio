@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dhsi2w8vptx2s"
-path="res://.godot/imported/running_water_middle.wav-70950a7862144db3dea5ab21ccc8218c.sample"
+path="res://.godot/imported/running_water_middle.wav-c7d8ee7b25c6298da706c93a4b62fffd.sample"
 
 [deps]
 
-source_file="res://Sound/SFX/running_water_middle.wav"
-dest_files=["res://.godot/imported/running_water_middle.wav-70950a7862144db3dea5ab21ccc8218c.sample"]
+source_file="res://sound/SFX/running_water_middle.wav"
+dest_files=["res://.godot/imported/running_water_middle.wav-c7d8ee7b25c6298da706c93a4b62fffd.sample"]
 
 [params]
 

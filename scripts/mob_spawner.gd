@@ -14,13 +14,13 @@ func _process(_delta: float) -> void:
 func _physics_process(_delta: float) -> void:
 	pass
 
-func repositionMob(body) -> void:
+func reposition_mob(body) -> void:
 	var new_pos = target.position+(Vector2.RIGHT*spawn_area_radius).rotated(randf_range(0,PI))
 	body.position = new_pos 
 	if "onDeath" in body:
 		body.onDeath()
 
-func spawnEnemies() -> void:
+func spawn_enemies() -> void:
 	var initial_mobs = mob_scenes
 	
 	while initial_mobs.size() > 0:

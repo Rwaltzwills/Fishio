@@ -26,6 +26,10 @@ config/icon="res://icon.svg"
 
 Settings="*res://scenes/settings.tscn"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [input]
 
 "Left swim"={

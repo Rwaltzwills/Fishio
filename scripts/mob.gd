@@ -42,7 +42,7 @@ func _physics_process(_delta: float) -> void:
 	#apply movement
 	move_and_slide()
 
-func onDeath() -> void:
+func on_death() -> void:
 	pass
 	# Reset AI
 	# Pause for a short time

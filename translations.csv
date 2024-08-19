@@ -3,15 +3,16 @@ GAME_NAME,Fishio,เกมปลา
 PLAY,Play,เล่น
 SETTINGS,Settings,ตั้งค่า
 QUIT,Quit,ออก
-CONTROLS,Controls,
-BACK,Back,
-SWIM DOWN,Swim Down,
-SWIM LEFT,Swim Left,
-SWIM UP,Swim Up,
-SWIM RIGHT,Swim Right,
-EASY:  10 POINTS IN 1 MINUTE,Easy: 10 Points in 1 Minute!,
-MEDIUM:  15 POINTS IN 45 SECONDS,Medium: 15 Points in 45 Seconds!,
-HARD:  20 POINTS IN 45 SECONDS,Hard: 20 Points in 45 Seconds!,
-DIFFICULTY,Difficulty,
-TRANSITION,Swim Deeper,
-SWIM BACK UP,Swim Back Up,
+CONTROLS,Controls,การควบคุม
+BACK,Back,กลับ
+SWIM DOWN,Swim Down,ว่ายลง
+SWIM LEFT,Swim Left,ว่ายไปทางซ้าย
+SWIM UP,Swim Up,ว่ายขึ้น
+SWIM RIGHT,Swim Right,ว่ายไปทางขวา
+EASY,Easy: 10 Points in 1 Minute!,ง่าย: 10 แต้มภายใน 1 นาที
+MEDIUM,Medium: 15 Points in 45 Seconds!,ปานกลาง: 15 แต้มภายใน 45 วินาที
+HARD,Hard: 20 Points in 45 Seconds!,ยาก: 20 แต้มภายใน 45 วินาที
+DIFFICULTY,Difficulty,ความยาก
+TRANSITION,Swim Deeper,ดำลึกลงไป
+SWIM BACK UP,Swim Back Up,ว่ายกลับขึ้นมา
+LEADERBOARD,Leaderboard,กระดานผู้นำ

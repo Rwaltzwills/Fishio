@@ -83,7 +83,7 @@ func move(move_velocity: Vector2, delta: float):
 	#apply movement
 	position += move_velocity * delta
 
-func changeSize(new_size = 0) -> void:
+func change_size(new_size = 0) -> void:
 	
 	if new_size == 0:
 		self.eating_size += 1
@@ -100,7 +100,7 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	
 	if "eating_size" in body:
 		if self.eating_size >= body.eating_size:
-			changeSize()
+			change_size()
 			emit_signal("collided", body)
 			# DEBUG: play eating animation
 		else:
