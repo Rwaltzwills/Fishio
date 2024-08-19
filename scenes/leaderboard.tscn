@@ -1,12 +1,87 @@
-[gd_scene format=3 uid="uid://bvb6e7vvam4ie"]
+[gd_scene load_steps=3 format=3 uid="uid://bvb6e7vvam4ie"]
 
-[node name="leaderboard" type="CenterContainer"]
+[ext_resource type="Script" path="res://scripts/leaderboard.gd" id="1_6ok3l"]
+
+[sub_resource type="Theme" id="Theme_yrguh"]
+MarginContainer/constants/margin_bottom = 20
+MarginContainer/constants/margin_left = 40
+MarginContainer/constants/margin_right = 40
+MarginContainer/constants/margin_top = 20
+
+[node name="leaderboard" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_yrguh")
+script = ExtResource("1_6ok3l")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+timeout = 5.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "LEADERBOARD"
+horizontal_alignment = 1
+
+[node name="head" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/head"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="title" type="Label" parent="."]
+[node name="rank" type="Label" parent="VBoxContainer/head/HBoxContainer"]
 layout_mode = 2
-text = "LEADERBOARD"
+size_flags_horizontal = 3
+text = "RANK"
+horizontal_alignment = 1
+
+[node name="name" type="Label" parent="VBoxContainer/head/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "NAME"
+horizontal_alignment = 1
+
+[node name="score" type="Label" parent="VBoxContainer/head/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SCORE"
+horizontal_alignment = 1
+
+[node name="time" type="Label" parent="VBoxContainer/head/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "TIME"
+horizontal_alignment = 1
+
+[node name="date" type="Label" parent="VBoxContainer/head/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "DATE"
+horizontal_alignment = 1
+
+[node name="content" type="Panel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="rows" type="VBoxContainer" parent="VBoxContainer/content/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

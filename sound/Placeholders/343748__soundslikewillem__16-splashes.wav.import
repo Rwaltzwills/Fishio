@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://by2lrllvopjbv"
-path="res://.godot/imported/343748__soundslikewillem__16-splashes.wav-11e5c800647ef93977d748a2d3093316.sample"
+path="res://.godot/imported/343748__soundslikewillem__16-splashes.wav-cd26210176bee3596ac4a097d393581d.sample"
 
 [deps]
 
-source_file="res://Sound/Placeholders/343748__soundslikewillem__16-splashes.wav"
-dest_files=["res://.godot/imported/343748__soundslikewillem__16-splashes.wav-11e5c800647ef93977d748a2d3093316.sample"]
+source_file="res://sound/Placeholders/343748__soundslikewillem__16-splashes.wav"
+dest_files=["res://.godot/imported/343748__soundslikewillem__16-splashes.wav-cd26210176bee3596ac4a097d393581d.sample"]
 
 [params]
 
