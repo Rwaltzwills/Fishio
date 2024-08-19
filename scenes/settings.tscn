@@ -4,3 +4,4 @@
 
 [node name="Settings" type="Node"]
 script = ExtResource("1_p7iwm")
+biggest_fish_size = 7

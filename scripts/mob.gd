@@ -15,7 +15,6 @@ var player = null
 func _ready() -> void:
 	
 	if eating_size > 1:
-		$CollisionShape2D/Sprite2D.scale = eating_size*Settings.scale_size
 		$CollisionShape2D.scale = eating_size*Settings.scale_size
 	
 	dire = collider.rotation

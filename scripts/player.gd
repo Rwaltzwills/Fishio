@@ -91,10 +91,8 @@ func changeSize(new_size = 0) -> void:
 		self.eating_size = new_size
 	# DEBUG: play size change animation
 	if self.eating_size > 2:
-		$CollisionShape2D/Sprite2D.scale = Vector2(self.eating_size * x_scale_when_eating, self.eating_size * y_scale_when_eating)
 		collider.scale = Vector2(self.eating_size * x_scale_when_eating, self.eating_size * y_scale_when_eating)
 	else:
-		$Sprite2D.scale = base_scale
 		collider.scale = base_scale
 	emit_signal("gained_size")
 
