@@ -8,7 +8,7 @@ extends Node
 @export var same_fish_size = 2
 @export var big_fish_size = 5
 @export var biggest_fish_size = 9
-@export var scale_size = Vector2(1.1,1.1)
+@export var scale_size = Vector2(1.00,1.00)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,6 +29,9 @@ func _ready() -> void:
 	input = InputEventKey.new()
 	input.keycode = KEY_SPACE
 	InputMap.action_add_event("Transition",input)
+	input = InputEventKey.new()
+	input.keycode = KEY_ESCAPE
+	InputMap.action_add_event("Pause",input)
 
 func newMapping(action, key) -> void:
 	# Allows us to erase upon a new mapping, since we're only expecting one input per

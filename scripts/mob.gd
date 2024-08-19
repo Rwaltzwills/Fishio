@@ -14,7 +14,9 @@ var player = null
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
-	collider.scale += Vector2.ONE*(float(eating_size)/10)
+	if eating_size > 1:
+		$CollisionShape2D/Sprite2D.scale = eating_size*Settings.scale_size
+		$CollisionShape2D.scale = eating_size*Settings.scale_size
 	
 	dire = collider.rotation
 	player = get_node_or_null("../Player")
