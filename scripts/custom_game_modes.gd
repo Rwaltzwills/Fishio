@@ -35,9 +35,5 @@ func check_input(text: String) -> bool:
 
 
 func _on_play_button_pressed() -> void:
-	print(str("Goal: ", $Goal/Goal_Entry.text.to_int()))
-	print(str("Seconds: ", $Seconds/Seconds_Entry.text.to_int()))
 	emit_signal("select_mode",$Goal/Goal_Entry.text.to_int(),0,$Seconds/Seconds_Entry.text.to_int())
-	print(Settings.POINTS_GOAL)
-	print(Settings.TIMER_SECONDS)
 	get_tree().change_scene_to_packed(game_scene)
