@@ -154,6 +154,7 @@ limit_smoothed = true
 script = ExtResource("3_bnc5o")
 
 [node name="Debug Size" type="Label" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 

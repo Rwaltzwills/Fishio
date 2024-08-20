@@ -130,6 +130,10 @@ func _on_player_request_transition() -> void:
 	var new_enemy_list = generate_new_enemies()
 	$"Layer functionality".change_layer($Mobs.get_children(),$Player,$"Mob Spawner",new_enemy_list)
 	
+	# Handle lighting change
+	var color = $Background/PointLight2D.color
+	$Background/PointLight2D.set_color(Color(color.r - 25*($"Layer functionality".current_layer-1),color.g - 25*($"Layer functionality".current_layer-1),color.b - 25*($"Layer functionality".current_layer-1)))
+	
 	# Play sound
 	$"Audio Controller/Effects".stream = Effects_list["Dive Down"]
 	$"Audio Controller/Effects".play()

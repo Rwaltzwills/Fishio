@@ -143,7 +143,7 @@ func change_size(new_size = 0) -> void:
 		self.eating_size = new_size
 	# DEBUG: play size change animation
 	# Might just use a signal or a lerp setting here to smoothly transition
-	if self.eating_size >= Settings.same_fish_size:
+	if self.eating_size != Settings.same_fish_size:
 		new_size_scale = Vector2(self.eating_size * x_scale_when_eating, self.eating_size * y_scale_when_eating)
 		resizing = true
 		emit_signal("gained_size")
