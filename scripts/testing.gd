@@ -70,6 +70,13 @@ func game_over():
 	print("game over")
 
 func game_win() -> void:
+	print("Game won!")
+	# Send to leaderboard
+	var json = JSON.stringify({"Name":"Guppy",
+							"Score":str($"In-game UI".Points),
+							"Time":str((Settings.TIMER_MINUTES*60+Settings.TIMER_SECONDS)-$"Game Timer".time_left)})
+	var headers = ["Content-Type: application/json"]
+	$HTTPRequest.request("https://fishioleaderboard.dailitation.xyz/api/add", headers, HTTPClient.METHOD_POST, json)
 	game_over()
 
 func _on_player_request_transition() -> void:
@@ -84,7 +91,7 @@ func generate_new_enemies():
 	var layer = $"Layer functionality".current_layer
 	var small = 10 - layer if 10 - layer > minimum_small else 10 - layer
 	var same = 7 - layer if 7 - layer > minimum_same else 7 - layer
-	var big = 5 + layer if 5 + layer > minimum_big else 5 + layer
+	var big = 3 + layer if 3 + layer > minimum_big else 5 + layer
 	var biggest = 3 + layer if 3 + layer > minimum_biggest else 3 + layer
 	
 	for i in small:

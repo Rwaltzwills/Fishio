@@ -72,6 +72,8 @@ script = ExtResource("6_3tf7t")
 
 [node name="Mobs" type="Node" parent="."]
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [connection signal="camera_resize_request" from="Player" to="." method="_on_player_camera_resize_request"]
 [connection signal="collided" from="Player" to="." method="_on_player_collided"]
 [connection signal="gained_size" from="Player" to="In-game UI" method="_on_player_gained_size"]
