@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfxfn6dsf5olw"]
+[gd_scene load_steps=14 format=3 uid="uid://bfxfn6dsf5olw"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_vx1pp"]
 [ext_resource type="AnimationLibrary" uid="uid://bgso4mvjgwcqv" path="res://animation_libraries/Menu.res" id="2_ln7d0"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/language_selection.gd" id="5_h8wgm"]
 [ext_resource type="Script" path="res://scripts/custom_game_modes.gd" id="6_fao5d"]
 [ext_resource type="Texture2D" uid="uid://dxj375td7ityn" path="res://graphics/itchio-logo-textless-white.svg" id="6_jngp1"]
+[ext_resource type="AudioStream" uid="uid://djmslj6bvbou7" path="res://sound/Music/INTRO (Over START MENU).mp3" id="8_pq8qd"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jcjpw"]
 
@@ -106,9 +107,9 @@ text = "QUIT"
 visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 0
-offset_left = 326.0
+offset_left = 526.0
 offset_top = 260.0
-offset_right = 426.0
+offset_right = 626.0
 offset_bottom = 388.0
 
 [node name="Label" type="Label" parent="Settings Menu"]
@@ -139,10 +140,10 @@ text = "BACK"
 [node name="Controls Menu" type="VBoxContainer" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 576.0
-offset_top = 324.0
-offset_right = 661.0
-offset_bottom = 383.0
+offset_left = 534.0
+offset_top = 295.0
+offset_right = 619.0
+offset_bottom = 354.0
 theme_override_constants/separation = 5
 alignment = 1
 script = ExtResource("4_dxwjq")
@@ -160,10 +161,10 @@ text = "BACK"
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_left = 526.0
-offset_top = 260.0
-offset_right = 816.0
-offset_bottom = 458.0
+offset_left = 431.0
+offset_top = 228.0
+offset_right = 721.0
+offset_bottom = 426.0
 
 [node name="Label" type="Label" parent="Game Modes"]
 layout_mode = 2
@@ -195,10 +196,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 1095.0
-offset_top = 1.0
-offset_right = 1151.0
-offset_bottom = 32.0
+offset_left = 975.0
+offset_top = 20.0
+offset_right = 1131.0
+offset_bottom = 51.0
 grow_horizontal = 0
 text = "SELECT_LANGUAGE"
 item_count = 2
@@ -211,10 +212,11 @@ script = ExtResource("5_h8wgm")
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_left = 526.0
-offset_top = 260.0
-offset_right = 707.0
-offset_bottom = 423.0
+offset_left = 486.0
+offset_top = 243.0
+offset_right = 667.0
+offset_bottom = 406.0
+alignment = 1
 script = ExtResource("6_fao5d")
 
 [node name="Label" type="Label" parent="Custom Game Modes"]
@@ -222,37 +224,33 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "CUSTOM GAME"
 
-[node name="Seconds" type="HBoxContainer" parent="Custom Game Modes"]
+[node name="GridContainer" type="GridContainer" parent="Custom Game Modes"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+columns = 2
 
-[node name="Seconds_Label" type="Label" parent="Custom Game Modes/Seconds"]
+[node name="Seconds_Label" type="Label" parent="Custom Game Modes/GridContainer"]
 layout_mode = 2
 text = "SECONDS:"
+horizontal_alignment = 2
 
-[node name="Seconds_Entry" type="LineEdit" parent="Custom Game Modes/Seconds"]
+[node name="Seconds_Entry" type="LineEdit" parent="Custom Game Modes/GridContainer"]
 layout_mode = 2
 
-[node name="Goal" type="HBoxContainer" parent="Custom Game Modes"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Goal Label" type="Label" parent="Custom Game Modes/Goal"]
+[node name="Goal Label" type="Label" parent="Custom Game Modes/GridContainer"]
 layout_mode = 2
 text = "POINTS GOAL:"
+horizontal_alignment = 2
 
-[node name="Goal_Entry" type="LineEdit" parent="Custom Game Modes/Goal"]
+[node name="Goal_Entry" type="LineEdit" parent="Custom Game Modes/GridContainer"]
 layout_mode = 2
 
-[node name="Custom Play Button" type="Button" parent="Custom Game Modes"]
+[node name="Custom Play Button" type="Button" parent="Custom Game Modes/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "PLAY"
 
-[node name="Custom Back Button" type="Button" parent="Custom Game Modes"]
+[node name="Custom Back Button" type="Button" parent="Custom Game Modes/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -261,6 +259,8 @@ text = "BACK"
 [node name="Effects" type="AudioStreamPlayer2D" parent="."]
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_pq8qd")
+autoplay = true
 
 [node name="ItchButton" type="Button" parent="."]
 layout_mode = 0
@@ -347,10 +347,10 @@ text = "CANCEL"
 [connection signal="pressed" from="Game Modes/Hard" to="." method="_on_hard_pressed"]
 [connection signal="pressed" from="Game Modes/Custom Button" to="." method="_on_custom_button_pressed"]
 [connection signal="pressed" from="Game Modes/Back Button" to="." method="_on_gamemode_back_button_pressed"]
-[connection signal="text_changed" from="Custom Game Modes/Seconds/Seconds_Entry" to="Custom Game Modes" method="_on_seconds_entry_text_changed"]
-[connection signal="text_changed" from="Custom Game Modes/Goal/Goal_Entry" to="Custom Game Modes" method="_on_goal_entry_text_changed"]
-[connection signal="pressed" from="Custom Game Modes/Custom Play Button" to="Custom Game Modes" method="_on_play_button_pressed"]
-[connection signal="pressed" from="Custom Game Modes/Custom Back Button" to="." method="_on_custom_back_button_pressed"]
+[connection signal="text_changed" from="Custom Game Modes/GridContainer/Seconds_Entry" to="Custom Game Modes" method="_on_seconds_entry_text_changed"]
+[connection signal="text_changed" from="Custom Game Modes/GridContainer/Goal_Entry" to="Custom Game Modes" method="_on_goal_entry_text_changed"]
+[connection signal="pressed" from="Custom Game Modes/GridContainer/Custom Play Button" to="Custom Game Modes" method="_on_play_button_pressed"]
+[connection signal="pressed" from="Custom Game Modes/GridContainer/Custom Back Button" to="." method="_on_custom_back_button_pressed"]
 [connection signal="pressed" from="ItchButton" to="." method="_on_itch_button_pressed"]
 [connection signal="pressed" from="SignInDialog/MarginContainer/VBoxContainer/HBoxContainer/ContinueButton" to="." method="_on_api_key_continue_button_pressed"]
 [connection signal="pressed" from="SignInDialog/MarginContainer/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_api_key_cancel_button_pressed"]

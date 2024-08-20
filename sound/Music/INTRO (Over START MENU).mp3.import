@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/INTRO (Over START MENU).mp3-05c838c1a2454f1e2
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

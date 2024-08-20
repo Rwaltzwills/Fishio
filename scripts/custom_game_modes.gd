@@ -6,18 +6,19 @@ var time_good : bool = false
 var game_scene = preload("res://scenes//testing.tscn")
 signal select_mode
 @onready var viewport_size = get_viewport().size
+@onready var custom_play_button = $"GridContainer/Custom Play Button"
 
 func _ready() -> void:
-	$"Custom Play Button".disabled = true
+	custom_play_button.disabled = true
 	var menu_size = get_size()
 	set_position(Vector2(viewport_size.x / 2 - menu_size.x / 2, viewport_size.y / 2 - menu_size.y / 2))
 	select_mode.connect(Settings.new_game_parameters)
 
 func _process(delta: float) -> void:
 	if points_good and time_good:
-		$"Custom Play Button".disabled = false
+		custom_play_button.disabled = false
 	else:
-		$"Custom Play Button".disabled = true
+		custom_play_button.disabled = true
 
 
 func _on_goal_entry_text_changed(new_text: String) -> void:
