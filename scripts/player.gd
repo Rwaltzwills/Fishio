@@ -83,7 +83,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	# Check for transition request
-	if Input.is_Action_pressed("Transition"):
+	if Input.is_action_pressed("Transition"):
 		emit_signal("request_transition")
 		return
 	
