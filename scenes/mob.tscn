@@ -303,6 +303,7 @@ shape = SubResource("CircleShape2D_wnd17")
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
 modulate = Color(1, 1, 1, 0)
 material = SubResource("ShaderMaterial_78cwy")
+rotation = 1.5708
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_00wyn")
 hframes = 31
