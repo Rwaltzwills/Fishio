@@ -83,7 +83,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	# Check for transition request
-	if Input.get_action_strength("Transition") > .5:
+	if Input.is_Action_pressed("Transition"):
 		emit_signal("request_transition")
 		return
 	
@@ -173,7 +173,7 @@ func change_size(new_size = 0) -> void:
 	if $CollisionShape2D.scale >= Vector2(5,5):
 		zooming_out = true
 		eating_size = Settings.same_fish_size
-		collider.scale = base_scale
+		new_size_scale = base_scale
 		emit_signal("camera_resize_request")
 	
 	$"Debug Size".text = str(eating_size)

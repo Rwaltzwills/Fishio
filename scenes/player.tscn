@@ -130,6 +130,11 @@ _data = {
 script = ExtResource("1_uyvn1")
 SPEED = 300.0
 SPEED_ACCEL = 8
+SPEED_DECEL = null
+TURN_SPEED = null
+TURN_ACCEL = null
+TURN_DECEL = null
+eating_size = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708

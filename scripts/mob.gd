@@ -16,6 +16,8 @@ var eating_animation
 var swimming_animation
 var default_animation
 
+signal request_reposition
+
 @onready var animation_player = $Animations
 @onready var Animations_List = [
 	"Guppy Eat", 
@@ -85,9 +87,11 @@ func _physics_process(_delta: float) -> void:
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO,1)
 	
-	#apply movement
+	
 	if $Animations.current_animation != eating_animation:
 		$Animations.play(swimming_animation)
+	
+	#apply movement
 	move_and_slide()
 
 func randomize_type() -> void:
