@@ -16,18 +16,21 @@ static var player_info := {
 	"name": "" # Itch.io display name (or username)
 }
 
-@onready var Effects_list = {"Clicking":preload("res://sound/SFX/ACTIONS/EATING CONSUMING LARGE_1.wav"),
-							"Typing":preload("res://sound/SFX/ACTIONS/EATINGCONSUMING MEDIUM.wav"),
-							"Start Game":preload("res://sound/SFX/ACTIONS/EATINGCONSUMING SMALL.wav")}
-
-@onready var Intro_music = preload("res://sound/Music/INTRO (Over START MENU).mp3")
+@onready var Effects_list = {
+	"Clicking":preload("res://sound/SFX/ACTIONS/EATING CONSUMING LARGE_1.wav"),
+	"Typing":preload("res://sound/SFX/ACTIONS/EATINGCONSUMING MEDIUM.wav"),
+	"Start Game":preload("res://sound/SFX/ACTIONS/EATINGCONSUMING SMALL.wav")
+}
 
 var game_scene = preload("res://scenes//testing.tscn")
 var wobbler = preload("res://scenes//wobbler.tscn")
-var actions = {"Up swim":tr("SWIM_UP"), 
-				"Left swim":tr("SWIM_LEFT"), "Right swim":tr("SWIM_RIGHT"),
-				"Transition":tr("TRANSITION")}
-				# Removed "Transition_Up":tr("SWIM BACK UP")
+var actions = {
+	"Up swim":"SWIM_UP", 
+	"Left swim":"SWIM_LEFT", 
+	"Right swim":"SWIM_RIGHT",
+	"Transition":"TRANSITION"
+}
+# Removed "Transition_Up":tr("SWIM BACK UP")
 var is_remapping = false
 var action_to_remap = null
 var button_to_remap = null
@@ -83,11 +86,8 @@ func _ready():
 			if c2 is Button:
 				c2.pressed.connect(play_clicking_sounds)
 	
-	$"Custom Game Modes/Seconds/Seconds_Entry".text_changed.connect(play_typing_sounds)
-	$"Custom Game Modes/Goal/Goal_Entry".text_changed.connect(play_typing_sounds)
-	
-	$Music.stream = Intro_music
-	$Music.play()
+	$"Custom Game Modes/GridContainer/Seconds_Entry".text_changed.connect(play_typing_sounds)
+	$"Custom Game Modes/GridContainer/Goal_Entry".text_changed.connect(play_typing_sounds)
 
 func _on_itch_request_complete(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray):
 	if result != HTTPRequest.RESULT_SUCCESS:

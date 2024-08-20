@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scripts/in_game_ui.gd" id="1_82nck"]
 
 [node name="In-game UI" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_82nck")
 
 [node name="Points" type="Label" parent="."]
@@ -28,15 +29,55 @@ grow_horizontal = 2
 text = "00"
 horizontal_alignment = 1
 
-[node name="pause_menu" type="Polygon2D" parent="."]
+[node name="pause_menu" type="Panel" parent="."]
+process_mode = 3
 visible = false
 self_modulate = Color(0, 0, 0, 0.247059)
-polygon = PackedVector2Array(384, 192, 640, 192, 640, 384, 384, 384)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Label" type="Label" parent="pause_menu"]
-offset_left = 448.0
-offset_top = 192.0
-offset_right = 576.0
-offset_bottom = 216.0
+[node name="MarginContainer" type="MarginContainer" parent="pause_menu"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="pause_menu/MarginContainer"]
+process_mode = 3
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="pause_menu/MarginContainer/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
 text = "PAUSED"
 horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="pause_menu/MarginContainer/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+text = "RESUME"
+
+[node name="ReturnToMenuButton" type="Button" parent="pause_menu/MarginContainer/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+text = "RETURN_TO_MENU"
+
+[connection signal="pressed" from="pause_menu/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="pause_menu/MarginContainer/VBoxContainer/ReturnToMenuButton" to="." method="_on_return_to_menu_button_pressed"]

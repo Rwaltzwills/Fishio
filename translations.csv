@@ -34,3 +34,6 @@ SECONDS:,Seconds:,เวลา (วินาที)
 POINTS GOAL:,Points Goal,เป้าหมายคะแนน
 CUSTOM GAME,CUSTOM GAME,เกมแบบกำหนดเอง
 ITCH_SIGN_IN,Sign in with itch.io,เข้าสู่ระบบผ่าน itch.io
+PAUSED,Paused,หยุดชั่วคราว
+RESUME,Resume,กลับไปยังเกม
+RETURN_TO_MENU,Return to menu,กลับไปยังหน้าหลัก
