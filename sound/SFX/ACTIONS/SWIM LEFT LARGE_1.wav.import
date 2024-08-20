@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://7srlkxtan61x"
-path="res://.godot/imported/SWIM LEFT LARGE_1.wav-3da5a560574d077e6cc7f588e0dcce9f.sample"
+path="res://.godot/imported/SWIM LEFT LARGE_1.wav-9b8391f3c5f102828400ac043ea070b2.sample"
 
 [deps]
 
-source_file="res://Sound/SFX/ACTIONS/SWIM LEFT LARGE_1.wav"
-dest_files=["res://.godot/imported/SWIM LEFT LARGE_1.wav-3da5a560574d077e6cc7f588e0dcce9f.sample"]
+source_file="res://sound/SFX/ACTIONS/SWIM LEFT LARGE_1.wav"
+dest_files=["res://.godot/imported/SWIM LEFT LARGE_1.wav-9b8391f3c5f102828400ac043ea070b2.sample"]
 
 [params]
 

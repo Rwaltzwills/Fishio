@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://d1idpg1hdkkly"
-path="res://.godot/imported/WINNING COMPLETING_1.wav-ee0dcb93189f502bd510d82d70d95c81.sample"
+path="res://.godot/imported/WINNING COMPLETING_1.wav-6b81c0a4fc9c04b3b2f071daf7959348.sample"
 
 [deps]
 
-source_file="res://Sound/SFX/STINGERS/WINNING COMPLETING_1.wav"
-dest_files=["res://.godot/imported/WINNING COMPLETING_1.wav-ee0dcb93189f502bd510d82d70d95c81.sample"]
+source_file="res://sound/SFX/STINGERS/WINNING COMPLETING_1.wav"
+dest_files=["res://.godot/imported/WINNING COMPLETING_1.wav-6b81c0a4fc9c04b3b2f071daf7959348.sample"]
 
 [params]
 

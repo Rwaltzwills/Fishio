@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://diq1xdjskc8b0"
-path="res://.godot/imported/TYPINGKEY NOISE 3_1.wav-1442f3533f1d0dd1bd043da2833f55a4.sample"
+path="res://.godot/imported/TYPINGKEY NOISE 3_1.wav-966b03746af2507221af8ff7d23046dd.sample"
 
 [deps]
 
-source_file="res://Sound/SFX/UI_MENU/TYPINGKEY NOISE 3_1.wav"
-dest_files=["res://.godot/imported/TYPINGKEY NOISE 3_1.wav-1442f3533f1d0dd1bd043da2833f55a4.sample"]
+source_file="res://sound/SFX/UI_MENU/TYPINGKEY NOISE 3_1.wav"
+dest_files=["res://.godot/imported/TYPINGKEY NOISE 3_1.wav-966b03746af2507221af8ff7d23046dd.sample"]
 
 [params]
 

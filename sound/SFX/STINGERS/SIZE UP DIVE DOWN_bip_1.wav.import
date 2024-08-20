@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cigkotec3ldg7"
-path="res://.godot/imported/SIZE UP DIVE DOWN_bip_1.wav-b17969590af96668b7cf7a465d3664cb.sample"
+path="res://.godot/imported/SIZE UP DIVE DOWN_bip_1.wav-53a48838ccb95656bd0c3579929374c0.sample"
 
 [deps]
 
-source_file="res://Sound/SFX/STINGERS/SIZE UP DIVE DOWN_bip_1.wav"
-dest_files=["res://.godot/imported/SIZE UP DIVE DOWN_bip_1.wav-b17969590af96668b7cf7a465d3664cb.sample"]
+source_file="res://sound/SFX/STINGERS/SIZE UP DIVE DOWN_bip_1.wav"
+dest_files=["res://.godot/imported/SIZE UP DIVE DOWN_bip_1.wav-53a48838ccb95656bd0c3579929374c0.sample"]
 
 [params]
 

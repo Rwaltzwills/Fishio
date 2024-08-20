@@ -116,20 +116,25 @@ func game_over():
 func game_win() -> void:
 	was_game_won = true
 	
-	$HTTPRequest.request_completed.connect(_on_request_completed)
+	if not Globals.is_signed_in:
+		return
+	
+	$HTTPRequest.request_completed.connect(_on_add_request_completed)
 	# Send to leaderboard
-	var json = JSON.stringify({"Name":"Guppy",
-							"Score":str($"In-game UI".Points),
-							"Time":str((Settings.TIMER_MINUTES*60+Settings.TIMER_SECONDS)-$"Game Timer".time_left)})
+	var json = JSON.stringify({
+		"ItchId": Globals.player_info["id"],
+		"Name": Globals.player_info["name"],
+		"Score": 15, #$"In-game UI".Points,
+		"Time": 10 # (Settings.TIMER_MINUTES*60+Settings.TIMER_SECONDS) - $"Game Timer".time_left
+	})
 	var headers = ["Content-Type: application/json"]
 	$HTTPRequest.request("https://fishioleaderboard.dailitation.xyz/api/add", headers, HTTPClient.METHOD_POST, json)
 	
 	$"Audio Controller/Effects".stream == Effects_list["Win"]
 	
-	game_over()
-	
-func _on_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray):
+func _on_add_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray):
 	var body_str = body.get_string_from_utf8()
+	
 	if result != HTTPRequest.RESULT_SUCCESS:
 		Settings.is_leaderboard_active = false
 		# TODO: Alert about failed request

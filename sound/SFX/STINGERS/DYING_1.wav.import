@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://clfj4rhhutero"
-path="res://.godot/imported/DYING_1.wav-a192e5a801094dc36628a6d5aa16b21a.sample"
+path="res://.godot/imported/DYING_1.wav-f2536a07a082096e5d16bfa489ecb597.sample"
 
 [deps]
 
-source_file="res://Sound/SFX/STINGERS/DYING_1.wav"
-dest_files=["res://.godot/imported/DYING_1.wav-a192e5a801094dc36628a6d5aa16b21a.sample"]
+source_file="res://sound/SFX/STINGERS/DYING_1.wav"
+dest_files=["res://.godot/imported/DYING_1.wav-f2536a07a082096e5d16bfa489ecb597.sample"]
 
 [params]
 

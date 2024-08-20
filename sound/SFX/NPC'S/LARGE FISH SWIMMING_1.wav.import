@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://b7marrpc4jg70"
-path="res://.godot/imported/LARGE FISH SWIMMING_1.wav-f77e86cc0387ecd26585f354f03dc2cf.sample"
+path="res://.godot/imported/LARGE FISH SWIMMING_1.wav-36d749351358d4b56d85ae952ab6f1c4.sample"
 
 [deps]
 
-source_file="res://Sound/SFX/NPC'S/LARGE FISH SWIMMING_1.wav"
-dest_files=["res://.godot/imported/LARGE FISH SWIMMING_1.wav-f77e86cc0387ecd26585f354f03dc2cf.sample"]
+source_file="res://sound/SFX/NPC'S/LARGE FISH SWIMMING_1.wav"
+dest_files=["res://.godot/imported/LARGE FISH SWIMMING_1.wav-36d749351358d4b56d85ae952ab6f1c4.sample"]
 
 [params]
 

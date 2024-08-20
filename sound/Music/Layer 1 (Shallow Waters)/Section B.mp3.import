@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://dhd8b2vkgk3s2"
-path="res://.godot/imported/Section B.mp3-972d7a0c35cf2a5479f8cc9337f0de65.mp3str"
+path="res://.godot/imported/Section B.mp3-c633128a6308c07f480a30874cc1db5c.mp3str"
 
 [deps]
 
-source_file="res://Sound/Music/Layer 1 (Shallow Waters)/Section B.mp3"
-dest_files=["res://.godot/imported/Section B.mp3-972d7a0c35cf2a5479f8cc9337f0de65.mp3str"]
+source_file="res://sound/Music/Layer 1 (Shallow Waters)/Section B.mp3"
+dest_files=["res://.godot/imported/Section B.mp3-c633128a6308c07f480a30874cc1db5c.mp3str"]
 
 [params]
 

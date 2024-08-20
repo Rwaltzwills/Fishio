@@ -11,15 +11,10 @@ extends Control
 @export var hard_minutes = 0
 @export var hard_seconds = 45
 
-static var player_info := {
-	"id": 0, # Itch.io Account Id
-	"name": "" # Itch.io display name (or username)
-}
-
 @onready var Effects_list = {
-	"Clicking": preload("res://Sound/SFX/UI_MENU/CLICKINGSELECTING_1.wav"),
-	"Typing": preload("res://Sound/SFX/UI_MENU/TYPINGKEY NOISE 1_1.wav"),
-	"Start Game": preload("res://Sound/SFX/UI_MENU/START GAME_1.wav")
+	"Clicking": preload("res://sound/SFX/UI_MENU/CLICKINGSELECTING_1.wav"),
+	"Typing": preload("res://sound/SFX/UI_MENU/TYPINGKEY NOISE 1_1.wav"),
+	"Start Game": preload("res://sound/SFX/UI_MENU/START GAME_1.wav")
 }
 
 var game_scene = preload("res://scenes//testing.tscn")
@@ -102,14 +97,15 @@ func _on_itch_request_complete(result: int, response_code: int, headers: PackedS
 	else:
 		player_name = data["user"]["username"]
 	
-	player_info = {
+	Globals.player_info = {
 		"id": data["user"]["id"],
 		"name": player_name
 	}
+	Globals.is_signed_in = true
 	
 	$ItchButton.hide()
 	$PlayerName.show()
-	$PlayerName.text = player_info["name"]
+	$PlayerName.text = Globals.player_info["name"]
 
 func play_clicking_sounds():
 	$Effects.stream = Effects_list["Clicking"]

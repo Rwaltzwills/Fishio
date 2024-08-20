@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/testing.gd" id="1_1r6c3"]
 [ext_resource type="PackedScene" uid="uid://7ba5xuy72rle" path="res://scenes/player.tscn" id="1_bvkqp"]
 [ext_resource type="PackedScene" uid="uid://cnl6h4mlpa1ph" path="res://scenes/mob.tscn" id="2_tk547"]
-[ext_resource type="PackedScene" uid="uid://c00ge4tuoks6m" path="res://scenes/win_screen.tscn" id="2_wnkmi"]
-[ext_resource type="PackedScene" uid="uid://c65yf6v0v2psp" path="res://scenes/lose_screen.tscn" id="3_a2iqm"]
+[ext_resource type="PackedScene" path="res://scenes/win_screen.tscn" id="2_wnkmi"]
+[ext_resource type="PackedScene" path="res://scenes/lose_screen.tscn" id="3_a2iqm"]
 [ext_resource type="PackedScene" uid="uid://db0706gjw42bh" path="res://scenes/in_game_ui.tscn" id="3_h3uny"]
 [ext_resource type="PackedScene" uid="uid://c7rpyaywt0lkv" path="res://scenes/mob_spawner.tscn" id="3_sx372"]
 [ext_resource type="Shader" path="res://shaders/testing.gdshader" id="5_2mjie"]
@@ -88,6 +88,7 @@ script = ExtResource("6_3tf7t")
 [node name="Mobs" type="Node" parent="."]
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+timeout = 10.0
 
 [node name="Audio Controller" type="Node" parent="."]
 script = ExtResource("9_mlltx")

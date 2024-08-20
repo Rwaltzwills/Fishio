@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://sy6hhq4mqoqt"
-path="res://.godot/imported/MEDIUM FISH SWIMMING_1.wav-a7b47b52e4ab5058187d6685efcb5098.sample"
+path="res://.godot/imported/MEDIUM FISH SWIMMING_1.wav-67b3fd2792be2342e691a5a22951d4c6.sample"
 
 [deps]
 
-source_file="res://Sound/SFX/NPC'S/MEDIUM FISH SWIMMING_1.wav"
-dest_files=["res://.godot/imported/MEDIUM FISH SWIMMING_1.wav-a7b47b52e4ab5058187d6685efcb5098.sample"]
+source_file="res://sound/SFX/NPC'S/MEDIUM FISH SWIMMING_1.wav"
+dest_files=["res://.godot/imported/MEDIUM FISH SWIMMING_1.wav-67b3fd2792be2342e691a5a22951d4c6.sample"]
 
 [params]
 

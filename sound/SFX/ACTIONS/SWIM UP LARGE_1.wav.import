@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://d4j8pit1nsngf"
-path="res://.godot/imported/SWIM UP LARGE_1.wav-7bec820220e0ebb7b32a36c698ccd982.sample"
+path="res://.godot/imported/SWIM UP LARGE_1.wav-0facfc4896a9e915800735f6ce8e04ab.sample"
 
 [deps]
 
-source_file="res://Sound/SFX/ACTIONS/SWIM UP LARGE_1.wav"
-dest_files=["res://.godot/imported/SWIM UP LARGE_1.wav-7bec820220e0ebb7b32a36c698ccd982.sample"]
+source_file="res://sound/SFX/ACTIONS/SWIM UP LARGE_1.wav"
+dest_files=["res://.godot/imported/SWIM UP LARGE_1.wav-0facfc4896a9e915800735f6ce8e04ab.sample"]
 
 [params]
 

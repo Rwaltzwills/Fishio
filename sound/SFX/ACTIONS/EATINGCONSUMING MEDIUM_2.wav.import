@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://8yxd1n1081yp"
-path="res://.godot/imported/EATINGCONSUMING MEDIUM_2.wav-da780a739a4116b4f2e0a971ecb6328a.sample"
+path="res://.godot/imported/EATINGCONSUMING MEDIUM_2.wav-d866f771fee2d4c770bf8ab9c7dbc904.sample"
 
 [deps]
 
-source_file="res://Sound/SFX/ACTIONS/EATINGCONSUMING MEDIUM_2.wav"
-dest_files=["res://.godot/imported/EATINGCONSUMING MEDIUM_2.wav-da780a739a4116b4f2e0a971ecb6328a.sample"]
+source_file="res://sound/SFX/ACTIONS/EATINGCONSUMING MEDIUM_2.wav"
+dest_files=["res://.godot/imported/EATINGCONSUMING MEDIUM_2.wav-d866f771fee2d4c770bf8ab9c7dbc904.sample"]
 
 [params]
 

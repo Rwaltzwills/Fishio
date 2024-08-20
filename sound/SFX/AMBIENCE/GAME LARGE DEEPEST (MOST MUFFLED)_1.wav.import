@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://r7rtfumqcjci"
-path="res://.godot/imported/GAME LARGE DEEPEST (MOST MUFFLED)_1.wav-32fd04d939fe6effc3c094c0fa5cc23e.sample"
+path="res://.godot/imported/GAME LARGE DEEPEST (MOST MUFFLED)_1.wav-cfeb819d3de95be4f106cbf941ceedb9.sample"
 
 [deps]
 
-source_file="res://Sound/SFX/AMBIENCE/GAME LARGE DEEPEST (MOST MUFFLED)_1.wav"
-dest_files=["res://.godot/imported/GAME LARGE DEEPEST (MOST MUFFLED)_1.wav-32fd04d939fe6effc3c094c0fa5cc23e.sample"]
+source_file="res://sound/SFX/AMBIENCE/GAME LARGE DEEPEST (MOST MUFFLED)_1.wav"
+dest_files=["res://.godot/imported/GAME LARGE DEEPEST (MOST MUFFLED)_1.wav-cfeb819d3de95be4f106cbf941ceedb9.sample"]
 
 [params]
 

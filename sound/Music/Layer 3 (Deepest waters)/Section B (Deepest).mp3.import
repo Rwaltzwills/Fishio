@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://cuex0htarh4ox"
-path="res://.godot/imported/Section B (Deepest).mp3-caf790ddd788cc62d02dbfb26ebad696.mp3str"
+path="res://.godot/imported/Section B (Deepest).mp3-2bd06509194a2472560327fc065571ce.mp3str"
 
 [deps]
 
-source_file="res://Sound/Music/Layer 3 (Deepest waters)/Section B (Deepest).mp3"
-dest_files=["res://.godot/imported/Section B (Deepest).mp3-caf790ddd788cc62d02dbfb26ebad696.mp3str"]
+source_file="res://sound/Music/Layer 3 (Deepest waters)/Section B (Deepest).mp3"
+dest_files=["res://.godot/imported/Section B (Deepest).mp3-2bd06509194a2472560327fc065571ce.mp3str"]
 
 [params]
 
