@@ -19,7 +19,6 @@ func _on_request_completed(result: int, response_code: int, headers: PackedStrin
 		}))
 		return
 	
-	print(body_str)
 	var entries = JSON.parse_string(body_str)
 	# [ { Id: int, Name: string, Score: int, Time: int, Date: int } ]
 	
