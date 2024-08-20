@@ -66,6 +66,8 @@ var zooming_out = false
 var new_size_scale
 var resizing = false
 
+var flash_count = 3
+
 func _ready() -> void:
 	
 	#randomize color
@@ -205,9 +207,23 @@ func handle_damage() -> void:
 	
 	change_size(self.eating_size - 1)
 	emit_signal("take_hit")
+	$"Hit Timer".start(.1)
 	# TO-DO: Implement bounce back to show damage taken?
 	# TO-DO: Implement animation/shader to show damage taken?
 
 
 # Actions needed
 # - Lunge?
+
+
+func _on_hit_timer_timeout() -> void:
+	var is_flash_on = $CollisionShape2D/Sprite2D.material.get_shader_parameter("on")
+	if is_flash_on:
+		flash_count = flash_count-1
+	$CollisionShape2D/Sprite2D.material.set_shader_parameter("on", !is_flash_on)
+	if flash_count < 0:
+		$CollisionShape2D/Sprite2D.material.set_shader_parameter("on", false)
+		flash_count = 3
+		$"Hit Timer".stop()
+	else:
+		$"Hit Timer".start(.1)
