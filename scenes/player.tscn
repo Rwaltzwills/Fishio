@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://7ba5xuy72rle"]
+[gd_scene load_steps=15 format=3 uid="uid://7ba5xuy72rle"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_uyvn1"]
-[ext_resource type="Texture2D" uid="uid://b5p67ryc3d4x4" path="res://graphics/sprites/guppies.png" id="2_pdjqy"]
+[ext_resource type="Texture2D" uid="uid://blbngvbrpykca" path="res://graphics/sprites/Player_spritesheet.png" id="2_5hqyh"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="3_bnc5o"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vefc7"]
@@ -23,11 +23,100 @@ resource_name = "Swim right"
 [sub_resource type="Animation" id="Animation_jusob"]
 resource_name = "Swim up"
 
+[sub_resource type="Animation" id="Animation_nsjsg"]
+resource_name = "Dying"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7svg0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D/Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_fn8ol"]
+resource_name = "Swimming"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D/Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1q7al"]
+resource_name = "Eating"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [16, 17, 18, 19, 20, 21]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3q2m7"]
 _data = {
 "Down swim": SubResource("Animation_phanl"),
+"Dying": SubResource("Animation_nsjsg"),
+"Eating": SubResource("Animation_1q7al"),
 "Left swim": SubResource("Animation_17670"),
+"RESET": SubResource("Animation_7svg0"),
 "Right swim": SubResource("Animation_iv6rj"),
+"Swimming": SubResource("Animation_fn8ol"),
 "Up swim": SubResource("Animation_jusob")
 }
 
@@ -41,9 +130,12 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_vefc7")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+modulate = Color(1, 1, 1, 0)
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_pdjqy")
-region_enabled = true
+texture = ExtResource("2_5hqyh")
+hframes = 16
+vframes = 2
+frame = 1
 region_rect = Rect2(2080.51, 0, 650, 984)
 
 [node name="hitbox" type="Area2D" parent="CollisionShape2D"]
@@ -52,7 +144,7 @@ position = Vector2(-0.000174046, -48)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/hitbox"]
 shape = SubResource("RectangleShape2D_xrpy1")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Animations" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_3q2m7")
 }

@@ -10,7 +10,7 @@ signal request_transition
 signal camera_resize_request
 signal perish
 
-@onready var _animation_player = $AnimationPlayer
+@onready var animation_player = $Animations
 @onready var collider = get_node("CollisionShape2D")
 @onready var sprite = get_node("CollisionShape2D/Sprite2D")
 
@@ -133,6 +133,7 @@ func move(move_velocity: Vector2, delta: float):
 	elif !$Effects.playing:
 		$"Effects".stream = Swimming_Sounds["Swim Left"][size_index]
 		$"Effects".play()
+	$Animations.play("Swimming")
 
 func change_size(new_size = 0) -> void:
 	# If no new size provided, go up one
@@ -178,10 +179,13 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 				$"Effects".stream = Effects_list["Eating Small"][randi_range(0,1)]
 				$"Effects".play()
 			
+			$Animations.play("Eating")
+			
 func handle_damage() -> void:
 	# If this is the last hitpoint, kill player
 	if self.eating_size==1:
 		emit_signal("perish")
+		$Animations.play("Dying")
 	
 	change_size(self.eating_size - 1)
 	emit_signal("take_hit")

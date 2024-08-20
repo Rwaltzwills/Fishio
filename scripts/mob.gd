@@ -12,7 +12,14 @@ var zooming_out = false
 var player_base_scale
 var base_scale
 
-var Effects_List = {"Aggro":preload("res://Sound/SFX/NPC'S/AGGRO SOUND_1.wav"),
+var eating_animation
+var swimming_animation
+var default_animation
+
+@onready var animation_player = $Animations
+@onready var Animations_List = ["Guppy Eat","Guppy Swim","Guppy Default","Shark Eat","Shark Swim","Shark Default","Manta Eat","Manta Swim","Manta Default"]
+
+@onready var Effects_List = {"Aggro":preload("res://Sound/SFX/NPC'S/AGGRO SOUND_1.wav"),
 					"Eating":preload("res://Sound/SFX/ACTIONS/EATINGCONSUMING SMALL.wav")}
 
 @export var eating_size = 0
@@ -37,6 +44,9 @@ func _ready() -> void:
 	# Scale speed on size
 	if eating_size != 2:
 		SPEED = SPEED/(Settings.scale_speed*eating_size)
+	
+	# Make animations unique
+	$Animations.duplicate(true)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
@@ -64,6 +74,8 @@ func _physics_process(_delta: float) -> void:
 		velocity = velocity.move_toward(Vector2.ZERO,1)
 	
 	#apply movement
+	if $Animations.current_animation != eating_animation:
+		$Animations.play(swimming_animation)
 	move_and_slide()
 
 func randomize_type() -> void:
@@ -79,11 +91,25 @@ func randomize_type() -> void:
 	
 	match cur_type: # TO-DO: Type change here
 		"shark":
-			sprite.texture = load("res://graphics/sprites/Shark_normalized.png")
+			sprite.texture = load("res://graphics/sprites/Shark_spritesheet.png")
+			eating_animation = Animations_List[6]
+			swimming_animation = Animations_List[4]
+			default_animation = Animations_List[5]
 		"manta":
-			sprite.texture = load("res://graphics/sprites/Manta_normalized.png")
+			sprite.texture = load("res://graphics/sprites/Manta_spritesheet.png")
+			eating_animation = Animations_List[6]
+			swimming_animation = Animations_List[4]
+			default_animation = Animations_List[5]
 		"guppy":
-			sprite.texture = load("res://graphics/sprites/Guppy_normalized.png")
+			sprite.texture = load("res://graphics/sprites/Guppy_spritesheet.png")
+			eating_animation = Animations_List[6]
+			swimming_animation = Animations_List[4]
+			default_animation = Animations_List[5]
+	
+	# TO-DO: Cleanup
+	# Default_animation no longer used, can get rid of it
+	# Shark swimming animation is master animation
+	# Manta eating animation is master animation
 	
 	var rand_hue = float(randi() % 3)/2.0/3.2
 	$CollisionShape2D/Sprite2D.material.set_shader_parameter("Shift_Hue", rand_hue)
@@ -122,3 +148,4 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 			# Handle sound
 			$"Effects".stream = Effects_List["Eating"]
 			$Effects.play()
+			$Animations.play(eating_animation)

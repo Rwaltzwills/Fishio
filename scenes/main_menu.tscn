@@ -113,7 +113,6 @@ pivot_offset = Vector2(50, 15)
 text = "BACK"
 
 [node name="Controls Menu" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 576.0
 offset_top = 324.0

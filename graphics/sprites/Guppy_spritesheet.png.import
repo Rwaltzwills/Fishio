@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnwpg2ej67say"
-path="res://.godot/imported/Guppy_normalized.png-e55b285d1d8c8d50efefb42ddc073033.ctex"
+uid="uid://q1bqjwyekd2r"
+path="res://.godot/imported/Guppy_spritesheet.png-60aa83f3a6a8f211f9ffc90adb82c210.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/sprites/Guppy_normalized.png"
-dest_files=["res://.godot/imported/Guppy_normalized.png-e55b285d1d8c8d50efefb42ddc073033.ctex"]
+source_file="res://graphics/sprites/Guppy_spritesheet.png"
+dest_files=["res://.godot/imported/Guppy_spritesheet.png-60aa83f3a6a8f211f9ffc90adb82c210.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hreiuon22anv"
-path="res://.godot/imported/Shark_normalized_eating.png-3e82195ca68e42a7f331a0c0a651ec75.ctex"
+uid="uid://ckkbsut5my11c"
+path="res://.godot/imported/Manta_spritesheet.png-9f1ec73c447074b4f40575aca3555f1f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/sprites/Shark_normalized_eating.png"
-dest_files=["res://.godot/imported/Shark_normalized_eating.png-3e82195ca68e42a7f331a0c0a651ec75.ctex"]
+source_file="res://graphics/sprites/Manta_spritesheet.png"
+dest_files=["res://.godot/imported/Manta_spritesheet.png-9f1ec73c447074b4f40575aca3555f1f.ctex"]
 
 [params]
 

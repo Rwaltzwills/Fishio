@@ -77,6 +77,7 @@ func _physics_process(delta: float) -> void:
 	# print(ocean_background_a.get_shader_parameter("scroll_speed"))
 
 func _on_player_collided(body) -> void:
+	body.animation_player.play("Dying")
 	$"Mob Spawner".reposition_mob(body) # Replace with function body.
 
 
