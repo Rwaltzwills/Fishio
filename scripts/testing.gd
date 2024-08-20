@@ -68,6 +68,7 @@ func _ready() -> void:
 	shader_speed_default_a = $Background/ColorRect.material.get_shader_parameter("scroll_speed")
 	
 	self.submit_highscores.connect(Settings.submit_highscores)
+	was_game_won = false
 
 func _process(_delta: float) -> void:
 	pass
