@@ -52,6 +52,8 @@ func _ready():
 	$"Controls Menu".move_child($"Controls Menu/BackButton",-1)
 	assign_control.connect(Settings.new_mapping)
 	select_mode.connect(Settings.new_game_parameters)
+	# Initial positions
+	$AnimationPlayer.play("In-Game/Initial Settings")
 
 # For remapping controls
 func assign_controls(button):
@@ -121,3 +123,11 @@ func _on_hard_pressed() -> void:
 
 func _on_button_pressed() -> void:
 	$AnimationPlayer.play("In-Game/Close Game Modes")
+
+
+func _on_custom_button_pressed() -> void:
+	$AnimationPlayer.play("In-Game/Open Custom")
+
+
+func _on_custom_back_button_pressed() -> void:
+	$AnimationPlayer.play("In-Game/Close Custom")

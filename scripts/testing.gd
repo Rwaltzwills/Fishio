@@ -71,6 +71,7 @@ func game_over():
 
 func game_win() -> void:
 	print("Game won!")
+	$HTTPRequest.request_completed.connect(_on_request_completed)
 	# Send to leaderboard
 	var json = JSON.stringify({"Name":"Guppy",
 							"Score":str($"In-game UI".Points),
@@ -78,6 +79,17 @@ func game_win() -> void:
 	var headers = ["Content-Type: application/json"]
 	$HTTPRequest.request("https://fishioleaderboard.dailitation.xyz/api/add", headers, HTTPClient.METHOD_POST, json)
 	game_over()
+	
+func _on_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray):
+	var body_str = body.get_string_from_utf8()
+	if result != HTTPRequest.RESULT_SUCCESS:
+		# TODO: Alert about failed request
+		print("Failed to fetch leaderboard: {result} {code} {message}".format({
+			"result": result,
+			"code": response_code,
+			"message": body_str
+		}))
+		return
 
 func _on_player_request_transition() -> void:
 	# On layer change, add new enemies
