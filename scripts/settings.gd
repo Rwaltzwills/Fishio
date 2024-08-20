@@ -15,6 +15,8 @@ extends Node
 @export var medium_layers: Array[int]
 @export var play_short_time_stinger = 6
 
+var is_leaderboard_active = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Set Default Input Keys

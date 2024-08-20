@@ -3,10 +3,14 @@ extends Node2D
 var timer
 var timer_label
 var timer_label_format = "%02d"
+
 var main_menu_path = "res://scenes/main_menu.tscn"
+
 var shader_speed_default_a # Not working
 var cur_time = float()
 var Points_format = "%02d"
+
+var was_game_won = false
 
 var Music_stoptime = 0.0
 var Ambiance_stoptime = 0.0
@@ -24,6 +28,9 @@ var Ambiance_stoptime = 0.0
 							"Dive Down":preload("res://sound/SFX/STINGERS/SIZE UP DIVE DOWN_bip_1.wav"), 
 							"Timer Running Out":preload("res://sound/SFX/STINGERS/TIMERLAST 30sLAST 10th of TIME_1.wav"),
 							"Win":preload("res://sound/SFX/STINGERS/WINNING COMPLETING_1.wav")}
+
+@export var win_screen :PackedScene
+@export var lose_screen :PackedScene
 
 @export var small_fish :PackedScene
 @export var same_fish :PackedScene
@@ -94,17 +101,21 @@ func _on_ui_update_timer_timeout() -> void:
 	
 func game_over():
 	# TO-DO: Leaderboard, game over screen, buttons to play again or go to main menu
+	var game_end_screen
 	
-	# Handle winning/losing music
-	if !$"Audio Controller/Effects".stream == Effects_list["Win"]:
+	if !was_game_won:
 		$"Audio Controller/Effects".stream = Effects_list["Dying"]
+		game_end_screen = lose_screen
+	else:
+		game_end_screen = win_screen
+	
 	$"Audio Controller/Effects".play()
 	
-	get_tree().change_scene_to_file.call_deferred(main_menu_path)
-	print("game over")
+	get_tree().change_scene_to_packed.call_deferred(game_end_screen)
 
 func game_win() -> void:
-	print("Game won!")
+	was_game_won = true
+	
 	$HTTPRequest.request_completed.connect(_on_request_completed)
 	# Send to leaderboard
 	var json = JSON.stringify({"Name":"Guppy",
@@ -112,11 +123,15 @@ func game_win() -> void:
 							"Time":str((Settings.TIMER_MINUTES*60+Settings.TIMER_SECONDS)-$"Game Timer".time_left)})
 	var headers = ["Content-Type: application/json"]
 	$HTTPRequest.request("https://fishioleaderboard.dailitation.xyz/api/add", headers, HTTPClient.METHOD_POST, json)
+	
+	$"Audio Controller/Effects".stream == Effects_list["Win"]
+	
 	game_over()
 	
 func _on_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray):
 	var body_str = body.get_string_from_utf8()
 	if result != HTTPRequest.RESULT_SUCCESS:
+		Settings.is_leaderboard_active = false
 		# TODO: Alert about failed request
 		print("Failed to fetch leaderboard: {result} {code} {message}".format({
 			"result": result,
