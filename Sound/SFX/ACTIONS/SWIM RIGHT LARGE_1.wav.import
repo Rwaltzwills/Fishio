@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://gawbsvh11scx"
+path="res://.godot/imported/SWIM RIGHT LARGE_1.wav-8c7a818e91a35a5dcb86823c64551e76.sample"
+
+[deps]
+
+source_file="res://Sound/SFX/ACTIONS/SWIM RIGHT LARGE_1.wav"
+dest_files=["res://.godot/imported/SWIM RIGHT LARGE_1.wav-8c7a818e91a35a5dcb86823c64551e76.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

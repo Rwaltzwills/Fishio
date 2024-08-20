@@ -10,6 +10,10 @@ extends Node
 @export var biggest_fish_size = 9
 @export var scale_size = Vector2(1.00,1.00)
 @export var zoom_out_speed = 0.1
+@export var scale_speed = .9
+@export var shallow_layers: Array[int]
+@export var medium_layers: Array[int]
+@export var play_short_time_stinger = 6
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

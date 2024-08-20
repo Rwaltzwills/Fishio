@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ghogwurd6r5g" path="res://scenes/wobbler.tscn" id="3_v4qlq"]
 [ext_resource type="Script" path="res://scripts/center_node.gd" id="4_dxwjq"]
 [ext_resource type="Script" path="res://scripts/language_selection.gd" id="5_h8wgm"]
+[ext_resource type="Script" path="res://scripts/custom_game_modes.gd" id="6_fao5d"]
 [ext_resource type="Texture2D" uid="uid://dxj375td7ityn" path="res://graphics/itchio-logo-textless-white.svg" id="6_jngp1"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jcjpw"]
@@ -103,10 +104,11 @@ text = "QUIT"
 
 [node name="Settings Menu" type="Control" parent="."]
 visible = false
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 0
-offset_left = 526.0
+offset_left = 326.0
 offset_top = 260.0
-offset_right = 626.0
+offset_right = 426.0
 offset_bottom = 388.0
 
 [node name="Label" type="Label" parent="Settings Menu"]
@@ -135,7 +137,6 @@ pivot_offset = Vector2(50, 15)
 text = "BACK"
 
 [node name="Controls Menu" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 576.0
 offset_top = 324.0
@@ -158,10 +159,10 @@ text = "BACK"
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_left = 431.0
-offset_top = 243.0
-offset_right = 721.0
-offset_bottom = 406.0
+offset_left = 526.0
+offset_top = 260.0
+offset_right = 816.0
+offset_bottom = 458.0
 
 [node name="Label" type="Label" parent="Game Modes"]
 layout_mode = 2
@@ -180,7 +181,11 @@ text = "MEDIUM"
 layout_mode = 2
 text = "HARD"
 
-[node name="Button" type="Button" parent="Game Modes"]
+[node name="Custom Button" type="Button" parent="Game Modes"]
+layout_mode = 2
+text = "CUSTOM CHALLENGE"
+
+[node name="Back Button" type="Button" parent="Game Modes"]
 layout_mode = 2
 text = "BACK"
 
@@ -201,6 +206,60 @@ popup/item_1/text = "THAI"
 popup/item_1/id = 1
 script = ExtResource("5_h8wgm")
 
+[node name="Custom Game Modes" type="VBoxContainer" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 526.0
+offset_top = 260.0
+offset_right = 707.0
+offset_bottom = 423.0
+script = ExtResource("6_fao5d")
+
+[node name="Label" type="Label" parent="Custom Game Modes"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "CUSTOM GAME"
+
+[node name="Seconds" type="HBoxContainer" parent="Custom Game Modes"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Seconds_Label" type="Label" parent="Custom Game Modes/Seconds"]
+layout_mode = 2
+text = "SECONDS:"
+
+[node name="Seconds_Entry" type="LineEdit" parent="Custom Game Modes/Seconds"]
+layout_mode = 2
+
+[node name="Goal" type="HBoxContainer" parent="Custom Game Modes"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Goal Label" type="Label" parent="Custom Game Modes/Goal"]
+layout_mode = 2
+text = "POINTS GOAL:"
+
+[node name="Goal_Entry" type="LineEdit" parent="Custom Game Modes/Goal"]
+layout_mode = 2
+
+[node name="Custom Play Button" type="Button" parent="Custom Game Modes"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "PLAY"
+
+[node name="Custom Back Button" type="Button" parent="Custom Game Modes"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "BACK"
+
+[node name="Effects" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
 [node name="ItchButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 20.0
@@ -284,7 +343,12 @@ text = "CANCEL"
 [connection signal="pressed" from="Game Modes/Easy" to="." method="_on_easy_pressed"]
 [connection signal="pressed" from="Game Modes/Medium" to="." method="_on_medium_pressed"]
 [connection signal="pressed" from="Game Modes/Hard" to="." method="_on_hard_pressed"]
-[connection signal="pressed" from="Game Modes/Button" to="." method="_on_gamemode_back_button_pressed"]
+[connection signal="pressed" from="Game Modes/Custom Button" to="." method="_on_custom_button_pressed"]
+[connection signal="pressed" from="Game Modes/Back Button" to="." method="_on_gamemode_back_button_pressed"]
+[connection signal="text_changed" from="Custom Game Modes/Seconds/Seconds_Entry" to="Custom Game Modes" method="_on_seconds_entry_text_changed"]
+[connection signal="text_changed" from="Custom Game Modes/Goal/Goal_Entry" to="Custom Game Modes" method="_on_goal_entry_text_changed"]
+[connection signal="pressed" from="Custom Game Modes/Custom Play Button" to="Custom Game Modes" method="_on_play_button_pressed"]
+[connection signal="pressed" from="Custom Game Modes/Custom Back Button" to="." method="_on_custom_back_button_pressed"]
 [connection signal="pressed" from="ItchButton" to="." method="_on_itch_button_pressed"]
 [connection signal="pressed" from="SignInDialog/MarginContainer/VBoxContainer/HBoxContainer/ContinueButton" to="." method="_on_api_key_continue_button_pressed"]
 [connection signal="pressed" from="SignInDialog/MarginContainer/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_api_key_cancel_button_pressed"]

@@ -16,6 +16,12 @@ static var player_info := {
 	"name": "" # Itch.io display name (or username)
 }
 
+@onready var Effects_list = {"Clicking":preload("res://Sound/SFX/ACTIONS/EATING CONSUMING LARGE_1.wav"),
+							"Typing":preload("res://Sound/SFX/ACTIONS/EATINGCONSUMING MEDIUM.wav"),
+							"Start Game":preload("res://Sound/SFX/ACTIONS/EATINGCONSUMING SMALL.wav")}
+
+@onready var Intro_music = preload("res://Sound/Music/INTRO (Over START MENU).wav")
+
 var game_scene = preload("res://scenes//testing.tscn")
 var wobbler = preload("res://scenes//wobbler.tscn")
 var actions = {"Up swim":tr("SWIM_UP"), 
@@ -32,7 +38,7 @@ signal select_mode
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var controls_menu = $"Controls Menu"
-	
+	# TO-DO: Add signal to retranslate?
 	# Make the control buttons as per actions variable
 	for b in actions:
 		var rebind_control_button = rebind_control_buttons_scene.instantiate()
@@ -66,6 +72,23 @@ func _ready():
 		if itch_api_key != "":
 			$ItchRequests.request("https://itch.io/api/1/jwt/me", [ "Authorization: Bearer %s" % itch_api_key ])
 
+	# Initial positions
+	$AnimationPlayer.play("In-Game/Initial Settings")
+	
+	# Handle sounds
+	var children = get_children()
+	for c in children:
+		var sub_children = c.get_children()
+		for c2 in sub_children:
+			if c2 is Button:
+				c2.pressed.connect(play_clicking_sounds)
+	
+	$"Custom Game Modes/Seconds/Seconds_Entry".text_changed.connect(play_typing_sounds)
+	$"Custom Game Modes/Goal/Goal_Entry".text_changed.connect(play_typing_sounds)
+	
+	$Music.stream = Intro_music
+	$Music.play()
+
 func _on_itch_request_complete(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray):
 	if result != HTTPRequest.RESULT_SUCCESS:
 		print("Error requesting player profile information!")
@@ -87,6 +110,14 @@ func _on_itch_request_complete(result: int, response_code: int, headers: PackedS
 	$ItchButton.hide()
 	$PlayerName.show()
 	$PlayerName.text = player_info["name"]
+
+func play_clicking_sounds():
+	$Effects.stream = Effects_list["Clicking"]
+	$Effects.play()
+
+func play_typing_sounds():
+	$Effects.stream = Effects_list["Typing"]
+	$Effects.play()
 
 # For remapping controls
 func assign_controls(button):
@@ -170,3 +201,10 @@ func _on_api_key_continue_button_pressed():
 func _on_api_key_cancel_button_pressed():
 	$ItchButton.show()
 	$SignInDialog.hide()
+
+func _on_custom_button_pressed() -> void:
+	$AnimationPlayer.play("In-Game/Open Custom")
+
+
+func _on_custom_back_button_pressed() -> void:
+	$AnimationPlayer.play("In-Game/Close Custom")

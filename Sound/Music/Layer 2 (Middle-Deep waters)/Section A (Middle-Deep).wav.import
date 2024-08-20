@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b506ueqnp10p1"
+path="res://.godot/imported/Section A (Middle-Deep).wav-8ad7e9d145ae16c604d26982e5245112.sample"
+
+[deps]
+
+source_file="res://Sound/Music/Layer 2 (Middle-Deep waters)/Section A (Middle-Deep).wav"
+dest_files=["res://.godot/imported/Section A (Middle-Deep).wav-8ad7e9d145ae16c604d26982e5245112.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

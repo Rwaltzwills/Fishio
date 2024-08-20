@@ -29,3 +29,7 @@ API_KEY,"Authorize Fishio in your browser, and paste the API key here.",ให�
 API_KEY_INPUT,Paste API key here…,วางรหัส API ที่นี่
 CANCEL,Cancel,ยกเลิก
 CONTINUE,Continue,ถัดไป
+CUSTOM CHALLENGE,Custom Challenge!,
+SECONDS:,Seconds:,
+POINTS GOAL:,Points Goal,
+CUSTOM GAME,CUSTOM GAME,
