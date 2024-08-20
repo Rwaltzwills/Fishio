@@ -30,8 +30,8 @@ var default_animation
 ]
 
 @onready var Effects_List = {
-	"Aggro": preload("res://sound/SFX/NPC'S/AGGRO SOUND_1.wav"),
-	"Eating": preload("res://sound/SFX/ACTIONS/EATINGCONSUMING SMALL.wav")
+	"Aggro": preload("res://Sound/SFX/NPC'S/AGGRO SOUND_1.wav"),
+	"Eating": preload("res://Sound/SFX/ACTIONS/EATINGCONSUMING SMALL.wav")
 }
 
 @export var eating_size = 0

@@ -12,9 +12,9 @@ extends Control
 @export var hard_seconds = 45
 
 @onready var Effects_list = {
-	"Clicking": preload("res://sound/SFX/UI_MENU/CLICKINGSELECTING_1.wav"),
-	"Typing": preload("res://sound/SFX/UI_MENU/TYPINGKEY NOISE 1_1.wav"),
-	"Start Game": preload("res://sound/SFX/UI_MENU/START GAME_1.wav")
+	"Clicking": preload("res://Sound/SFX/UI_MENU/CLICKINGSELECTING_1.wav"),
+	"Typing": preload("res://Sound/SFX/UI_MENU/TYPINGKEY NOISE 1_1.wav"),
+	"Start Game": preload("res://Sound/SFX/UI_MENU/START GAME_1.wav")
 }
 
 var game_scene = preload("res://scenes//testing.tscn")

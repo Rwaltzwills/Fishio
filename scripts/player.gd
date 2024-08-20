@@ -16,32 +16,32 @@ signal perish
 
 @onready var Effects_list = {
 	"Eating Large": [
-		preload("res://sound/SFX/ACTIONS/EATING CONSUMING LARGE_1.wav"),
-		preload("res://sound/SFX/ACTIONS/EATING CONSUMING LARGE_2.wav")
+		preload("res://Sound/SFX/ACTIONS/EATING CONSUMING LARGE_1.wav"),
+		preload("res://Sound/SFX/ACTIONS/EATING CONSUMING LARGE_2.wav")
 	],
 	"Eating Medium": [
-		preload("res://sound/SFX/ACTIONS/EATINGCONSUMING MEDIUM.wav"),
-		preload("res://sound/SFX/ACTIONS/EATINGCONSUMING MEDIUM_2.wav")
+		preload("res://Sound/SFX/ACTIONS/EATINGCONSUMING MEDIUM.wav"),
+		preload("res://Sound/SFX/ACTIONS/EATINGCONSUMING MEDIUM_2.wav")
 	],
 	"Eating Small": [
-		preload("res://sound/SFX/ACTIONS/EATINGCONSUMING SMALL.wav"),
-		preload("res://sound/SFX/ACTIONS/EATINGCONSUMING SMALL_2.wav")
+		preload("res://Sound/SFX/ACTIONS/EATINGCONSUMING SMALL.wav"),
+		preload("res://Sound/SFX/ACTIONS/EATINGCONSUMING SMALL_2.wav")
 	],
 	"Dash": [
-		preload("res://sound/SFX/ACTIONS/DASH_1.wav")
+		preload("res://Sound/SFX/ACTIONS/DASH_1.wav")
 	]
 }
 
 @onready var Swimming_Sounds = {
 	"Swim Left": [
-		preload("res://sound/SFX/ACTIONS/SWIM LEFT SMALL_1.wav"),
-		preload("res://sound/SFX/ACTIONS/SWIM LEFT MEDIUM_1.wav"),
-		preload("res://sound/SFX/ACTIONS/SWIM LEFT LARGE_1.wav")
+		preload("res://Sound/SFX/ACTIONS/SWIM LEFT SMALL_1.wav"),
+		preload("res://Sound/SFX/ACTIONS/SWIM LEFT MEDIUM_1.wav"),
+		preload("res://Sound/SFX/ACTIONS/SWIM LEFT LARGE_1.wav")
 	],
 	"Swim Right": [
-		preload("res://sound/SFX/ACTIONS/SWIM RIGHT SMALL_1.wav"),
-		preload("res://sound/SFX/ACTIONS/SWIM RIGHT MEDIUM_1.wav"),
-		preload("res://sound/SFX/ACTIONS/SWIM RIGHT LARGE_1.wav")
+		preload("res://Sound/SFX/ACTIONS/SWIM RIGHT SMALL_1.wav"),
+		preload("res://Sound/SFX/ACTIONS/SWIM RIGHT MEDIUM_1.wav"),
+		preload("res://Sound/SFX/ACTIONS/SWIM RIGHT LARGE_1.wav")
 	]
 }
 
