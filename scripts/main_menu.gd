@@ -59,7 +59,6 @@ func _ready():
 		controls_menu.add_child(rebind_control_button)
 		rebind_control_button.custom_minimum_size = rebind_control_button.find_child("MarginContainer").size
 		rebind_control_button.pivot_offset = Vector2(rebind_control_button.custom_minimum_size.x/2,rebind_control_button.custom_minimum_size.y/2)
-		rebind_control_button.add_child(wobbler.instantiate())
 		rebind_control_button.hidden_value = b
 		rebind_control_button.pressed.connect(assign_controls.bind(rebind_control_button))
 
@@ -85,6 +84,7 @@ func _ready():
 		for c2 in sub_children:
 			if c2 is Button:
 				c2.pressed.connect(play_clicking_sounds)
+				c2.pivot_offset = Vector2(c2.size.x/2,c2.size.y/2)
 	
 	$"Custom Game Modes/GridContainer/Seconds_Entry".text_changed.connect(play_typing_sounds)
 	$"Custom Game Modes/GridContainer/Goal_Entry".text_changed.connect(play_typing_sounds)

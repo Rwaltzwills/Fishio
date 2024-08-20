@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://scripts/language_selection.gd" id="5_h8wgm"]
 [ext_resource type="Script" path="res://scripts/custom_game_modes.gd" id="6_fao5d"]
 [ext_resource type="Texture2D" uid="uid://dxj375td7ityn" path="res://graphics/itchio-logo-textless-white.svg" id="6_jngp1"]
-[ext_resource type="AudioStream" uid="uid://djmslj6bvbou7" path="res://sound/Music/INTRO (Over START MENU).mp3" id="8_pq8qd"]
+[ext_resource type="AudioStream" uid="uid://djmslj6bvbou7" path="res://Sound/Music/INTRO (Over START MENU).mp3" id="8_pq8qd"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jcjpw"]
 
@@ -126,16 +126,22 @@ layout_mode = 2
 offset_top = 44.0
 offset_right = 100.0
 offset_bottom = 75.0
+scale = Vector2(1.1, 1.1)
 pivot_offset = Vector2(50, 15)
 text = "CONTROLS"
+
+[node name="Wobbler" parent="Settings Menu/ControlsButton" instance=ExtResource("3_v4qlq")]
 
 [node name="BackButton" type="Button" parent="Settings Menu"]
 layout_mode = 2
 offset_top = 79.0
 offset_right = 100.0
 offset_bottom = 110.0
+scale = Vector2(1.1, 1.1)
 pivot_offset = Vector2(50, 15)
 text = "BACK"
+
+[node name="Wobbler" parent="Settings Menu/BackButton" instance=ExtResource("3_v4qlq")]
 
 [node name="Controls Menu" type="VBoxContainer" parent="."]
 visible = false
@@ -175,21 +181,31 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "EASY"
 
+[node name="Wobbler" parent="Game Modes/Easy" instance=ExtResource("3_v4qlq")]
+
 [node name="Medium" type="Button" parent="Game Modes"]
 layout_mode = 2
 text = "MEDIUM"
+
+[node name="Wobbler" parent="Game Modes/Medium" instance=ExtResource("3_v4qlq")]
 
 [node name="Hard" type="Button" parent="Game Modes"]
 layout_mode = 2
 text = "HARD"
 
+[node name="Wobbler" parent="Game Modes/Hard" instance=ExtResource("3_v4qlq")]
+
 [node name="Custom Button" type="Button" parent="Game Modes"]
 layout_mode = 2
 text = "CUSTOM CHALLENGE"
 
+[node name="Wobbler" parent="Game Modes/Custom Button" instance=ExtResource("3_v4qlq")]
+
 [node name="Back Button" type="Button" parent="Game Modes"]
 layout_mode = 2
 text = "BACK"
+
+[node name="Wobbler" parent="Game Modes/Back Button" instance=ExtResource("3_v4qlq")]
 
 [node name="Language Selection" type="MenuButton" parent="."]
 layout_mode = 1
@@ -250,11 +266,15 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "PLAY"
 
+[node name="Wobbler" parent="Custom Game Modes/GridContainer/Custom Play Button" instance=ExtResource("3_v4qlq")]
+
 [node name="Custom Back Button" type="Button" parent="Custom Game Modes/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "BACK"
+
+[node name="Wobbler" parent="Custom Game Modes/GridContainer/Custom Back Button" instance=ExtResource("3_v4qlq")]
 
 [node name="Effects" type="AudioStreamPlayer2D" parent="."]
 
