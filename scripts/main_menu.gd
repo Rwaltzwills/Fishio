@@ -16,11 +16,11 @@ static var player_info := {
 	"name": "" # Itch.io display name (or username)
 }
 
-@onready var Effects_list = {"Clicking":preload("res://Sound/SFX/ACTIONS/EATING CONSUMING LARGE_1.wav"),
-							"Typing":preload("res://Sound/SFX/ACTIONS/EATINGCONSUMING MEDIUM.wav"),
-							"Start Game":preload("res://Sound/SFX/ACTIONS/EATINGCONSUMING SMALL.wav")}
+@onready var Effects_list = {"Clicking":preload("res://sound/SFX/ACTIONS/EATING CONSUMING LARGE_1.wav"),
+							"Typing":preload("res://sound/SFX/ACTIONS/EATINGCONSUMING MEDIUM.wav"),
+							"Start Game":preload("res://sound/SFX/ACTIONS/EATINGCONSUMING SMALL.wav")}
 
-@onready var Intro_music = preload("res://Sound/Music/INTRO (Over START MENU).wav")
+@onready var Intro_music = preload("res://sound/Music/INTRO (Over START MENU).mp3")
 
 var game_scene = preload("res://scenes//testing.tscn")
 var wobbler = preload("res://scenes//wobbler.tscn")
@@ -113,10 +113,12 @@ func _on_itch_request_complete(result: int, response_code: int, headers: PackedS
 
 func play_clicking_sounds():
 	$Effects.stream = Effects_list["Clicking"]
+	$Effects.pitch_scale = randf_range(0.9, 1.1)
 	$Effects.play()
 
-func play_typing_sounds():
+func play_typing_sounds(_new_text):
 	$Effects.stream = Effects_list["Typing"]
+	$Effects.pitch_scale = randf_range(0.9, 1.1)
 	$Effects.play()
 
 # For remapping controls

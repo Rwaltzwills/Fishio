@@ -29,7 +29,8 @@ API_KEY,"Authorize Fishio in your browser, and paste the API key here.",ให�
 API_KEY_INPUT,Paste API key here…,วางรหัส API ที่นี่
 CANCEL,Cancel,ยกเลิก
 CONTINUE,Continue,ถัดไป
-CUSTOM CHALLENGE,Custom Challenge!,
-SECONDS:,Seconds:,
-POINTS GOAL:,Points Goal,
-CUSTOM GAME,CUSTOM GAME,
+CUSTOM CHALLENGE,Custom Challenge!,การท้าทายแบบกำหนดเอง
+SECONDS:,Seconds:,เวลา (วินาที)
+POINTS GOAL:,Points Goal,เป้าหมายคะแนน
+CUSTOM GAME,CUSTOM GAME,เกมแบบกำหนดเอง
+ITCH_SIGN_IN,Sign in with itch.io,เข้าสู่ระบบผ่าน itch.io

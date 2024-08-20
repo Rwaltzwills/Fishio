@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dskd8ud72hqg1"
+path="res://.godot/imported/Section C (Middle-Deep).mp3-53a7c51bdc5d0ec011cdfac2c71b382b.mp3str"
+
+[deps]
+
+source_file="res://sound/Music/Layer 2 (Middle-Deep waters)/Section C (Middle-Deep).mp3"
+dest_files=["res://.godot/imported/Section C (Middle-Deep).mp3-53a7c51bdc5d0ec011cdfac2c71b382b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

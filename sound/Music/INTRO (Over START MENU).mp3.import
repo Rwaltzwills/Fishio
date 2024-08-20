@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://djmslj6bvbou7"
+path="res://.godot/imported/INTRO (Over START MENU).mp3-79589a468efe98356a0d62c20c255527.mp3str"
+
+[deps]
+
+source_file="res://sound/Music/INTRO (Over START MENU).mp3"
+dest_files=["res://.godot/imported/INTRO (Over START MENU).mp3-79589a468efe98356a0d62c20c255527.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
