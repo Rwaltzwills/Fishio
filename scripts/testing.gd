@@ -123,3 +123,7 @@ func _on_player_camera_resize_request() -> void:
 		if c.eating_size < -2:
 			c.queue_free() # After a certain size, despawn fish to force player deeper
 			
+
+
+func _on_player_take_hit() -> void:
+	$"In-game UI".subtract_points()

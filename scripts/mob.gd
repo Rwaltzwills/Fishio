@@ -34,7 +34,6 @@ func _ready() -> void:
 	# Scale speed on size
 	if eating_size != 2:
 		SPEED = SPEED/(Settings.scale_speed*eating_size)
-	print(str(self.eating_size,":",SPEED))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
@@ -112,4 +111,4 @@ func _on_action_timeout() -> void:
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("is_player"):
 		if eating_size > area.eating_size:
-			area.emit_signal("take_hit")
+			area.handle_damage()

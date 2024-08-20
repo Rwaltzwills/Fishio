@@ -57,7 +57,7 @@ position = Vector2(220, 217)
 scale = Vector2(0.679691, 0.286928)
 color = Color(1, 1, 1, 0)
 texture = SubResource("NoiseTexture2D_xrx4k")
-polygon = PackedVector2Array(-910.708, -1648.5, 870.984, -1620.62, 881.283, 770.228, -929.834, 798.11)
+polygon = PackedVector2Array(-1455.07, -2596.47, 1509.51, -2742.85, 1625.74, 1547.43, -1611.03, 1582.28)
 uv = PackedVector2Array(-115.605, -406, 640.568, -399, 635.944, 469, -114.182, 482)
 
 [node name="Background Sprite 2" type="Sprite2D" parent="Background"]
@@ -75,8 +75,11 @@ script = ExtResource("6_3tf7t")
 [connection signal="camera_resize_request" from="Player" to="." method="_on_player_camera_resize_request"]
 [connection signal="collided" from="Player" to="." method="_on_player_collided"]
 [connection signal="gained_size" from="Player" to="In-game UI" method="_on_player_gained_size"]
+[connection signal="perish" from="Player" to="." method="game_over"]
 [connection signal="request_transition" from="Player" to="." method="_on_player_request_transition"]
-[connection signal="take_hit" from="Player" to="." method="game_over"]
+[connection signal="take_hit" from="Player" to="." method="_on_player_take_hit"]
 [connection signal="won_game" from="In-game UI" to="." method="game_win"]
 [connection signal="timeout" from="Game Timer" to="." method="game_over"]
 [connection signal="timeout" from="UI Update Timer" to="." method="_on_ui_update_timer_timeout"]
+
+[editable path="Player"]

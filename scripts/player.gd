@@ -8,6 +8,7 @@ signal take_hit
 signal collided
 signal request_transition
 signal camera_resize_request
+signal perish
 
 @onready var _animation_player = $AnimationPlayer
 @onready var collider = get_node("CollisionShape2D")
@@ -22,6 +23,7 @@ signal camera_resize_request
 @export var TURN_DECEL = float(0.1)
 
 @export var eating_size = 2
+
 var y_scale_when_eating = Settings.scale_size.x
 var x_scale_when_eating = Settings.scale_size.y
 
@@ -30,6 +32,8 @@ var angular_velocity
 var base_scale
 
 var zooming_out = false
+var new_size_scale
+var resizing = false
 
 func _ready() -> void:
 	
@@ -50,10 +54,18 @@ func _physics_process(delta: float) -> void:
 		emit_signal("request_transition")
 		return
 	
+	# Handle zooming out resizing
 	if zooming_out:
 		$CollisionShape2D.scale = $CollisionShape2D.scale.lerp(base_scale, Settings.zoom_out_speed)
 		if $CollisionShape2D.scale == base_scale:
 			zooming_out = false
+	
+	# Handle resizing on eating/damage
+	if resizing:
+		$CollisionShape2D.scale = $CollisionShape2D.scale.lerp(new_size_scale, 0.1)
+		if $CollisionShape2D.scale == new_size_scale:
+			resizing = false
+	
 	# Handle swimming
 	# Get the input direction
 	var direction_lr := Input.get_axis("Left swim", "Right swim") # Left/Right 
@@ -99,8 +111,9 @@ func change_size(new_size = 0) -> void:
 		self.eating_size = new_size
 	# DEBUG: play size change animation
 	# Might just use a signal or a lerp setting here to smoothly transition
-	if self.eating_size > Settings.same_fish_size:
-		collider.scale = Vector2(self.eating_size * x_scale_when_eating, self.eating_size * y_scale_when_eating)
+	if self.eating_size != Settings.same_fish_size:
+		new_size_scale = Vector2(self.eating_size * x_scale_when_eating, self.eating_size * y_scale_when_eating)
+		resizing = true
 		emit_signal("gained_size")
 	else:
 		collider.scale = base_scale
@@ -121,11 +134,17 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 			change_size()
 			emit_signal("collided", body)
 			# DEBUG: play eating animation
-		#else:
-			#emit_signal("take_hit")
+			
+func handle_damage() -> void:
+	# If this is the last hitpoint, kill player
+	if self.eating_size==1:
+		emit_signal("perish")
+	
+	change_size(self.eating_size - 1)
+	emit_signal("take_hit")
+	# TO-DO: Implement bounce back to show damage taken?
+	# TO-DO: Implement animation/shader to show damage taken?
+
 
 # Actions needed
-# - Handle swimming - Debug 
-# - Eating/getting eaten on collision
-# - Handle size changes - Debug
 # - Lunge?
