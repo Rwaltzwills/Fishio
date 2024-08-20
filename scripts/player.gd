@@ -149,7 +149,7 @@ func change_size(new_size = 0) -> void:
 		emit_signal("gained_size")
 
 	else:
-		collider.scale = base_scale
+		new_size_scale = base_scale
 	
 	# Check if we're getting too big for the screen, scale everything down
 	if $CollisionShape2D.scale >= Vector2(5,5):

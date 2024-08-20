@@ -125,8 +125,8 @@ func _on_detect_area_entered(area: Area2D) -> void:
 			cur_action = "chase"
 			$Debug_State.text = "chase"
 			# Handle sound
-			$"Effects".stream = Effects_List["Aggro"]
-			$Effects.play()
+			# $"Effects".stream = Effects_List["Aggro"]
+			# $Effects.play()
 		else:
 			cur_action = "run"
 			$Debug_State.text = "run"
