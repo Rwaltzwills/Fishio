@@ -139,14 +139,17 @@ func close_controls() -> void:
 
 func _on_easy_pressed() -> void:
 	emit_signal("select_mode",easy_points,easy_minutes,easy_seconds)
+	$Music.stop()
 	get_tree().change_scene_to_packed(game_scene)
 
 func _on_medium_pressed() -> void:
 	emit_signal("select_mode",medium_points,medium_minutes,medium_seconds)
+	$Music.stop()
 	get_tree().change_scene_to_packed(game_scene)
 
 func _on_hard_pressed() -> void:
 	emit_signal("select_mode",hard_points,hard_minutes,hard_seconds)
+	$Music.stop()
 	get_tree().change_scene_to_packed(game_scene)
 
 func _on_button_pressed() -> void:

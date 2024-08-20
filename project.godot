@@ -30,6 +30,10 @@ Settings="*res://scenes/settings.tscn"
 
 window/stretch/mode="canvas_items"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/rwalt/Desktop/GMTK/movie.avi"
+
 [input]
 
 "Left swim"={

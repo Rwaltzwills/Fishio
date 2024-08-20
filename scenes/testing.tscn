@@ -37,9 +37,6 @@ biggest_fish = ExtResource("2_tk547")
 [node name="Player" parent="." instance=ExtResource("1_bvkqp")]
 position = Vector2(207, 92)
 
-[node name="Sprite2D" parent="Player/CollisionShape2D" index="0"]
-modulate = Color(1, 1, 1, 0)
-
 [node name="Mob Spawner" parent="." instance=ExtResource("3_sx372")]
 
 [node name="In-game UI" parent="." instance=ExtResource("3_h3uny")]
