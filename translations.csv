@@ -28,3 +28,4 @@ DATE,Date,วันที่
 API_KEY,"Authorize Fishio in your browser, and paste the API key here.",ให้ความอนุญาตกับเกมปลาในเบราเซอร์ของคุณ และวางรหัส API ในกล่องข้อความ
 API_KEY_INPUT,Paste API key here…,วางรหัส API ที่นี่
 CANCEL,Cancel,ยกเลิก
+CONTINUE,Continue,ถัดไป
