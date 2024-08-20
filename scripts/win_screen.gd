@@ -11,8 +11,6 @@ func _ready() -> void:
 		var button = Button.new()
 		button.text = tr("LEADERBOARD")
 		button.pressed.connect(goto_leaderboard)
-	var box_size = $Message.get_size()
-	$Message.set_position(Vector2(viewport_size.x / 2 - box_size.x / 2, viewport_size.y / 2 - box_size.y / 2))
 	$AudioStreamPlayer2D.play()
 
 
