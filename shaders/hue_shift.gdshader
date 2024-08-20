@@ -3,6 +3,17 @@ render_mode unshaded;
 
 uniform float Shift_Hue;
 
+// Source: https://gist.github.com/McSpider/c8c693f1065fdb5ec44c64cb9fdac340
+/*
+Duplicate the shader so that changing its param doesn't change it on any other sprites that also use the shader.
+Generally done once in _ready()
+$TheSprite.set_material($TheSprite.get_material().duplicate(true))
+
+Offset sprite hue by a random value within specified limits.
+var rand_hue = float(randi() % 3)/2.0/3.2
+$TheSprite.material.set_shader_parameter("Shift_Hue", rand_hue)
+*/
+
 void fragment() {
 // Input:3
 	vec3 input_color;

@@ -27,7 +27,7 @@ signal select_mode
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var controls_menu = $"Controls Menu"
-	
+	# TO-DO: Add signal to retranslate?
 	# Make the control buttons as per actions variable
 	for b in actions:
 		var rebind_control_button = rebind_control_buttons_scene.instantiate()
