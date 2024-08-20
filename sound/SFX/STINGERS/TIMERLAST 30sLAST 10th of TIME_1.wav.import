@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://l7bgj815kawg"
-path="res://.godot/imported/TIMERLAST 30sLAST 10th of TIME_1.wav-213ca7174d7d6f9f7f7395b04f649ca0.sample"
+path="res://.godot/imported/TIMERLAST 30sLAST 10th of TIME_1.wav-f12bcda3fee1cc1c24447b671c629bbf.sample"
 
 [deps]
 
-source_file="res://sound/SFX/STINGERS/TIMERLAST 30sLAST 10th of TIME_1.wav"
-dest_files=["res://.godot/imported/TIMERLAST 30sLAST 10th of TIME_1.wav-213ca7174d7d6f9f7f7395b04f649ca0.sample"]
+source_file="res://Sound/SFX/STINGERS/TIMERLAST 30sLAST 10th of TIME_1.wav"
+dest_files=["res://.godot/imported/TIMERLAST 30sLAST 10th of TIME_1.wav-f12bcda3fee1cc1c24447b671c629bbf.sample"]
 
 [params]
 

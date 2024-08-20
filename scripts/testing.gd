@@ -41,9 +41,11 @@ var Ambiance_stoptime = 0.0
 @export var minimum_big = 6
 @export var minimum_biggest = 4
 
+signal submit_highscores
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# TO-DO: Ready Sounds
+	# ready sounds
 	select_bg_sounds()
 	# Play Sounds
 	$"Audio Controller/Ambiance".play()
@@ -64,6 +66,8 @@ func _ready() -> void:
 	$"Mob Spawner".spawn_enemies()
 	
 	shader_speed_default_a = $Background/ColorRect.material.get_shader_parameter("scroll_speed")
+	
+	self.submit_highscores.connect(Settings.submit_highscores)
 
 func _process(_delta: float) -> void:
 	pass
@@ -115,35 +119,9 @@ func game_over():
 
 func game_win() -> void:
 	was_game_won = true
+	emit_signal("submit_highscores", $"In-game UI".Points, $"Game Timer".time_left)
+	game_over()
 	
-	if not Globals.is_signed_in:
-		return
-	
-	$HTTPRequest.request_completed.connect(_on_add_request_completed)
-	# Send to leaderboard
-	var json = JSON.stringify({
-		"ItchId": Globals.player_info["id"],
-		"Name": Globals.player_info["name"],
-		"Score": $"In-game UI".Points,
-		"Time": (Settings.TIMER_MINUTES*60+Settings.TIMER_SECONDS) - $"Game Timer".time_left
-	})
-	var headers = ["Content-Type: application/json"]
-	$HTTPRequest.request("https://fishioleaderboard.dailitation.xyz/api/add", headers, HTTPClient.METHOD_POST, json)
-	
-	$"Audio Controller/Effects".stream == Effects_list["Win"]
-	
-func _on_add_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray):
-	var body_str = body.get_string_from_utf8()
-	
-	if result != HTTPRequest.RESULT_SUCCESS:
-		Settings.is_leaderboard_active = false
-		# TODO: Alert about failed request
-		print("Failed to fetch leaderboard: {result} {code} {message}".format({
-			"result": result,
-			"code": response_code,
-			"message": body_str
-		}))
-		return
 
 func _on_player_request_transition() -> void:
 	# On layer change, add new enemies

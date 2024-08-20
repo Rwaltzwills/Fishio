@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dwap6k6h227dl"
-path="res://.godot/imported/GAME SMALL SHALLOW (BRIGHTEST)_1.wav-3fe151e546dad255a75e80902cdf3c26.sample"
+path="res://.godot/imported/GAME SMALL SHALLOW (BRIGHTEST)_1.wav-69621f1e5da12932aefdc1fafa6aedce.sample"
 
 [deps]
 
-source_file="res://sound/SFX/AMBIENCE/GAME SMALL SHALLOW (BRIGHTEST)_1.wav"
-dest_files=["res://.godot/imported/GAME SMALL SHALLOW (BRIGHTEST)_1.wav-3fe151e546dad255a75e80902cdf3c26.sample"]
+source_file="res://Sound/SFX/AMBIENCE/GAME SMALL SHALLOW (BRIGHTEST)_1.wav"
+dest_files=["res://.godot/imported/GAME SMALL SHALLOW (BRIGHTEST)_1.wav-69621f1e5da12932aefdc1fafa6aedce.sample"]
 
 [params]
 

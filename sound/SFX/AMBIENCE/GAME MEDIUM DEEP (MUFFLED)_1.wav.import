@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://boxxs8lwp8vy3"
-path="res://.godot/imported/GAME MEDIUM DEEP (MUFFLED)_1.wav-42f3c74623e674d1dd24452cb929ef73.sample"
+path="res://.godot/imported/GAME MEDIUM DEEP (MUFFLED)_1.wav-29586db521828e327d892ea2969c1cd4.sample"
 
 [deps]
 
-source_file="res://sound/SFX/AMBIENCE/GAME MEDIUM DEEP (MUFFLED)_1.wav"
-dest_files=["res://.godot/imported/GAME MEDIUM DEEP (MUFFLED)_1.wav-42f3c74623e674d1dd24452cb929ef73.sample"]
+source_file="res://Sound/SFX/AMBIENCE/GAME MEDIUM DEEP (MUFFLED)_1.wav"
+dest_files=["res://.godot/imported/GAME MEDIUM DEEP (MUFFLED)_1.wav-29586db521828e327d892ea2969c1cd4.sample"]
 
 [params]
 
