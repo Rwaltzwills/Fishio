@@ -234,6 +234,10 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "BACK"
 
+[node name="Effects" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="pressed" from="Splash Menu/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Splash Menu/SettingsButton" to="." method="open_settings"]
 [connection signal="pressed" from="Splash Menu/QuitButton" to="." method="_on_quit_button_pressed"]

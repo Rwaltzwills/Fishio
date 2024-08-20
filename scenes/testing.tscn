@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://0678vr22o4iw"]
+[gd_scene load_steps=14 format=3 uid="uid://0678vr22o4iw"]
 
 [ext_resource type="Script" path="res://scripts/testing.gd" id="1_1r6c3"]
 [ext_resource type="PackedScene" uid="uid://7ba5xuy72rle" path="res://scenes/player.tscn" id="1_bvkqp"]
@@ -8,6 +8,7 @@
 [ext_resource type="Shader" path="res://shaders/testing.gdshader" id="5_2mjie"]
 [ext_resource type="Script" path="res://scripts/layer_functionality.gd" id="6_3tf7t"]
 [ext_resource type="Texture2D" uid="uid://bd8m5y630wm5x" path="res://graphics/seabg.png" id="7_tgass"]
+[ext_resource type="Script" path="res://scripts/audio_controller.gd" id="9_mlltx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7foh6"]
 shader = ExtResource("5_2mjie")
@@ -74,6 +75,15 @@ script = ExtResource("6_3tf7t")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
+[node name="Audio Controller" type="Node" parent="."]
+script = ExtResource("9_mlltx")
+
+[node name="Ambiance" type="AudioStreamPlayer2D" parent="Audio Controller"]
+
+[node name="Music" type="AudioStreamPlayer2D" parent="Audio Controller"]
+
+[node name="Effects" type="AudioStreamPlayer2D" parent="Audio Controller"]
+
 [connection signal="camera_resize_request" from="Player" to="." method="_on_player_camera_resize_request"]
 [connection signal="collided" from="Player" to="." method="_on_player_collided"]
 [connection signal="gained_size" from="Player" to="In-game UI" method="_on_player_gained_size"]
@@ -83,5 +93,7 @@ script = ExtResource("6_3tf7t")
 [connection signal="won_game" from="In-game UI" to="." method="game_win"]
 [connection signal="timeout" from="Game Timer" to="." method="game_over"]
 [connection signal="timeout" from="UI Update Timer" to="." method="_on_ui_update_timer_timeout"]
+[connection signal="finished" from="Audio Controller/Ambiance" to="Audio Controller" method="_on_ambiance_finished"]
+[connection signal="finished" from="Audio Controller/Music" to="Audio Controller" method="_on_music_finished"]
 
 [editable path="Player"]

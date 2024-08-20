@@ -65,4 +65,6 @@ script = ExtResource("3_bnc5o")
 offset_right = 40.0
 offset_bottom = 23.0
 
+[node name="Effects" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="body_entered" from="CollisionShape2D/hitbox" to="." method="_on_hitbox_body_entered"]

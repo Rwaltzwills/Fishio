@@ -6,3 +6,5 @@
 script = ExtResource("1_p7iwm")
 big_fish_size = 3
 biggest_fish_size = 3
+shallow_layers = Array[int]([1, 2])
+medium_layers = Array[int]([3, 4, 5])

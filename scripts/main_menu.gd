@@ -11,6 +11,12 @@ extends Control
 @export var hard_minutes = 0
 @export var hard_seconds = 45
 
+@onready var Effects_list = {"Clicking":preload("res://Sound/SFX/ACTIONS/EATING CONSUMING LARGE_1.wav"),
+							"Typing":preload("res://Sound/SFX/ACTIONS/EATINGCONSUMING MEDIUM.wav"),
+							"Start Game":preload("res://Sound/SFX/ACTIONS/EATINGCONSUMING SMALL.wav")}
+
+@onready var Intro_music = preload("res://Sound/Music/INTRO (Over START MENU).wav")
+
 var game_scene = preload("res://scenes//testing.tscn")
 var wobbler = preload("res://scenes//wobbler.tscn")
 var actions = {"Up swim":tr("SWIM_UP"), 
@@ -54,6 +60,28 @@ func _ready():
 	select_mode.connect(Settings.new_game_parameters)
 	# Initial positions
 	$AnimationPlayer.play("In-Game/Initial Settings")
+	
+	# Handle sounds
+	var children = get_children()
+	for c in children:
+		var sub_children = c.get_children()
+		for c2 in sub_children:
+			if c2 is Button:
+				c2.pressed.connect(play_clicking_sounds)
+	
+	$"Custom Game Modes/Seconds/Seconds_Entry".text_changed.connect(play_typing_sounds)
+	$"Custom Game Modes/Goal/Goal_Entry".text_changed.connect(play_typing_sounds)
+	
+	$Music.stream = Intro_music
+	$Music.play()
+
+func play_clicking_sounds():
+	$Effects.stream = Effects_list["Clicking"]
+	$Effects.play()
+
+func play_typing_sounds():
+	$Effects.stream = Effects_list["Typing"]
+	$Effects.play()
 
 # For remapping controls
 func assign_controls(button):

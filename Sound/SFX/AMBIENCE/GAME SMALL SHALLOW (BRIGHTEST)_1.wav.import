@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dwap6k6h227dl"
+path="res://.godot/imported/GAME SMALL SHALLOW (BRIGHTEST)_1.wav-69621f1e5da12932aefdc1fafa6aedce.sample"
+
+[deps]
+
+source_file="res://Sound/SFX/AMBIENCE/GAME SMALL SHALLOW (BRIGHTEST)_1.wav"
+dest_files=["res://.godot/imported/GAME SMALL SHALLOW (BRIGHTEST)_1.wav-69621f1e5da12932aefdc1fafa6aedce.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

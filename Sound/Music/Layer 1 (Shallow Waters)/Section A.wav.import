@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cw3vw6kvf5h2e"
+path="res://.godot/imported/Section A.wav-91cf815ab43babd5c51be30676a07881.sample"
+
+[deps]
+
+source_file="res://Sound/Music/Layer 1 (Shallow Waters)/Section A.wav"
+dest_files=["res://.godot/imported/Section A.wav-91cf815ab43babd5c51be30676a07881.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

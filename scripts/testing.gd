@@ -8,6 +8,23 @@ var shader_speed_default_a # Not working
 var cur_time = float()
 var Points_format = "%02d"
 
+var Music_stoptime = 0.0
+var Ambiance_stoptime = 0.0
+
+@onready var Music_list = {"Shallow":preload("res://Sound/Music/Layer 1 (Shallow Waters)/Section A.wav"),
+							"Medium:":preload("res://Sound/Music/Layer 1 (Shallow Waters)/Section B.wav"),
+							"Deep":preload("res://Sound/Music/Layer 1 (Shallow Waters)/Section C.wav")}
+
+@onready var Ambiance_list = {"Shallow":preload("res://Sound/SFX/AMBIENCE/GAME SMALL SHALLOW (BRIGHTEST)_1.wav"),
+							"Medium":preload("res://Sound/SFX/AMBIENCE/GAME MEDIUM DEEP (MUFFLED)_1.wav"),
+							"Deep":preload("res://Sound/SFX/AMBIENCE/GAME LARGE DEEPEST (MOST MUFFLED)_1.wav")}
+
+@onready var Effects_list = {"Dying":preload("res://Sound/SFX/STINGERS/DYING_1.wav"),
+							"Size Up":preload("res://Sound/SFX/STINGERS/SIZE DOWN RISE UP_1.wav"), 
+							"Dive Down":preload("res://Sound/SFX/STINGERS/SIZE UP DIVE DOWN_bip_1.wav"), 
+							"Timer Running Out":preload("res://Sound/SFX/STINGERS/TIMERLAST 30sLAST 10th of TIME_1.wav"),
+							"Win":preload("res://Sound/SFX/STINGERS/WINNING COMPLETING_1.wav")}
+
 @export var small_fish :PackedScene
 @export var same_fish :PackedScene
 @export var big_fish :PackedScene
@@ -19,6 +36,11 @@ var Points_format = "%02d"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# TO-DO: Ready Sounds
+	select_bg_sounds()
+	# Play Sounds
+	$"Audio Controller/Ambiance".play()
+	$"Audio Controller/Music".play()
 	# Set timer
 	timer = $"Game Timer"
 	timer_label = $"In-game UI".find_child("Timer Label")
@@ -64,8 +86,19 @@ func _on_ui_update_timer_timeout() -> void:
 	timer_label.text = timer_label_format % time_left # DEBUG: Worried a little this may lead to inaccurate times?
 	$"UI Update Timer".start(1)
 	
+	# Handle short on time stinger
+	if time_left <= Settings.play_short_time_stinger and !$"Audio Controller/Ambiance".stream == Effects_list["Timer Running Out"]:
+		$"Audio Controller/Ambiance".stream = Effects_list["Timer Running Out"]
+		$"Audio Controller/Ambiance".play()
+	
 func game_over():
 	# TO-DO: Leaderboard, game over screen, buttons to play again or go to main menu
+	
+	# Handle winning/losing music
+	if !$"Audio Controller/Effects".stream == Effects_list["Win"]:
+		$"Audio Controller/Effects".stream = Effects_list["Dying"]
+	$"Audio Controller/Effects".play()
+	
 	get_tree().change_scene_to_file.call_deferred(main_menu_path)
 	print("game over")
 
@@ -95,6 +128,10 @@ func _on_player_request_transition() -> void:
 	# On layer change, add new enemies
 	var new_enemy_list = generate_new_enemies()
 	$"Layer functionality".change_layer($Mobs.get_children(),$Player,$"Mob Spawner",new_enemy_list)
+	
+	# Play sound
+	$"Audio Controller/Effects".stream = Effects_list["Dive Down"]
+	$"Audio Controller/Effects".play()
 
 func generate_new_enemies():
 	# Generate new enemies depending on what layer you're on, with smaller fish
@@ -126,8 +163,19 @@ func set_pause(toggle):
 		if !timer.is_stopped():
 			cur_time = timer.time_left
 			timer.stop()
+			
+			# Handle stopping music
+			Ambiance_stoptime = $"Audio Controller/Ambiance".get_playback_position()
+			Music_stoptime = $"Audio Controller/Music".get_playback_position()
+			$"Audio Controller/Ambiance".stop()
+			$"Audio Controller/Music".stop()
 		else:
 			timer.start(cur_time)
+			
+			# Handle starting music
+			$"Audio Controller/Ambiance".play(Ambiance_stoptime)
+			$"Audio Controller/Music".play(Music_stoptime)
+
 
 
 func _on_player_camera_resize_request() -> void:
@@ -146,3 +194,14 @@ func _on_player_camera_resize_request() -> void:
 
 func _on_player_take_hit() -> void:
 	$"In-game UI".subtract_points()
+
+func select_bg_sounds():
+	if $"Layer functionality".current_layer in Settings.shallow_layers:
+		$"Audio Controller/Ambiance".stream = Ambiance_list["Shallow"]
+		$"Audio Controller/Music".stream = Music_list["Shallow"]
+	elif $"Layer functionality".current_layer in Settings.medium_layers:
+		$"Audio Controller/Ambiance".stream = Ambiance_list["Medium"]
+		$"Audio Controller/Music".stream = Music_list["Medium"]
+	else:
+		$"Audio Controller/Ambiance".stream = Ambiance_list["Deep"]
+		$"Audio Controller/Music".stream = Music_list["Deep"]

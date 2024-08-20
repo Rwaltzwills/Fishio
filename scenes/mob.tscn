@@ -59,6 +59,8 @@ text = "xxx"
 [node name="action" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="Effects" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="area_entered" from="CollisionShape2D/hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="CollisionShape2D/detect" to="." method="_on_detect_area_entered"]
 [connection signal="area_exited" from="CollisionShape2D/detect" to="." method="_on_detect_area_exited"]

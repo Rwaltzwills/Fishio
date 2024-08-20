@@ -12,6 +12,9 @@ var zooming_out = false
 var player_base_scale
 var base_scale
 
+var Effects_List = {"Aggro":preload("res://Sound/SFX/NPC'S/AGGRO SOUND_1.wav"),
+					"Eating":preload("res://Sound/SFX/ACTIONS/EATINGCONSUMING SMALL.wav")}
+
 @export var eating_size = 0
 @export var SPEED = 100
 
@@ -95,6 +98,9 @@ func _on_detect_area_entered(area: Area2D) -> void:
 		if eating_size > area.eating_size:
 			cur_action = "chase"
 			$Debug_State.text = "chase"
+			# Handle sound
+			$"Effects".stream = Effects_List["Aggro"]
+			$Effects.play()
 		else:
 			cur_action = "run"
 			$Debug_State.text = "run"
@@ -112,3 +118,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("is_player"):
 		if eating_size > area.eating_size:
 			area.handle_damage()
+			
+			# Handle sound
+			$"Effects".stream = Effects_List["Eating"]
+			$Effects.play()

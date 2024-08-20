@@ -39,6 +39,7 @@ func _on_player_gained_size() -> void:
 	$Points.text = str(Points_format % (Points), tr(" OUT OF "), str(Settings.POINTS_GOAL))
 	if Points >= Settings.POINTS_GOAL: # Check if won the game
 		emit_signal("won_game")
+	
 
 func subtract_points() -> void:
 	# Update points
