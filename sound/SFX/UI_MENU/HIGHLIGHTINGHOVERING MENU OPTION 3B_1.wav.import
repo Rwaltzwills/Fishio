@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bk30dx67abl5v"
-path="res://.godot/imported/HIGHLIGHTINGHOVERING MENU OPTION 3B_1.wav-7d65ad4aa4b604e605d773a69a7dc0db.sample"
+path="res://.godot/imported/HIGHLIGHTINGHOVERING MENU OPTION 3B_1.wav-942e6d2a1c4eb488e413198012902d82.sample"
 
 [deps]
 
-source_file="res://sound/SFX/UI_MENU/HIGHLIGHTINGHOVERING MENU OPTION 3B_1.wav"
-dest_files=["res://.godot/imported/HIGHLIGHTINGHOVERING MENU OPTION 3B_1.wav-7d65ad4aa4b604e605d773a69a7dc0db.sample"]
+source_file="res://Sound/SFX/UI_MENU/HIGHLIGHTINGHOVERING MENU OPTION 3B_1.wav"
+dest_files=["res://.godot/imported/HIGHLIGHTINGHOVERING MENU OPTION 3B_1.wav-942e6d2a1c4eb488e413198012902d82.sample"]
 
 [params]
 

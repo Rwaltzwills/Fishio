@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cj7w56r45qhpp"
-path="res://.godot/imported/OPENING THE PAUSE MENU FX_1.wav-47a550e6b0c0f90cef24963aee23e570.sample"
+path="res://.godot/imported/OPENING THE PAUSE MENU FX_1.wav-1d7efc70d02fffc005528e1efbbcfb4b.sample"
 
 [deps]
 
-source_file="res://sound/SFX/UI_MENU/OPENING THE PAUSE MENU FX_1.wav"
-dest_files=["res://.godot/imported/OPENING THE PAUSE MENU FX_1.wav-47a550e6b0c0f90cef24963aee23e570.sample"]
+source_file="res://Sound/SFX/UI_MENU/OPENING THE PAUSE MENU FX_1.wav"
+dest_files=["res://.godot/imported/OPENING THE PAUSE MENU FX_1.wav-1d7efc70d02fffc005528e1efbbcfb4b.sample"]
 
 [params]
 

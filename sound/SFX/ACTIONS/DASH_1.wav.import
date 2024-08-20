@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://24qrsi5kuyhe"
-path="res://.godot/imported/DASH_1.wav-2136374dea28b7b48162e73f2199dadb.sample"
+path="res://.godot/imported/DASH_1.wav-e452f00ee1229970edda6aa424dca61a.sample"
 
 [deps]
 
-source_file="res://sound/SFX/ACTIONS/DASH_1.wav"
-dest_files=["res://.godot/imported/DASH_1.wav-2136374dea28b7b48162e73f2199dadb.sample"]
+source_file="res://Sound/SFX/ACTIONS/DASH_1.wav"
+dest_files=["res://.godot/imported/DASH_1.wav-e452f00ee1229970edda6aa424dca61a.sample"]
 
 [params]
 

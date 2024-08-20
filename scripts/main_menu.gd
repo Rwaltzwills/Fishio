@@ -16,9 +16,9 @@ static var player_info := {
 	"name": "" # Itch.io display name (or username)
 }
 
-@onready var Effects_list = {"Clicking":preload("res://sound/SFX/ACTIONS/EATING CONSUMING LARGE_1.wav"),
-							"Typing":preload("res://sound/SFX/ACTIONS/EATINGCONSUMING MEDIUM.wav"),
-							"Start Game":preload("res://sound/SFX/ACTIONS/EATINGCONSUMING SMALL.wav")}
+@onready var Effects_list = {"Clicking":preload("res://Sound/SFX/UI_MENU/CLICKINGSELECTING_1.wav"),
+							"Typing":preload("res://Sound/SFX/UI_MENU/TYPINGKEY NOISE 1_1.wav"),
+							"Start Game":preload("res://Sound/SFX/UI_MENU/START GAME_1.wav")}
 
 @onready var Intro_music = preload("res://sound/Music/INTRO (Over START MENU).mp3")
 

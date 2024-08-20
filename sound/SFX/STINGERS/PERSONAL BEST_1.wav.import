@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cqfu1f41241k5"
-path="res://.godot/imported/PERSONAL BEST_1.wav-4821a73d7186e6be32722f7c4a3dd1ac.sample"
+path="res://.godot/imported/PERSONAL BEST_1.wav-f8feee00e78b6b3d4409950744006a9e.sample"
 
 [deps]
 
-source_file="res://sound/SFX/STINGERS/PERSONAL BEST_1.wav"
-dest_files=["res://.godot/imported/PERSONAL BEST_1.wav-4821a73d7186e6be32722f7c4a3dd1ac.sample"]
+source_file="res://Sound/SFX/STINGERS/PERSONAL BEST_1.wav"
+dest_files=["res://.godot/imported/PERSONAL BEST_1.wav-f8feee00e78b6b3d4409950744006a9e.sample"]
 
 [params]
 
