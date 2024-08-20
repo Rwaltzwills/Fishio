@@ -17,10 +17,22 @@ var swimming_animation
 var default_animation
 
 @onready var animation_player = $Animations
-@onready var Animations_List = ["Guppy Eat","Guppy Swim","Guppy Default","Shark Eat","Shark Swim","Shark Default","Manta Eat","Manta Swim","Manta Default"]
+@onready var Animations_List = [
+	"Guppy Eat", 
+	"Guppy Swim", 
+	"Guppy Default",
+	"Shark Eat",
+	"Shark Swim",
+	"Shark Default",
+	"Manta Eat",
+	"Manta Swim",
+	"Manta Default"
+]
 
-@onready var Effects_List = {"Aggro":preload("res://Sound/SFX/NPC'S/AGGRO SOUND_1.wav"),
-					"Eating":preload("res://Sound/SFX/ACTIONS/EATINGCONSUMING SMALL.wav")}
+@onready var Effects_List = {
+	"Aggro": preload("res://sound/SFX/NPC'S/AGGRO SOUND_1.wav"),
+	"Eating": preload("res://sound/SFX/ACTIONS/EATINGCONSUMING SMALL.wav")
+}
 
 @export var eating_size = 0
 @export var SPEED = 100

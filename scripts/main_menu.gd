@@ -11,11 +11,16 @@ extends Control
 @export var hard_minutes = 0
 @export var hard_seconds = 45
 
-@onready var Effects_list = {"Clicking":preload("res://Sound/SFX/ACTIONS/EATING CONSUMING LARGE_1.wav"),
-							"Typing":preload("res://Sound/SFX/ACTIONS/EATINGCONSUMING MEDIUM.wav"),
-							"Start Game":preload("res://Sound/SFX/ACTIONS/EATINGCONSUMING SMALL.wav")}
+static var player_info := {
+	"id": 0, # Itch.io Account Id
+	"name": "" # Itch.io display name (or username)
+}
 
-@onready var Intro_music = preload("res://Sound/Music/INTRO (Over START MENU).wav")
+@onready var Effects_list = {"Clicking":preload("res://sound/SFX/ACTIONS/EATING CONSUMING LARGE_1.wav"),
+							"Typing":preload("res://sound/SFX/ACTIONS/EATINGCONSUMING MEDIUM.wav"),
+							"Start Game":preload("res://sound/SFX/ACTIONS/EATINGCONSUMING SMALL.wav")}
+
+@onready var Intro_music = preload("res://sound/Music/INTRO (Over START MENU).mp3")
 
 var game_scene = preload("res://scenes//testing.tscn")
 var wobbler = preload("res://scenes//wobbler.tscn")
@@ -58,6 +63,15 @@ func _ready():
 	$"Controls Menu".move_child($"Controls Menu/BackButton",-1)
 	assign_control.connect(Settings.new_mapping)
 	select_mode.connect(Settings.new_game_parameters)
+	
+	# Itch.io Authentication
+	$ItchRequests.request_completed.connect(_on_itch_request_complete)
+	
+	if OS.has_feature("pc"):
+		var itch_api_key = OS.get_environment("ITCHIO_API_KEY")
+		if itch_api_key != "":
+			$ItchRequests.request("https://itch.io/api/1/jwt/me", [ "Authorization: Bearer %s" % itch_api_key ])
+
 	# Initial positions
 	$AnimationPlayer.play("In-Game/Initial Settings")
 	
@@ -75,12 +89,36 @@ func _ready():
 	$Music.stream = Intro_music
 	$Music.play()
 
+func _on_itch_request_complete(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray):
+	if result != HTTPRequest.RESULT_SUCCESS:
+		print("Error requesting player profile information!")
+		return
+	
+	var data = JSON.parse_string(body.get_string_from_utf8())
+	var player_name: String
+	
+	if data["user"].has("display_name"):
+		player_name = data["user"]["display_name"]
+	else:
+		player_name = data["user"]["username"]
+	
+	player_info = {
+		"id": data["user"]["id"],
+		"name": player_name
+	}
+	
+	$ItchButton.hide()
+	$PlayerName.show()
+	$PlayerName.text = player_info["name"]
+
 func play_clicking_sounds():
 	$Effects.stream = Effects_list["Clicking"]
+	$Effects.pitch_scale = randf_range(0.9, 1.1)
 	$Effects.play()
 
-func play_typing_sounds():
+func play_typing_sounds(_new_text):
 	$Effects.stream = Effects_list["Typing"]
+	$Effects.pitch_scale = randf_range(0.9, 1.1)
 	$Effects.play()
 
 # For remapping controls
@@ -152,9 +190,22 @@ func _on_hard_pressed() -> void:
 	$Music.stop()
 	get_tree().change_scene_to_packed(game_scene)
 
-func _on_button_pressed() -> void:
+func _on_gamemode_back_button_pressed():
 	$AnimationPlayer.play("In-Game/Close Game Modes")
 
+func _on_itch_button_pressed():
+	$ItchButton.hide()
+	OS.shell_open("https://itch.io/user/oauth?client_id=9eeba42d69bfbc45e30323ef8de3e534&scope=profile%3Ame&response_type=token&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob")
+	$SignInDialog.show()
+
+func _on_api_key_continue_button_pressed():
+	var api_key = $SignInDialog/MarginContainer/VBoxContainer/KeyInput.text
+	$ItchRequests.request("https://itch.io/api/1/key/me", [ "Authorization: Bearer %s" % api_key ])
+	$SignInDialog.hide()
+
+func _on_api_key_cancel_button_pressed():
+	$ItchButton.show()
+	$SignInDialog.hide()
 
 func _on_custom_button_pressed() -> void:
 	$AnimationPlayer.play("In-Game/Open Custom")

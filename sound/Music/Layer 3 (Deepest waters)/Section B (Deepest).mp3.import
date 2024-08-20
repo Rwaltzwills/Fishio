@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cuex0htarh4ox"
+path="res://.godot/imported/Section B (Deepest).mp3-2bd06509194a2472560327fc065571ce.mp3str"
+
+[deps]
+
+source_file="res://sound/Music/Layer 3 (Deepest waters)/Section B (Deepest).mp3"
+dest_files=["res://.godot/imported/Section B (Deepest).mp3-2bd06509194a2472560327fc065571ce.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

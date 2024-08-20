@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://6arttprph3pu"
+path="res://.godot/imported/TYPINGKEY NOISE 4_1.wav-86acf3e60efb8655fe22f5b770afff79.sample"
+
+[deps]
+
+source_file="res://sound/SFX/UI_MENU/TYPINGKEY NOISE 4_1.wav"
+dest_files=["res://.godot/imported/TYPINGKEY NOISE 4_1.wav-86acf3e60efb8655fe22f5b770afff79.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

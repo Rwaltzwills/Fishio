@@ -11,19 +11,19 @@ var Points_format = "%02d"
 var Music_stoptime = 0.0
 var Ambiance_stoptime = 0.0
 
-@onready var Music_list = {"Shallow":preload("res://Sound/Music/Layer 1 (Shallow Waters)/Section A.wav"),
-							"Medium:":preload("res://Sound/Music/Layer 1 (Shallow Waters)/Section B.wav"),
-							"Deep":preload("res://Sound/Music/Layer 1 (Shallow Waters)/Section C.wav")}
+@onready var Music_list = {"Shallow":preload("res://sound/Music/Layer 1 (Shallow Waters)/Section A.mp3"),
+							"Medium:":preload("res://sound/Music/Layer 1 (Shallow Waters)/Section B.mp3"),
+							"Deep":preload("res://sound/Music/Layer 1 (Shallow Waters)/Section C.mp3")}
 
-@onready var Ambiance_list = {"Shallow":preload("res://Sound/SFX/AMBIENCE/GAME SMALL SHALLOW (BRIGHTEST)_1.wav"),
-							"Medium":preload("res://Sound/SFX/AMBIENCE/GAME MEDIUM DEEP (MUFFLED)_1.wav"),
-							"Deep":preload("res://Sound/SFX/AMBIENCE/GAME LARGE DEEPEST (MOST MUFFLED)_1.wav")}
+@onready var Ambiance_list = {"Shallow":preload("res://sound/SFX/AMBIENCE/GAME SMALL SHALLOW (BRIGHTEST)_1.wav"),
+							"Medium":preload("res://sound/SFX/AMBIENCE/GAME MEDIUM DEEP (MUFFLED)_1.wav"),
+							"Deep":preload("res://sound/SFX/AMBIENCE/GAME LARGE DEEPEST (MOST MUFFLED)_1.wav")}
 
-@onready var Effects_list = {"Dying":preload("res://Sound/SFX/STINGERS/DYING_1.wav"),
-							"Size Up":preload("res://Sound/SFX/STINGERS/SIZE DOWN RISE UP_1.wav"), 
-							"Dive Down":preload("res://Sound/SFX/STINGERS/SIZE UP DIVE DOWN_bip_1.wav"), 
-							"Timer Running Out":preload("res://Sound/SFX/STINGERS/TIMERLAST 30sLAST 10th of TIME_1.wav"),
-							"Win":preload("res://Sound/SFX/STINGERS/WINNING COMPLETING_1.wav")}
+@onready var Effects_list = {"Dying":preload("res://sound/SFX/STINGERS/DYING_1.wav"),
+							"Size Up":preload("res://sound/SFX/STINGERS/SIZE DOWN RISE UP_1.wav"), 
+							"Dive Down":preload("res://sound/SFX/STINGERS/SIZE UP DIVE DOWN_bip_1.wav"), 
+							"Timer Running Out":preload("res://sound/SFX/STINGERS/TIMERLAST 30sLAST 10th of TIME_1.wav"),
+							"Win":preload("res://sound/SFX/STINGERS/WINNING COMPLETING_1.wav")}
 
 @export var small_fish :PackedScene
 @export var same_fish :PackedScene

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b7marrpc4jg70"
+path="res://.godot/imported/LARGE FISH SWIMMING_1.wav-36d749351358d4b56d85ae952ab6f1c4.sample"
+
+[deps]
+
+source_file="res://sound/SFX/NPC'S/LARGE FISH SWIMMING_1.wav"
+dest_files=["res://.godot/imported/LARGE FISH SWIMMING_1.wav-36d749351358d4b56d85ae952ab6f1c4.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

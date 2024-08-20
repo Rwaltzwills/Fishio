@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://wvivhbd4fd6q"
+path="res://.godot/imported/HIGHLIGHTINGHOVERING MENU ORIGINAL B_1.wav-639ca968be466ca4ac7c913d0883b67d.sample"
+
+[deps]
+
+source_file="res://sound/SFX/UI_MENU/HIGHLIGHTINGHOVERING MENU ORIGINAL B_1.wav"
+dest_files=["res://.godot/imported/HIGHLIGHTINGHOVERING MENU ORIGINAL B_1.wav-639ca968be466ca4ac7c913d0883b67d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

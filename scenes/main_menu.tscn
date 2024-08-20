@@ -1,15 +1,33 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfxfn6dsf5olw"]
+[gd_scene load_steps=13 format=3 uid="uid://bfxfn6dsf5olw"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_vx1pp"]
 [ext_resource type="AnimationLibrary" uid="uid://bgso4mvjgwcqv" path="res://animation_libraries/Menu.res" id="2_ln7d0"]
+[ext_resource type="Texture2D" uid="uid://bd8m5y630wm5x" path="res://graphics/seabg.png" id="2_udvr5"]
 [ext_resource type="PackedScene" uid="uid://ghogwurd6r5g" path="res://scenes/wobbler.tscn" id="3_v4qlq"]
 [ext_resource type="Script" path="res://scripts/center_node.gd" id="4_dxwjq"]
 [ext_resource type="Script" path="res://scripts/language_selection.gd" id="5_h8wgm"]
 [ext_resource type="Script" path="res://scripts/custom_game_modes.gd" id="6_fao5d"]
+[ext_resource type="Texture2D" uid="uid://dxj375td7ityn" path="res://graphics/itchio-logo-textless-white.svg" id="6_jngp1"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jcjpw"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qbgqi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vjdu"]
+content_margin_left = 5.0
+content_margin_right = 5.0
+bg_color = Color(0.980392, 0.360784, 0.360784, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wbwh2"]
+bg_color = Color(0, 0, 0, 0.921569)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -21,6 +39,12 @@ offset_bottom = -648.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vx1pp")
+
+[node name="ItchRequests" type="HTTPRequest" parent="."]
+
+[node name="Seabg" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+texture = ExtResource("2_udvr5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -113,6 +137,7 @@ pivot_offset = Vector2(50, 15)
 text = "BACK"
 
 [node name="Controls Menu" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 576.0
 offset_top = 324.0
@@ -175,7 +200,7 @@ offset_top = 1.0
 offset_right = 1151.0
 offset_bottom = 32.0
 grow_horizontal = 0
-text = "SELECT LANGUAGE"
+text = "SELECT_LANGUAGE"
 item_count = 2
 popup/item_0/text = "ENGLISH"
 popup/item_1/text = "THAI"
@@ -237,6 +262,80 @@ text = "BACK"
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 
+[node name="ItchButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 191.0
+offset_bottom = 51.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_0vjdu")
+text = "ITCH_SIGN_IN"
+icon = ExtResource("6_jngp1")
+
+[node name="PlayerName" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 124.0
+offset_bottom = 48.0
+text = "Player Name"
+
+[node name="SignInDialog" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 276.0
+offset_top = 249.0
+offset_right = 876.0
+offset_bottom = 399.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wbwh2")
+
+[node name="MarginContainer" type="MarginContainer" parent="SignInDialog"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SignInDialog/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="SignInDialog/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "API_KEY"
+horizontal_alignment = 1
+
+[node name="KeyInput" type="LineEdit" parent="SignInDialog/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "API_KEY_INPUT"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SignInDialog/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ContinueButton" type="Button" parent="SignInDialog/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CONTINUE"
+
+[node name="CancelButton" type="Button" parent="SignInDialog/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CANCEL"
+
 [connection signal="pressed" from="Splash Menu/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Splash Menu/SettingsButton" to="." method="open_settings"]
 [connection signal="pressed" from="Splash Menu/QuitButton" to="." method="_on_quit_button_pressed"]
@@ -247,8 +346,11 @@ text = "BACK"
 [connection signal="pressed" from="Game Modes/Medium" to="." method="_on_medium_pressed"]
 [connection signal="pressed" from="Game Modes/Hard" to="." method="_on_hard_pressed"]
 [connection signal="pressed" from="Game Modes/Custom Button" to="." method="_on_custom_button_pressed"]
-[connection signal="pressed" from="Game Modes/Back Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Game Modes/Back Button" to="." method="_on_gamemode_back_button_pressed"]
 [connection signal="text_changed" from="Custom Game Modes/Seconds/Seconds_Entry" to="Custom Game Modes" method="_on_seconds_entry_text_changed"]
 [connection signal="text_changed" from="Custom Game Modes/Goal/Goal_Entry" to="Custom Game Modes" method="_on_goal_entry_text_changed"]
 [connection signal="pressed" from="Custom Game Modes/Custom Play Button" to="Custom Game Modes" method="_on_play_button_pressed"]
 [connection signal="pressed" from="Custom Game Modes/Custom Back Button" to="." method="_on_custom_back_button_pressed"]
+[connection signal="pressed" from="ItchButton" to="." method="_on_itch_button_pressed"]
+[connection signal="pressed" from="SignInDialog/MarginContainer/VBoxContainer/HBoxContainer/ContinueButton" to="." method="_on_api_key_continue_button_pressed"]
+[connection signal="pressed" from="SignInDialog/MarginContainer/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_api_key_cancel_button_pressed"]
