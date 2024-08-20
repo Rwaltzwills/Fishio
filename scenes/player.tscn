@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://7ba5xuy72rle"]
+[gd_scene load_steps=17 format=3 uid="uid://7ba5xuy72rle"]
 
+[ext_resource type="Shader" path="res://scenes/player.gdshader" id="1_bj7wg"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_uyvn1"]
 [ext_resource type="Texture2D" uid="uid://clu1y78vqxuh4" path="res://graphics/sprites/Player_spritesheet.png" id="2_5hqyh"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="3_bnc5o"]
@@ -7,6 +8,11 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vefc7"]
 radius = 16.0
 height = 80.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ivyy"]
+shader = ExtResource("1_bj7wg")
+shader_parameter/reddish = Vector4(100, 0, 0, 0.25)
+shader_parameter/on = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrpy1"]
 size = Vector2(16, 16)
@@ -131,6 +137,7 @@ shape = SubResource("CapsuleShape2D_vefc7")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
 modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_8ivyy")
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_5hqyh")
 hframes = 16
@@ -160,4 +167,7 @@ offset_bottom = 23.0
 
 [node name="Effects" type="AudioStreamPlayer2D" parent="."]
 
+[node name="Hit Timer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="CollisionShape2D/hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="Hit Timer" to="." method="_on_hit_timer_timeout"]

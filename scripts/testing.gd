@@ -119,8 +119,8 @@ func game_win() -> void:
 	$HTTPRequest.request_completed.connect(_on_request_completed)
 	# Send to leaderboard
 	var json = JSON.stringify({"Name":"Guppy",
-							"Score":str($"In-game UI".Points),
-							"Time":str((Settings.TIMER_MINUTES*60+Settings.TIMER_SECONDS)-$"Game Timer".time_left)})
+							"Score":$"In-game UI".Points,
+							"Time":(Settings.TIMER_MINUTES*60+Settings.TIMER_SECONDS)-$"Game Timer".time_left})
 	var headers = ["Content-Type: application/json"]
 	$HTTPRequest.request("https://fishioleaderboard.dailitation.xyz/api/add", headers, HTTPClient.METHOD_POST, json)
 	
