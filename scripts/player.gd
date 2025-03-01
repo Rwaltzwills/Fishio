@@ -170,7 +170,7 @@ func change_size(new_size = 0) -> void:
 		new_size_scale = base_scale
 	
 	# Check if we're getting too big for the screen, scale everything down
-	if $CollisionShape2D.scale >= Vector2(5,5):
+	if $CollisionShape2D.scale >= Vector2(5,5) and not zooming_out:
 		zooming_out = true
 		eating_size = Settings.same_fish_size
 		new_size_scale = base_scale
@@ -184,6 +184,7 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		if self.eating_size >= body.eating_size:
 			change_size()
 			emit_signal("collided", body)
+			
 			# DEBUG: play eating animation
 			
 			# Handle sound

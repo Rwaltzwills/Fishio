@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bfxfn6dsf5olw"]
+[gd_scene load_steps=15 format=3 uid="uid://bfxfn6dsf5olw"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_vx1pp"]
 [ext_resource type="AnimationLibrary" uid="uid://bgso4mvjgwcqv" path="res://animation_libraries/Menu.res" id="2_ln7d0"]
@@ -10,7 +10,73 @@
 [ext_resource type="Texture2D" uid="uid://dxj375td7ityn" path="res://graphics/itchio-logo-textless-white.svg" id="6_jngp1"]
 [ext_resource type="AudioStream" uid="uid://djmslj6bvbou7" path="res://Sound/Music/INTRO (Over START MENU).mp3" id="8_pq8qd"]
 
+[sub_resource type="Animation" id="Animation_47ipu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Museum:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Museum:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Splash Menu:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Splash Menu:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Splash Menu:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(526, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jcjpw"]
+_data = {
+"RESET": SubResource("Animation_47ipu")
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qbgqi"]
 
@@ -55,12 +121,12 @@ libraries = {
 }
 
 [node name="Splash Menu" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 anchors_preset = 0
 offset_left = 526.0
-offset_top = 260.0
 offset_right = 626.0
-offset_bottom = 388.0
+offset_bottom = 128.0
 
 [node name="Label" type="Label" parent="Splash Menu"]
 layout_mode = 2
@@ -102,6 +168,17 @@ pivot_offset = Vector2(50, 15)
 text = "QUIT"
 
 [node name="Wobbler" parent="Splash Menu/QuitButton" instance=ExtResource("3_v4qlq")]
+
+[node name="CreditsButton" type="Button" parent="Splash Menu"]
+layout_mode = 0
+offset_left = -14.0
+offset_top = 135.0
+offset_right = 103.0
+offset_bottom = 166.0
+scale = Vector2(1.1, 1.1)
+text = "Art / Credits"
+
+[node name="Wobbler" parent="Splash Menu/CreditsButton" instance=ExtResource("3_v4qlq")]
 
 [node name="Settings Menu" type="Control" parent="."]
 visible = false
@@ -356,9 +433,46 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "CANCEL"
 
+[node name="Museum" type="Control" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 526.0
+offset_top = 260.0
+offset_right = 626.0
+offset_bottom = 394.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Museum"]
+layout_mode = 2
+offset_top = 17.0
+offset_right = 100.0
+offset_bottom = 40.0
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="Museum"]
+layout_mode = 2
+offset_top = 79.0
+offset_right = 100.0
+offset_bottom = 110.0
+scale = Vector2(1.1, 1.1)
+pivot_offset = Vector2(50, 15)
+text = "BACK"
+
+[node name="Wobbler" parent="Museum/BackButton" instance=ExtResource("3_v4qlq")]
+
 [connection signal="pressed" from="Splash Menu/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Splash Menu/SettingsButton" to="." method="open_settings"]
 [connection signal="pressed" from="Splash Menu/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Splash Menu/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="Settings Menu/ControlsButton" to="." method="open_controls"]
 [connection signal="pressed" from="Settings Menu/BackButton" to="." method="close_settings"]
 [connection signal="pressed" from="Controls Menu/BackButton" to="." method="close_controls"]
@@ -374,3 +488,4 @@ text = "CANCEL"
 [connection signal="pressed" from="ItchButton" to="." method="_on_itch_button_pressed"]
 [connection signal="pressed" from="SignInDialog/MarginContainer/VBoxContainer/HBoxContainer/ContinueButton" to="." method="_on_api_key_continue_button_pressed"]
 [connection signal="pressed" from="SignInDialog/MarginContainer/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_api_key_cancel_button_pressed"]
+[connection signal="pressed" from="Museum/BackButton" to="." method="_on_close_museum"]

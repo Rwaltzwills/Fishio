@@ -27,7 +27,8 @@ func change_layer(current_enemies, player, mob_spawner, new_enemy_list) -> void:
 	mob_spawner.spawn_enemies()
 	
 	# Add to points multiplier
-	Settings.POINTS_MULTIPLIER = Settings.POINTS_MULTIPLIER + 1
+	# Settings.POINTS_MULTIPLIER = Settings.POINTS_MULTIPLIER + 1
+	# Might just remove points multiplier
 	
 	# TO-DO: Unpause
 	

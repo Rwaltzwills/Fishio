@@ -209,3 +209,11 @@ func _on_custom_button_pressed() -> void:
 
 func _on_custom_back_button_pressed() -> void:
 	$AnimationPlayer.play("In-Game/Close Custom")
+
+
+func _on_credits_button_pressed() -> void:
+	$AnimationPlayer.play("In-Game/Open Museum")
+
+
+func _on_close_museum() -> void:
+	$AnimationPlayer.play("In-Game/Close Museum")

@@ -16,7 +16,7 @@ var Music_stoptime = 0.0
 var Ambiance_stoptime = 0.0
 
 @onready var Music_list = {"Shallow":preload("res://Sound/Music/Layer 1 (Shallow Waters)/Section A.mp3"),
-							"Medium:":preload("res://Sound/Music/Layer 1 (Shallow Waters)/Section B.mp3"),
+							"Medium":preload("res://Sound/Music/Layer 1 (Shallow Waters)/Section B.mp3"),
 							"Deep":preload("res://Sound/Music/Layer 1 (Shallow Waters)/Section C.mp3")}
 
 @onready var Ambiance_list = {"Shallow":preload("res://Sound/SFX/AMBIENCE/GAME SMALL SHALLOW (BRIGHTEST)_1.wav"),
@@ -184,15 +184,20 @@ func set_pause(toggle):
 
 func _on_player_camera_resize_request() -> void:
 	# When the player needs to scale down in size, scale down all mobs too
+	
+	# actually maybe just change layers here it's literally the same thing now
+	self._on_player_request_transition()
+	'''
 	var children = $Mobs.get_children()
 	for c in children:
 		c.zooming_out = true
-		c.eating_size = c.eating_size - 3
+		c.eating_size = c.original_eating_size
 		var Debug_Label = c.find_child("Debug_Size")
 		if Debug_Label != null:
 			Debug_Label.text = str(c.eating_size - 3)
 		if c.eating_size < -2:
 			c.queue_free() # After a certain size, despawn fish to force player deeper
+	'''
 			
 
 
@@ -200,9 +205,10 @@ func _on_player_take_hit() -> void:
 	$"In-game UI".subtract_points()
 
 func select_bg_sounds():
+	var music_names = ["Shallow", "Medium", "Deep"]
 	if $"Layer functionality".current_layer in Settings.shallow_layers:
 		$"Audio Controller/Ambiance".stream = Ambiance_list["Shallow"]
-		$"Audio Controller/Music".stream = Music_list["Shallow"]
+		$"Audio Controller/Music".stream = Music_list[music_names[randi_range(0,2)]]
 	elif $"Layer functionality".current_layer in Settings.medium_layers:
 		$"Audio Controller/Ambiance".stream = Ambiance_list["Medium"]
 		$"Audio Controller/Music".stream = Music_list["Medium"]

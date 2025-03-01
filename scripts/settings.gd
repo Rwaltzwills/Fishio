@@ -3,7 +3,7 @@ extends Node
 @export var POINTS_GOAL = 1000
 @export var TIMER_MINUTES = 0
 @export var TIMER_SECONDS = 5
-@export var POINTS_MULTIPLIER = 1.5
+@export var POINTS_MULTIPLIER = 1
 @export var small_fish_size = 1
 @export var same_fish_size = 2
 @export var big_fish_size = 5

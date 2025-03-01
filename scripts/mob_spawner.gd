@@ -30,6 +30,7 @@ func spawn_enemies() -> void:
 		var m = initial_mobs[new_mob][0].instantiate()
 		m.position = new_pos
 		m.eating_size = initial_mobs[new_mob][1]
+		m.original_eating_size = initial_mobs[new_mob][1] # NEW NEW
 		mob_group.add_child.call_deferred(m)
 		m.player = player
 		m.player_base_scale = player.base_scale

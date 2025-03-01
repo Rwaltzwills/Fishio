@@ -16,6 +16,8 @@ var eating_animation
 var swimming_animation
 var default_animation
 
+var original_eating_size = 1
+
 signal request_reposition
 
 @onready var animation_player = $Animations
@@ -51,8 +53,9 @@ func _ready() -> void:
 	
 	if eating_size > Settings.same_fish_size:
 		$CollisionShape2D.scale = eating_size*Settings.scale_size
-	$Debug_Size.text = str(eating_size)
 	base_scale = $CollisionShape2D.scale
+	$Debug_Size.text = str(eating_size)
+	
 	dire = collider.rotation
 	
 	# Scale speed on size
@@ -66,7 +69,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	# handle resizing
 	if zooming_out:
-		$CollisionShape2D.scale = $CollisionShape2D.scale.lerp(base_scale - Vector2(4,4), Settings.zoom_out_speed)
+		$CollisionShape2D.scale = $CollisionShape2D.scale.lerp(base_scale, Settings.zoom_out_speed)
 		if $CollisionShape2D.scale.x <= base_scale.x - 3:
 			base_scale = $CollisionShape2D.scale
 			zooming_out = false
