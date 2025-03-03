@@ -17,6 +17,16 @@ extends Control
 	"Start Game": preload("res://Sound/SFX/UI_MENU/START GAME_1.wav")
 }
 
+@onready var Musics_List = [preload("res://Sound/Music/Layer 1 (Shallow Waters)/Section A.mp3"),
+							preload("res://Sound/Music/Layer 1 (Shallow Waters)/Section B.mp3"),
+							preload("res://Sound/Music/Layer 1 (Shallow Waters)/Section C.mp3"),
+							preload("res://Sound/Music/Layer 2 (Middle-Deep waters)/Section A (Middle-Deep).mp3"),
+							preload("res://Sound/Music/Layer 2 (Middle-Deep waters)/Section B (Middle-Deep).mp3"),
+							preload("res://Sound/Music/Layer 2 (Middle-Deep waters)/Section C (Middle-Deep).mp3"),
+							preload("res://Sound/Music/Layer 3 (Deepest waters)/Section A (Deepest).mp3"),
+							preload("res://Sound/Music/Layer 3 (Deepest waters)/Section B (Deepest).mp3"),
+							preload("res://Sound/Music/Layer 3 (Deepest waters)/Section C (Deepest).mp3"),]
+
 var game_scene = preload("res://scenes//testing.tscn")
 var wobbler = preload("res://scenes//wobbler.tscn")
 var actions = {
@@ -29,6 +39,8 @@ var actions = {
 var is_remapping = false
 var action_to_remap = null
 var button_to_remap = null
+
+var Museum_Music_Selection = 0
 
 signal assign_control
 signal select_mode
@@ -217,3 +229,22 @@ func _on_credits_button_pressed() -> void:
 
 func _on_close_museum() -> void:
 	$AnimationPlayer.play("In-Game/Close Museum")
+
+
+func _on_play_music_button_pressed() -> void:
+	var music_tween = get_tree().create_tween()
+	music_tween.tween_property($Music, "volume_db", -80, 0.4)
+	# $Music.volume_db.lerp = $Music.volume_db.lerp(-80, 0.1)
+	$Music/SongSwapTimer.one_shot = true
+	$Music/SongSwapTimer.start(0.5)
+	
+
+
+func _on_song_swap_timer_timeout() -> void:
+	$Music.volume_db = 0
+	$Music.stream = Musics_List[Museum_Music_Selection]
+	$Music.play()
+
+
+func _on_music_selection_item_selected(index: int) -> void:
+	Museum_Music_Selection = index
