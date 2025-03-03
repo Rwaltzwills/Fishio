@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bycq76gonfm2l"
-path="res://.godot/imported/AGGRO SOUND_1.wav-1eedc3a546b6a45566ed7725435a5f28.sample"
+path="res://.godot/imported/AGGRO SOUND_1.wav-bf0647ad7cdf752bf5e20dbf1cfcbebd.sample"
 
 [deps]
 
-source_file="res://sound/SFX/NPC'S/AGGRO SOUND_1.wav"
-dest_files=["res://.godot/imported/AGGRO SOUND_1.wav-1eedc3a546b6a45566ed7725435a5f28.sample"]
+source_file="res://Sound/SFX/NPC'S/AGGRO SOUND_1.wav"
+dest_files=["res://.godot/imported/AGGRO SOUND_1.wav-bf0647ad7cdf752bf5e20dbf1cfcbebd.sample"]
 
 [params]
 

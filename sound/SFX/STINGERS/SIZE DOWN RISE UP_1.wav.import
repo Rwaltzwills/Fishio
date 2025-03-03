@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dlpv62502gd2y"
-path="res://.godot/imported/SIZE DOWN RISE UP_1.wav-a5f5a682d2ac9486eb8bbe369a69f031.sample"
+path="res://.godot/imported/SIZE DOWN RISE UP_1.wav-7eec26a6fbd5a45c23e54fd7932bda90.sample"
 
 [deps]
 
-source_file="res://sound/SFX/STINGERS/SIZE DOWN RISE UP_1.wav"
-dest_files=["res://.godot/imported/SIZE DOWN RISE UP_1.wav-a5f5a682d2ac9486eb8bbe369a69f031.sample"]
+source_file="res://Sound/SFX/STINGERS/SIZE DOWN RISE UP_1.wav"
+dest_files=["res://.godot/imported/SIZE DOWN RISE UP_1.wav-7eec26a6fbd5a45c23e54fd7932bda90.sample"]
 
 [params]
 

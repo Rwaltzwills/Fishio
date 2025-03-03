@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bfxfn6dsf5olw"]
+[gd_scene load_steps=19 format=3 uid="uid://bfxfn6dsf5olw"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_vx1pp"]
 [ext_resource type="AnimationLibrary" uid="uid://bgso4mvjgwcqv" path="res://animation_libraries/Menu.res" id="2_ln7d0"]
@@ -9,8 +9,78 @@
 [ext_resource type="Script" path="res://scripts/custom_game_modes.gd" id="6_fao5d"]
 [ext_resource type="Texture2D" uid="uid://dxj375td7ityn" path="res://graphics/itchio-logo-textless-white.svg" id="6_jngp1"]
 [ext_resource type="AudioStream" uid="uid://djmslj6bvbou7" path="res://Sound/Music/INTRO (Over START MENU).mp3" id="8_pq8qd"]
+[ext_resource type="Texture2D" uid="uid://cmaa18nq4dtny" path="res://graphics/sprites/Guppy_Single.png" id="10_ahse5"]
+[ext_resource type="Texture2D" uid="uid://cnkgwelfsavcf" path="res://graphics/sprites/Manta_Single.png" id="11_i58v2"]
+[ext_resource type="Texture2D" uid="uid://ctcd65phlx0ol" path="res://graphics/sprites/Shark_Single.png" id="12_a4utt"]
+[ext_resource type="Texture2D" uid="uid://dfl14ygguwcx" path="res://graphics/sprites/Player.png" id="13_amolk"]
+
+[sub_resource type="Animation" id="Animation_47ipu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Museum:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Museum:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Splash Menu:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Splash Menu:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Splash Menu:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(526, 260)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jcjpw"]
+_data = {
+"RESET": SubResource("Animation_47ipu")
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qbgqi"]
 
@@ -102,6 +172,17 @@ pivot_offset = Vector2(50, 15)
 text = "QUIT"
 
 [node name="Wobbler" parent="Splash Menu/QuitButton" instance=ExtResource("3_v4qlq")]
+
+[node name="CreditsButton" type="Button" parent="Splash Menu"]
+layout_mode = 0
+offset_left = -14.0
+offset_top = 135.0
+offset_right = 103.0
+offset_bottom = 166.0
+scale = Vector2(1.1, 1.1)
+text = "Art / Credits"
+
+[node name="Wobbler" parent="Splash Menu/CreditsButton" instance=ExtResource("3_v4qlq")]
 
 [node name="Settings Menu" type="Control" parent="."]
 visible = false
@@ -282,7 +363,10 @@ text = "BACK"
 stream = ExtResource("8_pq8qd")
 autoplay = true
 
+[node name="SongSwapTimer" type="Timer" parent="Music"]
+
 [node name="ItchButton" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 20.0
 offset_top = 20.0
@@ -356,9 +440,136 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "CANCEL"
 
+[node name="Museum" type="Control" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 526.0
+offset_top = 260.0
+offset_right = 626.0
+offset_bottom = 394.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Museum"]
+layout_mode = 2
+offset_top = 17.0
+offset_right = 100.0
+offset_bottom = 40.0
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="Museum"]
+layout_mode = 2
+offset_top = 47.0
+offset_right = 100.0
+offset_bottom = 78.0
+scale = Vector2(1.1, 1.1)
+pivot_offset = Vector2(50, 15)
+text = "BACK"
+
+[node name="Wobbler" parent="Museum/BackButton" instance=ExtResource("3_v4qlq")]
+
+[node name="Images Gallery" type="TabContainer" parent="Museum"]
+layout_mode = 1
+offset_left = 150.0
+offset_top = 96.0
+offset_right = 317.0
+offset_bottom = 329.0
+current_tab = 0
+clip_tabs = false
+
+[node name="Guppy" type="TextureRect" parent="Museum/Images Gallery"]
+layout_mode = 2
+texture = ExtResource("10_ahse5")
+expand_mode = 1
+stretch_mode = 5
+metadata/_tab_index = 0
+
+[node name="Player" type="TextureRect" parent="Museum/Images Gallery"]
+visible = false
+layout_mode = 2
+texture = ExtResource("13_amolk")
+expand_mode = 1
+stretch_mode = 5
+metadata/_tab_index = 1
+
+[node name="Shark" type="TextureRect" parent="Museum/Images Gallery"]
+visible = false
+layout_mode = 2
+texture = ExtResource("12_a4utt")
+expand_mode = 1
+stretch_mode = 5
+metadata/_tab_index = 2
+
+[node name="Manta Ray" type="TextureRect" parent="Museum/Images Gallery"]
+visible = false
+layout_mode = 2
+texture = ExtResource("11_i58v2")
+expand_mode = 1
+stretch_mode = 5
+metadata/_tab_index = 3
+
+[node name="Label2" type="Label" parent="Museum"]
+layout_mode = 2
+offset_left = 231.0
+offset_top = 339.0
+offset_right = 383.0
+offset_bottom = 362.0
+text = "Art by Xero"
+horizontal_alignment = 1
+
+[node name="Music Container" type="VBoxContainer" parent="Museum"]
+layout_mode = 0
+offset_left = -162.0
+offset_top = 128.0
+offset_right = 6.0
+offset_bottom = 239.0
+
+[node name="Music Selection" type="OptionButton" parent="Museum/Music Container"]
+layout_mode = 2
+item_count = 9
+popup/item_0/text = "Shallow Water - A"
+popup/item_1/text = "Shallow Water - B"
+popup/item_1/id = 1
+popup/item_2/text = "Shallow Water - C"
+popup/item_2/id = 2
+popup/item_3/text = "Middle Water - A"
+popup/item_3/id = 3
+popup/item_4/text = "Middle Water - B"
+popup/item_4/id = 4
+popup/item_5/text = "Middle Water - C"
+popup/item_5/id = 5
+popup/item_6/text = "Deep Water - A"
+popup/item_6/id = 6
+popup/item_7/text = "Deep Water - B"
+popup/item_7/id = 7
+popup/item_8/text = "Deep Water - C"
+popup/item_8/id = 8
+
+[node name="Play Music Button" type="Button" parent="Museum/Music Container"]
+layout_mode = 2
+text = "Play Music
+"
+
+[node name="Label3" type="Label" parent="Museum"]
+layout_mode = 0
+offset_left = -233.0
+offset_top = 336.0
+offset_right = 58.0
+offset_bottom = 359.0
+text = "Music by Aersnkaso and Justbrowsing"
+
 [connection signal="pressed" from="Splash Menu/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Splash Menu/SettingsButton" to="." method="open_settings"]
 [connection signal="pressed" from="Splash Menu/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Splash Menu/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="Settings Menu/ControlsButton" to="." method="open_controls"]
 [connection signal="pressed" from="Settings Menu/BackButton" to="." method="close_settings"]
 [connection signal="pressed" from="Controls Menu/BackButton" to="." method="close_controls"]
@@ -371,6 +582,10 @@ text = "CANCEL"
 [connection signal="text_changed" from="Custom Game Modes/GridContainer/Goal_Entry" to="Custom Game Modes" method="_on_goal_entry_text_changed"]
 [connection signal="pressed" from="Custom Game Modes/GridContainer/Custom Play Button" to="Custom Game Modes" method="_on_play_button_pressed"]
 [connection signal="pressed" from="Custom Game Modes/GridContainer/Custom Back Button" to="." method="_on_custom_back_button_pressed"]
+[connection signal="timeout" from="Music/SongSwapTimer" to="." method="_on_song_swap_timer_timeout"]
 [connection signal="pressed" from="ItchButton" to="." method="_on_itch_button_pressed"]
 [connection signal="pressed" from="SignInDialog/MarginContainer/VBoxContainer/HBoxContainer/ContinueButton" to="." method="_on_api_key_continue_button_pressed"]
 [connection signal="pressed" from="SignInDialog/MarginContainer/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_api_key_cancel_button_pressed"]
+[connection signal="pressed" from="Museum/BackButton" to="." method="_on_close_museum"]
+[connection signal="item_selected" from="Museum/Music Container/Music Selection" to="." method="_on_music_selection_item_selected"]
+[connection signal="pressed" from="Museum/Music Container/Play Music Button" to="." method="_on_play_music_button_pressed"]

@@ -15,19 +15,19 @@ var was_game_won = false
 var Music_stoptime = 0.0
 var Ambiance_stoptime = 0.0
 
-@onready var Music_list = {"Shallow":preload("res://sound/Music/Layer 1 (Shallow Waters)/Section A.mp3"),
-							"Medium:":preload("res://sound/Music/Layer 1 (Shallow Waters)/Section B.mp3"),
-							"Deep":preload("res://sound/Music/Layer 1 (Shallow Waters)/Section C.mp3")}
+@onready var Music_list = {"Shallow":preload("res://Sound/Music/Layer 1 (Shallow Waters)/Section A.mp3"),
+							"Medium":preload("res://Sound/Music/Layer 1 (Shallow Waters)/Section B.mp3"),
+							"Deep":preload("res://Sound/Music/Layer 1 (Shallow Waters)/Section C.mp3")}
 
-@onready var Ambiance_list = {"Shallow":preload("res://sound/SFX/AMBIENCE/GAME SMALL SHALLOW (BRIGHTEST)_1.wav"),
-							"Medium":preload("res://sound/SFX/AMBIENCE/GAME MEDIUM DEEP (MUFFLED)_1.wav"),
-							"Deep":preload("res://sound/SFX/AMBIENCE/GAME LARGE DEEPEST (MOST MUFFLED)_1.wav")}
+@onready var Ambiance_list = {"Shallow":preload("res://Sound/SFX/AMBIENCE/GAME SMALL SHALLOW (BRIGHTEST)_1.wav"),
+							"Medium":preload("res://Sound/SFX/AMBIENCE/GAME MEDIUM DEEP (MUFFLED)_1.wav"),
+							"Deep":preload("res://Sound/SFX/AMBIENCE/GAME LARGE DEEPEST (MOST MUFFLED)_1.wav")}
 
-@onready var Effects_list = {"Dying":preload("res://sound/SFX/STINGERS/DYING_1.wav"),
-							"Size Up":preload("res://sound/SFX/STINGERS/SIZE DOWN RISE UP_1.wav"), 
-							"Dive Down":preload("res://sound/SFX/STINGERS/SIZE UP DIVE DOWN_bip_1.wav"), 
-							"Timer Running Out":preload("res://sound/SFX/STINGERS/TIMERLAST 30sLAST 10th of TIME_1.wav"),
-							"Win":preload("res://sound/SFX/STINGERS/WINNING COMPLETING_1.wav")}
+@onready var Effects_list = {"Dying":preload("res://Sound/SFX/STINGERS/DYING_1.wav"),
+							"Size Up":preload("res://Sound/SFX/STINGERS/SIZE DOWN RISE UP_1.wav"), 
+							"Dive Down":preload("res://Sound/SFX/STINGERS/SIZE UP DIVE DOWN_bip_1.wav"), 
+							"Timer Running Out":preload("res://Sound/SFX/STINGERS/TIMERLAST 30sLAST 10th of TIME_1.wav"),
+							"Win":preload("res://Sound/SFX/STINGERS/WINNING COMPLETING_1.wav")}
 
 @export var win_screen :PackedScene
 @export var lose_screen :PackedScene
@@ -41,9 +41,11 @@ var Ambiance_stoptime = 0.0
 @export var minimum_big = 6
 @export var minimum_biggest = 4
 
+signal submit_highscores
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# TO-DO: Ready Sounds
+	# ready sounds
 	select_bg_sounds()
 	# Play Sounds
 	$"Audio Controller/Ambiance".play()
@@ -64,6 +66,9 @@ func _ready() -> void:
 	$"Mob Spawner".spawn_enemies()
 	
 	shader_speed_default_a = $Background/ColorRect.material.get_shader_parameter("scroll_speed")
+	
+	self.submit_highscores.connect(Settings.submit_highscores)
+	was_game_won = false
 
 func _process(_delta: float) -> void:
 	pass
@@ -115,35 +120,9 @@ func game_over():
 
 func game_win() -> void:
 	was_game_won = true
+	emit_signal("submit_highscores", $"In-game UI".Points, $"Game Timer".time_left)
+	game_over()
 	
-	if not Globals.is_signed_in:
-		return
-	
-	$HTTPRequest.request_completed.connect(_on_add_request_completed)
-	# Send to leaderboard
-	var json = JSON.stringify({
-		"ItchId": Globals.player_info["id"],
-		"Name": Globals.player_info["name"],
-		"Score": $"In-game UI".Points,
-		"Time": (Settings.TIMER_MINUTES*60+Settings.TIMER_SECONDS) - $"Game Timer".time_left
-	})
-	var headers = ["Content-Type: application/json"]
-	$HTTPRequest.request("https://fishioleaderboard.dailitation.xyz/api/add", headers, HTTPClient.METHOD_POST, json)
-	
-	$"Audio Controller/Effects".stream == Effects_list["Win"]
-	
-func _on_add_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray):
-	var body_str = body.get_string_from_utf8()
-	
-	if result != HTTPRequest.RESULT_SUCCESS:
-		Settings.is_leaderboard_active = false
-		# TODO: Alert about failed request
-		print("Failed to fetch leaderboard: {result} {code} {message}".format({
-			"result": result,
-			"code": response_code,
-			"message": body_str
-		}))
-		return
 
 func _on_player_request_transition() -> void:
 	# On layer change, add new enemies
@@ -205,15 +184,20 @@ func set_pause(toggle):
 
 func _on_player_camera_resize_request() -> void:
 	# When the player needs to scale down in size, scale down all mobs too
+	
+	# actually maybe just change layers here it's literally the same thing now
+	self._on_player_request_transition()
+	'''
 	var children = $Mobs.get_children()
 	for c in children:
 		c.zooming_out = true
-		c.eating_size = c.eating_size - 3
+		c.eating_size = c.original_eating_size
 		var Debug_Label = c.find_child("Debug_Size")
 		if Debug_Label != null:
 			Debug_Label.text = str(c.eating_size - 3)
 		if c.eating_size < -2:
 			c.queue_free() # After a certain size, despawn fish to force player deeper
+	'''
 			
 
 
@@ -221,9 +205,10 @@ func _on_player_take_hit() -> void:
 	$"In-game UI".subtract_points()
 
 func select_bg_sounds():
+	var music_names = ["Shallow", "Medium", "Deep"]
 	if $"Layer functionality".current_layer in Settings.shallow_layers:
 		$"Audio Controller/Ambiance".stream = Ambiance_list["Shallow"]
-		$"Audio Controller/Music".stream = Music_list["Shallow"]
+		$"Audio Controller/Music".stream = Music_list[music_names[randi_range(0,2)]]
 	elif $"Layer functionality".current_layer in Settings.medium_layers:
 		$"Audio Controller/Ambiance".stream = Ambiance_list["Medium"]
 		$"Audio Controller/Music".stream = Music_list["Medium"]

@@ -16,32 +16,32 @@ signal perish
 
 @onready var Effects_list = {
 	"Eating Large": [
-		preload("res://sound/SFX/ACTIONS/EATING CONSUMING LARGE_1.wav"),
-		preload("res://sound/SFX/ACTIONS/EATING CONSUMING LARGE_2.wav")
+		preload("res://Sound/SFX/ACTIONS/EATING CONSUMING LARGE_1.wav"),
+		preload("res://Sound/SFX/ACTIONS/EATING CONSUMING LARGE_2.wav")
 	],
 	"Eating Medium": [
-		preload("res://sound/SFX/ACTIONS/EATINGCONSUMING MEDIUM.wav"),
-		preload("res://sound/SFX/ACTIONS/EATINGCONSUMING MEDIUM_2.wav")
+		preload("res://Sound/SFX/ACTIONS/EATINGCONSUMING MEDIUM.wav"),
+		preload("res://Sound/SFX/ACTIONS/EATINGCONSUMING MEDIUM_2.wav")
 	],
 	"Eating Small": [
-		preload("res://sound/SFX/ACTIONS/EATINGCONSUMING SMALL.wav"),
-		preload("res://sound/SFX/ACTIONS/EATINGCONSUMING SMALL_2.wav")
+		preload("res://Sound/SFX/ACTIONS/EATINGCONSUMING SMALL.wav"),
+		preload("res://Sound/SFX/ACTIONS/EATINGCONSUMING SMALL_2.wav")
 	],
 	"Dash": [
-		preload("res://sound/SFX/ACTIONS/DASH_1.wav")
+		preload("res://Sound/SFX/ACTIONS/DASH_1.wav")
 	]
 }
 
 @onready var Swimming_Sounds = {
 	"Swim Left": [
-		preload("res://sound/SFX/ACTIONS/SWIM LEFT SMALL_1.wav"),
-		preload("res://sound/SFX/ACTIONS/SWIM LEFT MEDIUM_1.wav"),
-		preload("res://sound/SFX/ACTIONS/SWIM LEFT LARGE_1.wav")
+		preload("res://Sound/SFX/ACTIONS/SWIM LEFT SMALL_1.wav"),
+		preload("res://Sound/SFX/ACTIONS/SWIM LEFT MEDIUM_1.wav"),
+		preload("res://Sound/SFX/ACTIONS/SWIM LEFT LARGE_1.wav")
 	],
 	"Swim Right": [
-		preload("res://sound/SFX/ACTIONS/SWIM RIGHT SMALL_1.wav"),
-		preload("res://sound/SFX/ACTIONS/SWIM RIGHT MEDIUM_1.wav"),
-		preload("res://sound/SFX/ACTIONS/SWIM RIGHT LARGE_1.wav")
+		preload("res://Sound/SFX/ACTIONS/SWIM RIGHT SMALL_1.wav"),
+		preload("res://Sound/SFX/ACTIONS/SWIM RIGHT MEDIUM_1.wav"),
+		preload("res://Sound/SFX/ACTIONS/SWIM RIGHT LARGE_1.wav")
 	]
 }
 
@@ -83,7 +83,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	# Check for transition request
-	if Input.get_action_strength("Transition") > .5:
+	if Input.is_action_pressed("Transition"):
 		emit_signal("request_transition")
 		return
 	
@@ -170,10 +170,10 @@ func change_size(new_size = 0) -> void:
 		new_size_scale = base_scale
 	
 	# Check if we're getting too big for the screen, scale everything down
-	if $CollisionShape2D.scale >= Vector2(5,5):
+	if $CollisionShape2D.scale >= Vector2(5,5) and not zooming_out:
 		zooming_out = true
 		eating_size = Settings.same_fish_size
-		collider.scale = base_scale
+		new_size_scale = base_scale
 		emit_signal("camera_resize_request")
 	
 	$"Debug Size".text = str(eating_size)
@@ -184,6 +184,7 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		if self.eating_size >= body.eating_size:
 			change_size()
 			emit_signal("collided", body)
+			
 			# DEBUG: play eating animation
 			
 			# Handle sound

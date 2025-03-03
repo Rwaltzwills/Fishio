@@ -3,7 +3,7 @@ extends Node
 @export var POINTS_GOAL = 1000
 @export var TIMER_MINUTES = 0
 @export var TIMER_SECONDS = 5
-@export var POINTS_MULTIPLIER = 1.5
+@export var POINTS_MULTIPLIER = 1
 @export var small_fish_size = 1
 @export var same_fish_size = 2
 @export var big_fish_size = 5
@@ -53,3 +53,31 @@ func new_game_parameters(points, minutes, seconds):
 	POINTS_GOAL = points
 	TIMER_MINUTES = minutes
 	TIMER_SECONDS = seconds
+	
+func submit_highscores(Points, time_left):
+	if not Globals.is_signed_in:
+		return
+	
+	$HTTPRequest.request_completed.connect(_on_add_request_completed)
+	# Send to leaderboard
+	var json = JSON.stringify({
+		"ItchId": Globals.player_info["id"],
+		"Name": Globals.player_info["name"],
+		"Score": Points,
+		"Time": (Settings.TIMER_MINUTES*60+Settings.TIMER_SECONDS) - time_left
+	})
+	var headers = ["Content-Type: application/json"]
+	$HTTPRequest.request("https://fishioleaderboard.dailitation.xyz/api/add", headers, HTTPClient.METHOD_POST, json)
+
+func _on_add_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray):
+	var body_str = body.get_string_from_utf8()
+	
+	if result != HTTPRequest.RESULT_SUCCESS:
+		Settings.is_leaderboard_active = false
+		# TODO: Alert about failed request
+		print("Failed to fetch leaderboard: {result} {code} {message}".format({
+			"result": result,
+			"code": response_code,
+			"message": body_str
+		}))
+		return

@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://dskd8ud72hqg1"
-path="res://.godot/imported/Section C (Middle-Deep).mp3-53a7c51bdc5d0ec011cdfac2c71b382b.mp3str"
+path="res://.godot/imported/Section C (Middle-Deep).mp3-50c9caaed447ed2539465dd8994ff7b0.mp3str"
 
 [deps]
 
-source_file="res://sound/Music/Layer 2 (Middle-Deep waters)/Section C (Middle-Deep).mp3"
-dest_files=["res://.godot/imported/Section C (Middle-Deep).mp3-53a7c51bdc5d0ec011cdfac2c71b382b.mp3str"]
+source_file="res://Sound/Music/Layer 2 (Middle-Deep waters)/Section C (Middle-Deep).mp3"
+dest_files=["res://.godot/imported/Section C (Middle-Deep).mp3-50c9caaed447ed2539465dd8994ff7b0.mp3str"]
 
 [params]
 
